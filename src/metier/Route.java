@@ -1,4 +1,4 @@
- package metier;
+ package src.metier;
 
 public class Route 
 {
