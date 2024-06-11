@@ -2,9 +2,9 @@ package ihm;
 
 import javax.swing.JFrame;
 
-class PlateauJeu extends JFrame
+class FrameJeu extends JFrame
 {
-	PlateauJeu()
+	FrameJeu()
 	{
 		this.setSize(800, 800); 
 		this.setTitle("Mon Plateau"); 
@@ -17,6 +17,6 @@ class PlateauJeu extends JFrame
 
 	public static void main(String[] args)
 	{
-		new PlateauJeu(); 
+		new FrameJeu(); 
 	}
 }
