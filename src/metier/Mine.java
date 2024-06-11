@@ -31,9 +31,9 @@ public class Mine
 		return false;
 	}
 
-	public int getX() { return this.x;}
-	public int getY() { return this.y;}
-	public int getNumMine() { return this.numero;}
-	public char getRegion() { return this.region;}
-	public ArrayList<Route> getListRoute() { return this.routes;}
+	public int getX() 						{ return this.x;	 }
+	public int getY() 						{ return this.y;	 }
+	public int getNumMine() 				{ return this.numero;}
+	public char getRegion() 				{ return this.region;}
+	public ArrayList<Route> getListRoute()  { return this.routes;}
 }
