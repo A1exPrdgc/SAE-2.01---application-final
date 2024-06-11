@@ -1,3 +1,5 @@
+package src.metier;
+
 public class Monnaie
 {
     private int val;
