@@ -1,6 +1,7 @@
 ./src/Controleur.java
 
-./src/ihm/Plateau.java
+./src/ihm/PanelJeu.java
+./src/ihm/FrameJeu.java
 
 
 ./src/metier/Mine.java
