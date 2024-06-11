@@ -2,7 +2,7 @@ package metier;
 
 import src.Controleur;
 import src.metier.Jeton;
-import src.metier.Mine;
+import src.Etape2.metier.Mine;
 
 public class Equipe 
 {

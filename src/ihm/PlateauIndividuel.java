@@ -1,7 +1,12 @@
+package src.ihm;
+
 import javax.swing.*;
 
-import metier.Equipe;
+import src.Controleur;
+import scala.annotation.meta.companionClass;
+import src.metier.Equipe;
 import src.metier.Jeton;
+import src.metier.Mine;
 
 import java.awt.*;
 import java.util.Deque;
@@ -15,7 +20,7 @@ public class PlateauIndividuel extends JPanel {
 	private int imageWidthPointPosXY = 50;
 	private Jeton[][] tabRessources;
 	private Image[][] tabImageRessource;
-	private Jeton[][] tabMines;
+	private Mine[][] tabMines;
 	private Image[][] tabImageMine;
 
 	private Equipe equipe;
@@ -40,7 +45,7 @@ public class PlateauIndividuel extends JPanel {
 		// Créer un JLabel pour afficher le texte
 		JLabel labelPointPosRestant = new JLabel("x25");
 		labelPointPosRestant.setBounds(80, 550, 50, 50); // Positionner le label dans la fenêtre
-		frame.add(labelPointPosRestant); // Ajouter le label à la fenêtre
+		this.add(labelPointPosRestant); // Ajouter le label à la fenêtre
 
 		this.tabImageRessource = new Image[4][8];
 		this.tabRessources = this.equipe.getRessources(); // à revoir
@@ -109,7 +114,7 @@ public class PlateauIndividuel extends JPanel {
 
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		Equipe equipe = new Equipe();
+		Equipe equipe = new Equipe(Controleur ctrl, "Equipe 1");
 		PlateauIndividuel plateauIndividuel = new PlateauIndividuel(equipe);
 
 		// Ajouter le panel au cadre
