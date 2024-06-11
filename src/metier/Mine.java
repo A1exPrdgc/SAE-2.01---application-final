@@ -1,5 +1,8 @@
 package metier;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Mine 
 {
 	private int x ;
@@ -7,6 +10,7 @@ public class Mine
 	private Ressource ressource;
 	private int numero ;
 	private char region;
+	private List<Route> routes;
 
 	public Mine(int x , int y , int numero, char region)
 	{
@@ -14,6 +18,7 @@ public class Mine
 		this.y=y;
 		this.numero = numero;
 		this.region = region;
+		this.routes = new ArrayList<Route>();
 	}
 
 	public boolean ajouterRessource(Ressource r)
@@ -25,4 +30,10 @@ public class Mine
 			}
 		return false;
 	}
+
+	public int getX() { return this.x;}
+	public int getY() { return this.y;}
+	public int getNumMine() { return this.numero;}
+	public char getRegion() { return this.region;}
+	public ArrayList<Route> getListRoute() { return this.routes;}
 }
