@@ -1,7 +1,12 @@
 import javax.swing.*;
+
+import metier.Equipe;
+import src.metier.Jeton;
+
 import java.awt.*;
 import java.util.Deque;
 import java.util.List;
+import java.util.ArrayList;
 
 public class PlateauIndividuel extends JPanel {
 

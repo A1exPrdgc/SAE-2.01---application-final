@@ -56,7 +56,7 @@ public class Sauvegarde
 	{
 		try
 		{
-			Scanner sc = new Scanner(new FileInputStream("villes.txt"));
+			Scanner sc = new Scanner(new FileInputStream("mines.txt"));
 
 			while (sc.hasNextLine()) {
 				String[] ville = sc.nextLine().split(",");
@@ -78,7 +78,7 @@ public class Sauvegarde
 
 	public static void sauvegarderRoutes(List<Route> routes)
 	{
-		try (PrintWriter writer = new PrintWriter(new FileOutputStream("routes.txt")))
+		try (PrintWriter writer = new PrintWriter(new FileOutputStream("mines.txt")))
 		{
 			for (Route route : routes)
 			{
@@ -117,7 +117,7 @@ public class Sauvegarde
 	{
 		try
 		{
-			Scanner sc = new Scanner(new FileInputStream("routes.txt"));
+			Scanner sc = new Scanner(new FileInputStream("mines.txt"));
 
 			while (sc.hasNextLine()) {
 				String[] route = sc.nextLine().split(",");
