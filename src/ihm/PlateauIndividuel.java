@@ -1,7 +1,11 @@
+package src.ihm;
+
 import javax.swing.*;
 
-import metier.Equipe;
+import src.Controleur;
+import src.metier.Equipe;
 import src.metier.Jeton;
+import src.metier.Mine;
 
 import java.awt.*;
 import java.util.Deque;
@@ -15,12 +19,13 @@ public class PlateauIndividuel extends JPanel {
 	private int imageWidthPointPosXY = 50;
 	private Jeton[][] tabRessources;
 	private Image[][] tabImageRessource;
-	private Jeton[][] tabMines;
-	private Image[][] tabImageMine;
+	private Mine[] tabMines;
+	private JLabel[] tabImageMine;
 
 	private Equipe equipe;
 	private Image plateauImage;
-	private Image pointPosRestantImage;
+	private JLabel pointPosRestantImage;
+	private JLabel labelPointPosRestant;
 	private int pointPosRestant;
 
 	private final int pieceXOffset = 77; // Position initiale en x pour les pièces
@@ -34,18 +39,19 @@ public class PlateauIndividuel extends JPanel {
 	public PlateauIndividuel(Equipe equipe) {
 		this.equipe = equipe;
 		this.plateauImage = new ImageIcon("images/plateauIndividuel.png").getImage(); // à revoir
+		this.pointPosRestantImage = new JLabel();
 
-		this.pointPosRestantImage = new ImageIcon("images/jetonPossession.png") // à revoir ++
+		this.pointPosRestantImage.setIcon(new ImageIcon("images/jetonPossession.png"));    // à revoir ++
 		this.pointPosRestant = equipe.getNBPointPos(); // à revoir
 		// Créer un JLabel pour afficher le texte
-		JLabel labelPointPosRestant = new JLabel("x25");
+		this.labelPointPosRestant = new JLabel("x25");
 		labelPointPosRestant.setBounds(80, 550, 50, 50); // Positionner le label dans la fenêtre
-		frame.add(labelPointPosRestant); // Ajouter le label à la fenêtre
+		this.add(labelPointPosRestant); // Ajouter le label à la fenêtre
 
 		this.tabImageRessource = new Image[4][8];
 		this.tabRessources = this.equipe.getRessources(); // à revoir
 
-		this.tabImageMine = new Image[3][5];
+		this.tabImageMine = new JLabel[32];
 		this.tabMines = this.equipe.getMines(); // à revoir
 
 
@@ -61,13 +67,11 @@ public class PlateauIndividuel extends JPanel {
 		}
 		for (int lig = 0; lig < tabMines.length; lig++) 
 		{
-			for (int col = 0; col < tabMines[0].length; col++) 
+			if (this.tabMines[lig] != null) 
 			{
-				if (tabMines[lig][col] != null) 
-				{
-					this.tabImageMine[lig][col] = new ImageIcon("images/" + tabMines[lig][col].getType().toString().toLowerCase() + ".png").getImage(); // à revoir
-				}
+				this.tabImageMine[lig].setIcon(new ImageIcon("images/test.png")); // à revoir
 			}
+
 		}
 	}
 
@@ -76,7 +80,7 @@ public class PlateauIndividuel extends JPanel {
 		super.paintComponent(g);
 
 		g.drawImage(plateauImage, 0, 0, 880, 500, this);
-		g.drawImage(pointPosRestant, 20, 550, imageWidthPointPosXY, imageWidthPointPosXY, this);
+		//g.drawImage(pointPosRestant, 20, 550, imageWidthPointPosXY, imageWidthPointPosXY, this);
 		labelPointPosRestant.setText( "" + pointPosRestant);
 
 		for (int lig = 0; lig < tabRessources.length; lig++) {
@@ -88,11 +92,11 @@ public class PlateauIndividuel extends JPanel {
 		}
 
 		for (int lig = 0; lig < tabMines.length; lig++) {
-			for (int col = 0; col < tabMines[0].length; col++) {
-				if (this.tabImageMine[lig][col] != null) {
-					g.drawImage(tabImageMine[lig][col], col*80*2+800, lig * 80*2+80, imageWidthMineXY, imageWidthMineXY, this);
-				}
+			if (this.tabImageMine[lig] != null) {
+				//g.drawImage(tabImageMine[lig], 0, lig * 80*2+80, imageWidthMineXY, imageWidthMineXY, this);
+				System.out.println("ok");
 			}
+
 		}
 
 		int tmp = 0;
@@ -107,9 +111,11 @@ public class PlateauIndividuel extends JPanel {
 		// Créer une nouvelle fenêtre (JFrame)
 		JFrame frame = new JFrame("Plateau individuel");
 
+		Controleur ctrl = new Controleur();
+
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		Equipe equipe = new Equipe();
+		Equipe equipe = new Equipe(ctrl, "ejgfuierhlkg");
 		PlateauIndividuel plateauIndividuel = new PlateauIndividuel(equipe);
 
 		// Ajouter le panel au cadre
