@@ -1,6 +1,6 @@
 package src.metier;
 
-public class Monnaie
+public class Monnaie implements IRessources
 {
     private int val;
 

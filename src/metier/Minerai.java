@@ -2,7 +2,7 @@ package src.metier;
 
 import java.awt.Color;
 
-public enum Minerai 
+public enum Minerai implements IRessources
 {
     AL(new Color(227, 240, 126)),
     AG(new Color(150, 150, 150)),
