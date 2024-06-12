@@ -13,16 +13,13 @@ public class Equipe
 
     private int nbJetonPossession;
     private int nbMine;
-    private Mine[] tabMine;
+    private Etape2.metier.Mine[] tabMine;
     private String nom;
     private Jeton[][] tabJetons;
     private int nbPiece;
-//	private String [] nomsEquipes;
 
     public Equipe(Controleur ctrl, String nom)
     {
-//		this.nomsEquipes = new String[] {"Corporation Solaire", "Syndicat Astral"};
-
         this.ctrl = ctrl;
 
         this.nom = nom;
@@ -198,9 +195,57 @@ public class Equipe
 	}
 
 	public int getScoreJetonPossRestants() {return getNBPointPos();}
-	
+
 	public int getScoreBonus(Equipe autreEquipe) 
 	{
 		return (getNBPointPos() >= autreEquipe.getNBPointPos()) ? 10 : 0;
+	}
+
+	public String[] getScoreMines() 
+	{
+		int scoreMine = 0;
+		String[] tabTypeMines = new String [] { "j0", "b0", "g0", "v0", "r0", "m0", };
+
+		for (int i = 0; i < this.tabMine.length; i++) {
+			switch (tabMine[i].getRegion()) {
+				case 'j':
+					if ( this.tabMine[i].getNumMine() > Integer.parseInt(tabTypeMines[0].substring(1))) 
+					{
+						tabTypeMines[0] = "j" + this.tabMine[i].getNumMine();
+					}
+					break;
+				case 'b':
+					if (this.tabMine[i].getNumMine() > Integer.parseInt(tabTypeMines[1].substring(1)))
+					{
+						tabTypeMines[1] = "b" + this.tabMine[i].getNumMine();
+					}
+					break;
+				case 'g':
+					if (this.tabMine[i].getNumMine() > Integer.parseInt(tabTypeMines[2].substring(1)))
+					{
+						tabTypeMines[2] = "g" + this.tabMine[i].getNumMine();
+					}
+					break;
+				case 'v':
+					if (this.tabMine[i].getNumMine() > Integer.parseInt(tabTypeMines[3].substring(1)))
+					{
+						tabTypeMines[3] = "v" + this.tabMine[i].getNumMine();
+					}
+					break;
+				case 'r':
+					if (this.tabMine[i].getNumMine() > Integer.parseInt(tabTypeMines[4].substring(1)))
+					{
+						tabTypeMines[4] = "r" + this.tabMine[i].getNumMine();
+					}
+					break;
+				default:
+					if (this.tabMine[i].getNumMine() > Integer.parseInt(tabTypeMines[5].substring(1)))
+					{
+						tabTypeMines[5] = "m" + this.tabMine[i].getNumMine();
+					}
+					break;
+			}
+		}
+		return tabTypeMines;
 	}
 }
