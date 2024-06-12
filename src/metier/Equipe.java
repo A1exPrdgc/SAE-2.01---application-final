@@ -2,7 +2,7 @@ package src.metier;
 
 import src.Controleur;
 import src.metier.Jeton;
-import src.metier.Mine;
+import src.Etape2.metier.Mine;
 import src.metier.Minerai;
 
 public class Equipe 
@@ -17,9 +17,12 @@ public class Equipe
     private String nom;
     private Jeton[][] tabJetons;
     private int nbPiece;
+//	private String [] nomsEquipes;
 
     public Equipe(Controleur ctrl, String nom)
     {
+//		this.nomsEquipes = new String[] {"Corporation Solaire", "Syndicat Astral"};
+
         this.ctrl = ctrl;
 
         this.nom = nom;
@@ -88,4 +91,116 @@ public class Equipe
     {
         return this.nbPiece;
     }
+
+	public int getScorePLateauIndividuel()
+	{
+		return getScorePiece() 
+			 + getScoreColonnes() 
+			 + getScoreLignes();
+	}
+	
+	public int getScorePiece()
+	{
+		return (this.nbPiece == 1 || this.nbPiece == 0) ? 0 : this.nbPiece * this.nbPiece;
+	}
+
+	public int getScore()
+	{
+		int score = 0;
+		for (int cpt = 0; cpt < getTailleCol(); cpt++)
+		{
+			score += calculerScoreColonne(cpt);
+		}
+		for (int cpt = 0; cpt < getTailleLig(); cpt++)
+		{
+			score += calculerScoreLigne(cpt);
+		}
+		if (nbPiece != 1)
+			score += nbPiece * nbPiece;
+		return score;
+	}
+
+	private int calculerScoreColonne(int col)
+	{
+		int nbCasesRemplies = 0;
+		for (int i = 0; i < getTailleLig(); i++)
+		{
+			if (tabJetons[i][col] != null)
+			{
+				nbCasesRemplies++;
+			}
+		}
+		switch (nbCasesRemplies)
+		{
+		case 0:
+			return 0;
+		case 1:
+			return 0;
+		case 2:
+			return 2;
+		case 3:
+			return 10;
+		default:
+			return 20;
+		}
+	}
+
+	private int calculerScoreLigne(int ligne)
+	{
+		int nbCasesRemplies = 0;
+		for (int j = 0; j < getTailleCol(); j++)
+		{
+			if (tabJetons[ligne][j] != null)
+			{
+				nbCasesRemplies++;
+			}
+		}
+		switch (nbCasesRemplies)
+		{
+		case 0:
+			return 0;
+		case 1:
+			return 0;
+		case 2:
+			return 2;
+		case 3:
+			return 5;
+		case 4:
+			return 9;
+		case 5:
+			return 14;
+		case 6:
+			return 20;
+		case 7:
+			return 32;
+		default:
+			return 46;
+		}
+	}
+
+	public int getScoreColonnes() 
+	{
+		int scoreCol = 0;
+		for (int i = 0; i < getTailleLig(); i++) {
+			scoreCol += calculerScoreColonne(i);
+		}
+		return scoreCol;
+	}
+
+	public int getScoreLignes()
+	{
+		int scoreLig = 0;
+		for (int i = 0; i < getTailleCol(); i++)
+		{
+			scoreLig += calculerScoreLigne(i);
+		}
+		return scoreLig;
+	}
+
+	public int getScoreJetonPossRestants() {return getNBPointPos();}
+	
+	public int getScoreBonus(Equipe autreEquipe) 
+	{
+		return (getNBPointPos() >= autreEquipe.getNBPointPos()) ? 10 : 0;
+	}
 }
