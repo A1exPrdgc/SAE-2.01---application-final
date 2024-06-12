@@ -2,12 +2,8 @@ package src.metier;
 
 import src.Controleur;
 import src.metier.Jeton;
-<<<<<<< HEAD
-import src.Etape2.metier.Mine;
-=======
 import src.metier.Mine;
 import src.metier.Minerai;
->>>>>>> 3a4600c6692564de393bf96341a3a85aba447c75
 
 public class Equipe 
 {
