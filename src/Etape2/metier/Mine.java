@@ -1,5 +1,6 @@
 package Etape2.metier;
 
+import java.awt.Color;
 
 public class Mine 
 {

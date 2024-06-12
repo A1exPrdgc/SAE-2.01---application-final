@@ -4,6 +4,7 @@ import Etape2.metier.*;
 import Etape2.metier.Mine;
 import Etape2.metier.Region;
 
+import java.awt.Color;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -90,9 +91,9 @@ public class Controleur
 
 	public List<Mine> charger()
 	{
-		Sauvegarde.LectureVilles(this.lstMines);
+		//Sauvegarde.LectureMine(this.lstMines);
 		System.out.println("Villes chargés");
-		Sauvegarde.LectureRoutes(this.lstRoutes);
+		//Sauvegarde.LectureRoutes(this.lstRoutes);
 		System.out.println("Routes chargés");
 
 		return this.lstMines;
@@ -136,25 +137,6 @@ public class Controleur
 	}
 
 
-	public void enregistrerSous()
-	{
-		JFileChooser fileChooser = new JFileChooser();
-		if (fileChooser.showSaveDialog(null) == JFileChooser.APPROVE_OPTION)
-		{
-			File file = fileChooser.getSelectedFile();
-			try (FileWriter writer = new FileWriter(file))
-			{
-				file.getAbsolutePath();
-				// Passez le FileWriter à vos méthodes de sauvegarde
-				Sauvegarde.enregistrerSous(this.lstMines);
-				Sauvegarde.enregistrerSousRoute(this.lstRoutes);
-			} catch (IOException e)
-			{
-				e.printStackTrace();
-			}
-		}
-	}
-
 	public void majDessin()
 	{
 		this.ihm.majDessin();
@@ -182,6 +164,8 @@ public class Controleur
 		return null;
 	}
 	
+
+
 	public static void main(String[] args)
 	{
 		new Controleur();
