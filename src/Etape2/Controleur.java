@@ -99,11 +99,11 @@ public class Controleur
 		return this.lstMines;
 	}
 
-	public Mine rechercherMine(String nomMine, int numMine)
+	public Mine rechercherMine(char nomMine, int numMine)
 	{
 		for (Mine m : this.lstMines) {
 
-			if(m.getNumMine() == numMine && m.getRegion().name() == nomMine)
+			if(m.getNumMine() == numMine && m.getRegion().name().charAt(0) == nomMine)
 			{
 				return m;
 			}

@@ -42,7 +42,6 @@ public class PanelDessin extends JPanel
 		for (int i = 0; i < this.ctrl.getMines().size(); i++)
 		{
 			Mine point = this.ctrl.getMine(i);
-			graphics2D.setColor(point.getCouleur());
 			graphics2D.drawString(String.valueOf(point.getRegion()), point.getX() - 7 * String.valueOf(point.getRegion()).length() / 2, point.getY() - 30);
 			graphics2D.drawOval(point.getX() - point.getTailleX() / 2, point.getY() - point.getTailleY() / 2, point.getTailleX(),point.getTailleY()); 
 		}

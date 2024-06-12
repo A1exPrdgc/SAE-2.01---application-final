@@ -147,7 +147,6 @@ public class Frame extends JFrame implements ActionListener
 		if(e.getSource() == this.menuFichierEnregistrerSous)
 		{
 			System.out.println("Enregistrer Sous");
-			this.ctrl.enregistrerSous();
 		}
 
 		if(e.getSource() == this.menuFichierNouveau)
