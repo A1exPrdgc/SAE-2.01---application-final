@@ -10,13 +10,13 @@ public class Routes
 
 	public Routes(int nbTroncon, Mine mineDep, Mine mineArriv)
 	{
-		if (this.nbTroncon < 1)
+		if (nbTroncon < 1)
 		{
 			this.nbTroncon = 1;
 		}
 		else
 		{
-			if(this.nbTroncon > 2)
+			if(nbTroncon > 2)
 			{
 				this.nbTroncon = 2;
 			}

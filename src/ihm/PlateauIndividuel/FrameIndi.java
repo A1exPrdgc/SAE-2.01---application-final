@@ -1,3 +1,5 @@
+package src.ihm.PlateauIndividuel;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -25,7 +27,7 @@ public class FrameIndi extends JFrame {
         this.nbPiecePos = new JLabel("x4");
         this.nbPiecePos.setFont(new Font("7898", Font.PLAIN, 40));
 
-        this.piecePosImage.setIcon(new ImageIcon("./images/pointPoss.png"));
+        this.piecePosImage.setIcon(new ImageIcon("../images/pointPoss.png"));
 
         this.add(this.panelMine, BorderLayout.EAST);
         this.add(this.panelPrincipal, BorderLayout.CENTER);

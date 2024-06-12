@@ -52,7 +52,9 @@ public class PanelDessin extends JPanel
 
 			Mine villeDep = trait.getMineDep();
 			Mine villeArr = trait.getMineArriv();
+			System.out.println("------------------------");
 			System.out.println(getLongueur(villeDep, villeArr) / trait.getNbTroncon());
+			System.out.println("------------------------");
 			graphics2D.setStroke(new BasicStroke(3, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 0, new float[]{(float)getLongueur(villeDep, villeArr) / (trait.getNbTroncon() + trait.getNbTroncon() - 1)}, 2f));  // Chiffres à réfléchirs
 			graphics2D. drawLine(villeDep.getX(), villeDep.getY(), villeArr.getX(), villeArr.getY());
 		}

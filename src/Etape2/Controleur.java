@@ -30,13 +30,13 @@ public class Controleur
 	public void ajouterMine(int x, int y, int numero, char region )
 	{
 		 this.lstMines.add(0,new Mine(x, y, numero, region));
-		 System.out.println(this.lstMines.get(0));
 	}
 
-	public void ajouterRoute(int nbTroncon, Mine depart, Mine arrivee)
+	public boolean ajouterRoute(int nbTroncon, Mine depart, Mine arrivee)
 	{
-		this.lstRoutes.add(new Routes(nbTroncon, depart, arrivee));
-		System.out.println(this.lstRoutes.get(0));
+		boolean worked = this.lstRoutes.add(new Routes(nbTroncon, depart, arrivee));
+		System.out.println(this.lstRoutes.get(0).getNbTroncon());
+		return worked;
 	}
 
 	public void supprimerMine(Mine mines)
@@ -85,10 +85,11 @@ public class Controleur
 		return this.lstMines;
 	}
 
-	public Mine rechercherMine(String numMine)
+	public Mine rechercherMine(char nomMine, int numMine)
 	{
-		for (Mine m : lstMines) {
-			if(Integer.toString(m.getNumMine()).equals(numMine))
+		for (Mine m : this.lstMines) {
+
+			if(m.getNumMine() == numMine && m.getRegion() == nomMine)
 			{
 				return m;
 			}

@@ -48,7 +48,7 @@ public class FrameRoute extends JFrame implements ActionListener
 
 		for (int i = 0; i < this.ctrl.getMines().size(); i++) 
 		{
-			tabMine[i] = this.ctrl.getMine(i).toString();
+			tabMine[i] = this.ctrl.getMine(i).getRegion() + "" + this.ctrl.getMine(i).getNumMine() + "";
 			System.out.println(tabMine[i]);
 		}
 
@@ -88,9 +88,21 @@ public class FrameRoute extends JFrame implements ActionListener
 
 	public void actionPerformed(ActionEvent e)
 	{
-		this.ctrl.ajouterRoute(Integer.parseInt(this.txtNbTroncons.getText()),
-												  this.ctrl.rechercherMine((String)this.ddlstMineDepart.getSelectedItem()),
-												  this.ctrl.rechercherMine((String)this.ddlstMineArriver.getSelectedItem()));
+		String resMineArr = (String)(this.ddlstMineArriver.getSelectedItem());
+		String resMineDep = (String)(this.ddlstMineDepart.getSelectedItem());
+
+		String tempDep = resMineDep.charAt(1) + "";
+		String tempArr = resMineArr.charAt(1) + "";
+
+		System.out.println("*-------------------*");
+		System.out.println(Integer.parseInt(this.txtNbTroncons.getText()));
+		System.out.println("*-------------------*");
+
+
+		System.out.println(this.ctrl.ajouterRoute(Integer.parseInt(this.txtNbTroncons.getText()),
+												  this.ctrl.rechercherMine(resMineDep.charAt(0), Integer.parseInt(tempDep)),
+												  this.ctrl.rechercherMine(resMineArr.charAt(0), Integer.parseInt(tempArr))));
+
 		this.ctrl.majDessin();										  									  
 		this.setVisible(false);
 	}

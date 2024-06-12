@@ -10,8 +10,8 @@ public class Mine
 
 	public Mine(int x , int y , int numero, char region)
 	{
-		this.x =x;
-		this.y=y;
+		this.x = x;
+		this.y = y;
 		this.numero = numero;
 		this.region = region;
 	}

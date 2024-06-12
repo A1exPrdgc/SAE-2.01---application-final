@@ -72,7 +72,7 @@ public class FrameRemove extends JFrame implements ActionListener
 		if (e.getSource() == this.btnSupprimer)
 		{
 			String mine = (String) this.listeVilles.getSelectedItem();
-			this.ctrl.supprimerMine(this.ctrl.rechercherMine(mine));
+			this.ctrl.supprimerMine(this.ctrl.rechercherMine(mine.charAt(0), (int)(mine.charAt(1))));
 		}
 		if(e.getSource() == this.btnAnnuler)
 		{
