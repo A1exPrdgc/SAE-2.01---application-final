@@ -6,9 +6,9 @@ public class Mine
 	private int x ;
 	private int y ; 
 	private int numero ;
-	private char region;
+	private Region region;
 
-	public Mine(int x , int y , int numero, char region)
+	public Mine(int x , int y , int numero, Region region)
 	{
 		this.x = x;
 		this.y = y;
@@ -20,7 +20,7 @@ public class Mine
 	public int getX() 						{ return this.x;	 }
 	public int getY() 						{ return this.y;	 }
 	public int getNumMine() 				{ return this.numero;}
-	public char getRegion() 				{ return this.region;}
+	public Region getRegion() 				{ return this.region;}
 	public int getTailleX() 				{ return 50;		 }
 	public int getTailleY() 				{ return 50;		 }
 

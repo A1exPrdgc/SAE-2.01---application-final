@@ -2,6 +2,7 @@ package Etape2;
 
 import Etape2.metier.*;
 import Etape2.metier.Mine;
+import Etape2.metier.Region;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -27,7 +28,7 @@ public class Controleur
 		this.ihm = new Frame(this);
 	}
 
-	public void ajouterMine(int x, int y, int numero, char region )
+	public void ajouterMine(int x, int y, int numero, Region region )
 	{
 		 this.lstMines.add(0,new Mine(x, y, numero, region));
 	}
@@ -37,6 +38,18 @@ public class Controleur
 		boolean worked = this.lstRoutes.add(new Routes(nbTroncon, depart, arrivee));
 		System.out.println(this.lstRoutes.get(0).getNbTroncon());
 		return worked;
+	}
+
+	public Region rechercherRegion(String nomRegion)
+	{
+		for (Region r : Region.values()) 
+		{
+			if (r.name() == nomRegion)
+			{
+				return r;
+			}
+		}
+		return null;
 	}
 
 	public void supprimerMine(Mine mines)
@@ -85,11 +98,11 @@ public class Controleur
 		return this.lstMines;
 	}
 
-	public Mine rechercherMine(char nomMine, int numMine)
+	public Mine rechercherMine(String nomMine, int numMine)
 	{
 		for (Mine m : this.lstMines) {
 
-			if(m.getNumMine() == numMine && m.getRegion() == nomMine)
+			if(m.getNumMine() == numMine && m.getRegion().name() == nomMine)
 			{
 				return m;
 			}
