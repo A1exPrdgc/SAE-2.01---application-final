@@ -1,4 +1,4 @@
-package metier;
+package Etape2.metier;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -12,12 +12,12 @@ import java.util.Scanner;
 
 import javax.swing.JFileChooser;
 
-import src.metier.Route;
+import Etape2.metier.Mine;
 
 public class Sauvegarde
 {
 
-	public static void sauvegarderVilles(List<Mine> mines)
+	public static void sauvegarderMine(List<Mine> mines)
 	{
 		try (PrintWriter writer = new PrintWriter(new FileOutputStream("mines.txt")))
 		{
@@ -52,21 +52,21 @@ public class Sauvegarde
 		}
 	}
 
-	public static List<Mine> LectureVilles(List<Mine> mines)
+	public static List<Mine> LectureVilles( List<Mine> mines)
 	{
 		try
 		{
 			Scanner sc = new Scanner(new FileInputStream("mines.txt"));
 
 			while (sc.hasNextLine()) {
-				String[] ville = sc.nextLine().split(",");
-				int x = Integer.parseInt(ville[2]);
-				int y = Integer.parseInt(ville[3]);
-				int numero = Integer.parseInt(ville[0]);
-				char region = ville[1].charAt(0);
-			
+				String[] mine = sc.nextLine().split(",");
+				int nummero = Integer.parseInt(mine[0]);
+				char region = mine[1].charAt(0);
+				int x = Integer.parseInt(mine[2]);
+				int y = Integer.parseInt(mine[3]);
+				String nomVille = mine[1];
 
-				mines.add(new Mine(x, y, numero, region));
+				mines.add(new Mine(x,y,nummero,region));
 			}
 			sc.close();
 		} catch (Exception e)
@@ -76,14 +76,14 @@ public class Sauvegarde
 		return mines;
 	}
 
-	public static void sauvegarderRoutes(List<Route> routes)
+	public static void sauvegarderRoutes(List<Routes> routes)
 	{
 		try (PrintWriter writer = new PrintWriter(new FileOutputStream("mines.txt")))
 		{
-			for (Route route : routes)
+			for (Routes route : routes)
 			{
-				writer.println(route.getNbTroncons() + "," + route.getMineDep().toString() + ","
-						+ route.getMineArr().toString());
+				writer.println(route.getNbTroncon() + "," + route.getVilleDep().toString() + ","
+						+ route.getVilleArriv().toString());
 			}
 			writer.close();
 		} catch (IOException e)
@@ -92,7 +92,7 @@ public class Sauvegarde
 		}
 	}
 
-	public static void enregistrerSousRoute( List<Route> routes)
+	public static void enregistrerSousRoute(List<Routes> routes)
 	{
 		JFileChooser fileChooser = new JFileChooser();
 		if (fileChooser.showSaveDialog(null) == JFileChooser.APPROVE_OPTION)
@@ -100,10 +100,10 @@ public class Sauvegarde
 			File file = fileChooser.getSelectedFile();
 			try (PrintWriter writer = new PrintWriter(file.getAbsolutePath())) 
 			{
-				for (Route route : routes)
+				for (Routes route : routes)
 				{
-					writer.println(route.getNbTroncons() + "," + route.getMineDep().toString() + ","
-							+ route.getMineArr().toString());
+					writer.println(route.getNbTroncon() + "," + route.getVilleDep().toString() + ","
+							+ route.getVilleArriv().toString());
 				}
 				writer.close();
 			} catch (IOException e)
@@ -113,20 +113,15 @@ public class Sauvegarde
 		}
 	}
 
-	public static void LectureRoutes(List<Route> routes)
+	public static void LectureRoutes(List<Routes> routes)
 	{
 		try
 		{
 			Scanner sc = new Scanner(new FileInputStream("mines.txt"));
 
-			while (sc.hasNextLine()) {
-				String[] route = sc.nextLine().split(",");
-				int nbTroncon = Integer.parseInt(route[0]);
-				String villeDep = route[1];
-				String villeArriv = route[2];
+			while (sc.hasNextLine())
+				System.out.println(sc.nextLine());
 
-			//	routes.add(new Routes(nbTroncon, villeDep, villeArriv));
-			}
 			sc.close();
 		} catch (Exception e)
 		{
@@ -134,4 +129,3 @@ public class Sauvegarde
 		}
 	}
 }
-
