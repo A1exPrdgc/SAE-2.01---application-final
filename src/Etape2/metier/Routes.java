@@ -5,10 +5,10 @@ import Etape2.metier.Mine;
 public class Routes
 {
 	private int nbTroncon;
-	private Mine villeDep;
-	private Mine villeArriv;
+	private Mine mineDep;
+	private Mine mineArriv;
 
-	public Routes(int nbTroncon, Mine villeDep, Mine villeArriv)
+	public Routes(int nbTroncon, Mine mineDep, Mine mineArriv)
 	{
 		if (this.nbTroncon < 1)
 		{
@@ -26,8 +26,8 @@ public class Routes
 			}
 		}
 
-		this.villeDep = villeDep;
-		this.villeArriv = villeArriv;
+		this.mineDep = mineDep;
+		this.mineArriv = mineArriv;
 	}
 
 	public int getNbTroncon()
@@ -35,14 +35,14 @@ public class Routes
 		return this.nbTroncon;
 	}
 
-	public Mine getVilleDep()
+	public Mine getMineDep()
 	{
-		return this.villeDep;
+		return this.mineDep;
 	}
 
-	public Mine getVilleArriv()
+	public Mine getMineArriv()
 	{
-		return this.villeArriv;
+		return this.mineArriv;
 	}
 
 }

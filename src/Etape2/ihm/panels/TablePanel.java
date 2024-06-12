@@ -10,14 +10,14 @@ import Etape2.Controleur;
 
 public class TablePanel extends JPanel
 {
-    private JTable tableVille;
+    private JTable tableMine;
     private JScrollPane jScrollPaneVille;
 
     private JTable tableRoute;
     private JScrollPane jScrollPaneRoute;
 
     private Controleur ctrl; 
-    private ModelTableauVille modelVille;
+    private ModelTableauMine modelMine;
     private ModelTableauRoute modelRoute;
 
     public TablePanel(Controleur ctrl)
@@ -26,19 +26,19 @@ public class TablePanel extends JPanel
 
         this.setLayout(new FlowLayout(FlowLayout.CENTER));
 
-        this.modelVille = new ModelTableauVille(this.ctrl);
-        this.tableVille = new JTable(this.modelVille);
+        this.modelMine = new ModelTableauMine(this.ctrl);
+        this.tableMine = new JTable(this.modelMine);
 
         this.modelRoute = new ModelTableauRoute(ctrl);
         this.tableRoute = new JTable(modelRoute);
 
-        this.tableVille.setPreferredScrollableViewportSize(new Dimension(700,85));
-        this.tableVille.setFillsViewportHeight(true);
+        this.tableMine.setPreferredScrollableViewportSize(new Dimension(700,85));
+        this.tableMine.setFillsViewportHeight(true);
 
         this.tableRoute.setPreferredScrollableViewportSize(new Dimension(700,85));
         this.tableRoute.setFillsViewportHeight(true);
 
-        this.jScrollPaneVille = new JScrollPane(this.tableVille);
+        this.jScrollPaneVille = new JScrollPane(this.tableMine);
         this.add(this.jScrollPaneVille);
 
         this.jScrollPaneRoute = new JScrollPane(this.tableRoute);
@@ -47,7 +47,7 @@ public class TablePanel extends JPanel
 
     public void majTabInfo()
     {
-        this.tableVille.setModel(new ModelTableauVille(this.ctrl));
+        this.tableMine.setModel(new ModelTableauMine(this.ctrl));
         this.tableRoute.setModel(new ModelTableauRoute(this.ctrl));
     }
 }

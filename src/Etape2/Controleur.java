@@ -39,7 +39,7 @@ public class Controleur
 		System.out.println(this.lstRoutes.get(0));
 	}
 
-	public void supprimerVille(Mine mines)
+	public void supprimerMine(Mine mines)
 	{
 		this.lstMines.remove(mines);
 	}
@@ -48,7 +48,7 @@ public class Controleur
 	{
 		for (Routes route : this.lstRoutes)
 		{
-			if (route.getVilleDep().equals(depart) && route.getVilleArriv().equals(arrivee))
+			if (route.getMineDep().equals(depart) && route.getMineArriv().equals(arrivee))
 			{
 				this.lstRoutes.remove(route);
 				break;
@@ -61,7 +61,8 @@ public class Controleur
 		return this.lstRoutes;
 	}
 
-	public List<Mine> getVilles()
+
+	public List<Mine> getMines()
 	{
 		return this.lstMines;
 	}
@@ -84,7 +85,7 @@ public class Controleur
 		return this.lstMines;
 	}
 
-	public Mine rechercherVilles(String numMine)
+	public Mine rechercherMine(String numMine)
 	{
 		for (Mine m : lstMines) {
 			if(Integer.toString(m.getNumMine()).equals(numMine))
@@ -96,11 +97,11 @@ public class Controleur
 
 	}
 
-	public Routes rechercherRoutes(Mine villeDep , Mine villeArriv )
+	public Routes rechercherRoutes(Mine mineDep , Mine mineArriv )
 	{
 		for (Routes r : lstRoutes)
 		{
-			if(r.getVilleArriv().equals(villeArriv) && r.getVilleDep().equals(villeDep))
+			if(r.getMineArriv().equals(mineArriv) && r.getMineDep().equals(mineDep))
 			{
 				return r;
 			}
@@ -145,7 +146,7 @@ public class Controleur
 		this.ihm.majDessin();
 	}
 
-	public Mine getVille(int i)
+	public Mine getMine(int i)
 	{
 		return this.lstMines.get(i);
 	}
@@ -155,13 +156,13 @@ public class Controleur
 		return this.lstRoutes.get(i);
 	}
 
-	public Mine getVilleTouche(int x, int y)
+	public Mine getMineTouche(int x, int y)
 	{
-		for (int i = 0; i < this.getVilles().size(); i++)
+		for (int i = 0; i < this.getMines().size(); i++)
 		{
-			if (this.getVilles().get(i).possede(x, y))
+			if (this.getMines().get(i).possede(x, y))
 			{
-				return this.getVilles().get(i);
+				return this.getMines().get(i);
 			}
 		}
 		return null;

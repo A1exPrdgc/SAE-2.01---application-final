@@ -1,8 +1,8 @@
 package Etape2.ihm.panels;
 
 import Etape2.Controleur;
+import Etape2.metier.Mine;
 import Etape2.metier.Routes;
-import Etape2.metier.Villes;
 
 import javax.swing.*;
 
@@ -39,10 +39,10 @@ public class PanelDessin extends JPanel
 
 		graphics2D = (Graphics2D) g;
 
-		for (int i = 0; i < this.ctrl.getVilles().size(); i++)
+		for (int i = 0; i < this.ctrl.getMines().size(); i++)
 		{
-			Villes point = this.ctrl.getVille(i);
-			graphics2D.drawString(point.getNomVille(), point.getX() - 7 * point.getNomVille().length() / 2, point.getY() - 30);
+			Mine point = this.ctrl.getMine(i);
+			graphics2D.drawString(String.valueOf(point.getRegion()), point.getX() - 7 * String.valueOf(point.getRegion()).length() / 2, point.getY() - 30);
 			graphics2D.drawOval(point.getX() - point.getTailleX() / 2, point.getY() - point.getTailleY() / 2, point.getTailleX(),point.getTailleY()); 
 		}
 
@@ -50,8 +50,8 @@ public class PanelDessin extends JPanel
 		{
 			Routes trait = this.ctrl.getRoute(i);
 
-			Villes villeDep = trait.getVilleDep();
-			Villes villeArr = trait.getVilleArriv();
+			Mine villeDep = trait.getVilleDep();
+			Mine villeArr = trait.getVilleArriv();
 			System.out.println(getLongueur(villeDep, villeArr) / trait.getNbTroncon());
 			graphics2D.setStroke(new BasicStroke(3, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 0, new float[]{(float)getLongueur(villeDep, villeArr) / (trait.getNbTroncon() + trait.getNbTroncon() - 1)}, 2f));  // Chiffres à réfléchirs
 			graphics2D. drawLine(villeDep.getX(), villeDep.getY(), villeArr.getX(), villeArr.getY());
@@ -60,7 +60,7 @@ public class PanelDessin extends JPanel
 		this.ctrl.majTab();
 	}
 
-	private static double getLongueur(Villes v1, Villes v2)
+	private static double getLongueur(Mine v1, Mine v2)
 	{
 		return Math.sqrt(Math.pow(v2.getX() - v1.getX(), 2) + Math.pow(v2.getY() - v1.getY(), 2));
 	}
@@ -69,12 +69,12 @@ public class PanelDessin extends JPanel
 	{
 		private int x;
 		private int y;
-		private Villes v;
+		private Mine v;
 
 		@Override
 		public void mousePressed(MouseEvent e) 
 		{
-			this.v = PanelDessin.this.ctrl.getVilleTouche(e.getX(), e.getX());
+			this.v = PanelDessin.this.ctrl.getMineTouche(e.getX(), e.getX());
 			this.x = e.getX();
 			this.y = e.getY();	
 			System.out.println("cliqué : " + this.v);

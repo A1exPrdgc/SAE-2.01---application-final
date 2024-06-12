@@ -28,12 +28,11 @@ public class FrameRemove extends JFrame implements ActionListener
 		this.setSize(300, 400);
 		this.setLayout(new GridLayout(2,1));
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-        String[] tabVilles      = new String[this.ctrl.getVilles().size()];
 
-		for (int i = 0; i < this.ctrl.getVilles().size(); i++) 
-		{
-			tabVilles[i] = this.ctrl.getVilles().get(i).getNomVille();
+		String[] tabVilles = new String[this.ctrl.getMines().size()];
+
+		for (int i = 0; i < this.ctrl.getMines().size(); i++) {
+			tabVilles[i] = this.ctrl.getMines().get(i).toString();
 		}
 
 		// création des composants
@@ -72,8 +71,8 @@ public class FrameRemove extends JFrame implements ActionListener
 	{
 		if (e.getSource() == this.btnSupprimer)
 		{
-			String ville = (String) this.listeVilles.getSelectedItem();
-			this.ctrl.supprimerVille(this.ctrl.rechercherVilles(ville));
+			String mine = (String) this.listeVilles.getSelectedItem();
+			this.ctrl.supprimerMine(this.ctrl.rechercherMine(mine));
 		}
 		if(e.getSource() == this.btnAnnuler)
 		{

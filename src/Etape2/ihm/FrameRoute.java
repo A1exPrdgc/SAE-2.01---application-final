@@ -11,13 +11,13 @@ import Etape2.*;
 
 public class FrameRoute extends JFrame implements ActionListener
 {
-	private JComboBox<String>  	ddlstVilleDepart;
-	private JComboBox<String>  	ddlstVilleArriver;
+	private JComboBox<String>  	ddlstMineDepart;
+	private JComboBox<String>  	ddlstMineArriver;
 
 	private JTextField          txtNbTroncons;
 	private JPanel panelBtn;
 	private JPanel panelTxt;
-	private JPanel panelVilleDep , panelVilleArr;
+	private JPanel panelMineDep , panelMineArr;
 	private JButton btnAjouter;
 
 	private Controleur ctrl;
@@ -38,37 +38,37 @@ public class FrameRoute extends JFrame implements ActionListener
 		this.ctrl 				= ctrl;
 		this.panelBtn           = new JPanel();
 		this.panelTxt           = new JPanel();
-		this.panelVilleDep      = new JPanel();
-		this.panelVilleArr      = new JPanel();
+		this.panelMineDep      = new JPanel();
+		this.panelMineeArr      = new JPanel();
 
 		this.txtNbTroncons      = new JTextField("",3);
 		this.btnAjouter         = new JButton("Ajouter");
 
-		String[] tabVilles      = new String[this.ctrl.getVilles().size()];
+		String[] tabVilles      = new String[this.ctrl.getMines().size()];
 
-		for (int i = 0; i < this.ctrl.getVilles().size(); i++) 
+		for (int i = 0; i < this.ctrl.getMines().size(); i++) 
 		{
-			tabVilles[i] = this.ctrl.getVilles().get(i).getNomVille();
+			tabVilles[i] = this.ctrl.getMine(i).toString();
 			System.out.println(tabVilles[i]);
 		}
 
-		this.ddlstVilleDepart   = new JComboBox<String>(tabVilles);
-		this.ddlstVilleArriver  = new JComboBox<String>(tabVilles);
+		this.ddlstVilleDepart   = new JComboBox<String>(tabMine);
+		this.ddlstVilleArriver  = new JComboBox<String>(tabMine);
 		
 		/*-------------------------*/
 		/* POSITIONEMENT VILLE DEP */
 		/*-------------------------*/
 		this.add(this.panelVilleDep);
-		this.panelVilleDep.add(new JLabel("Ville Départ : "));
-		this.panelVilleDep.add(this.ddlstVilleDepart);
+		this.panelMineDep.add(new JLabel("Mine Départ : "));
+		this.panelMineDep.add(this.ddlstMineDepart);
 
 
 		/*-------------------------*/
 		/* POSITIONEMENT VILLE ARR */
 		/*-------------------------*/
 		this.add(this.panelVilleArr);
-		this.panelVilleArr.add(new JLabel("Ville Arriver : ") ,BorderLayout.CENTER);
-		this.panelVilleArr.add(this.ddlstVilleArriver);
+		this.panelMineArr.add(new JLabel("Mine Arriver : ") ,BorderLayout.CENTER);
+		this.panelMineArr.add(this.ddlstMineArriver);
 
 		this.add(this.panelTxt);
 		this.panelTxt.add(new JLabel("Nb Tronçons : "));
@@ -89,8 +89,8 @@ public class FrameRoute extends JFrame implements ActionListener
 	public void actionPerformed(ActionEvent e)
 	{
 		this.ctrl.ajouterRoute(Integer.parseInt(this.txtNbTroncons.getText()),
-												  this.ctrl.rechercherVilles((String)this.ddlstVilleDepart.getSelectedItem()),
-												  this.ctrl.rechercherVilles((String)this.ddlstVilleArriver.getSelectedItem()));
+												  this.ctrl.rechercherMine((String)this.ddlstMineDepart.getSelectedItem()),
+												  this.ctrl.rechercherMine((String)this.ddlstMineArriver.getSelectedItem()));
 		this.ctrl.majDessin();										  									  
 		this.setVisible(false);
 	}

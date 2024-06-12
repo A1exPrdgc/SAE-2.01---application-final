@@ -1,12 +1,10 @@
 package Etape2.metier;
 
-import src.metier.Jeton;
 
 public class Mine 
 {
 	private int x ;
 	private int y ; 
-	private Jeton ressource;
 	private int numero ;
 	private char region;
 
@@ -18,15 +16,6 @@ public class Mine
 		this.region = region;
 	}
 
-	public boolean ajouterRessource(Jeton r)
-	{
-		if(this.ressource == null )
-			{
-				this.ressource = r ;
-				return true;
-			}
-		return false;
-	}
 
 	public int getX() 						{ return this.x;	 }
 	public int getY() 						{ return this.y;	 }
@@ -37,28 +26,20 @@ public class Mine
 
 	public boolean possede(int x, int y)
 	{
+		int rayon = getTailleX() / 2;
+        double distanceCarree = Math.pow(x - this.x, 2) + Math.pow(y - this.x, 2);
+        return distanceCarree <= rayon * rayon;
+	}
 
-		int rayonX = this.getTailleX() / 2, rayonY = this.getTailleY() / 2;
 
-		double pas = Math.PI / 32;
+	public void setX(int x2)
+	{
+		this.x = x2;
+	}
 
-		for (double ang = 0; ang < Math.PI * 2; ang += pas)
-		{
-			double xBord = Math.cos(ang) * this.getTailleX() / 2;
-			double yBord = Math.sin(ang) * this.getTailleY() / 2;
 
-			double minX = Math.min(this.getX(), this.getX() + xBord);
-			double maxX = Math.max(this.getX(), this.getX() + xBord);
-
-			double minY = Math.min(this.getY(), this.getY() + yBord);
-			double maxY = Math.max(this.getY(), this.getY() + yBord);
-
-			if (x >= minX && x <= maxX && y >= minY && y <= maxY)
-				return true;
-
-		}
-
-		return false;
-
+	public void setY(int y2)
+	{
+		this.y = y2;
 	}
 }

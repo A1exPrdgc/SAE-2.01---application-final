@@ -52,8 +52,8 @@ public class ModelTableauRoute extends AbstractTableModel
 
         for (int i = 0; i < lst.size(); i++)
         {
-            s[i][0] = "" + lst.get(i).getVilleDep().getNomVille();    
-            s[i][1] = "" + lst.get(i).getVilleArriv().getNomVille();
+            s[i][0] = "" + lst.get(i).getVilleDep().getNumMine();    
+            s[i][1] = "" + lst.get(i).getVilleArriv().getNumMine();
             s[i][2] = "" + lst.get(i).getNbTroncon();
         }
         return s;

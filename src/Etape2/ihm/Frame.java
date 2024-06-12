@@ -27,7 +27,7 @@ public class Frame extends JFrame implements ActionListener
 	private JMenuItem     menuFichierEnregistrerSous;
 	private JMenuItem     menuFichierQuitter;
 
-	private JMenuItem     menuAjouterCreerVille ;
+	private JMenuItem     menuAjouterCreerMine ;
 	private JMenuItem     menuAjouterCreerRoute ;
 
 	private JMenuItem     menuSupprime;
@@ -65,7 +65,7 @@ public class Frame extends JFrame implements ActionListener
 		this.menuFichierQuitter     = new JMenuItem("Quitter");
 
 		// les items du menu ajouter
-		this.menuAjouterCreerVille      = new JMenuItem("Creer Ville");
+		this.menuAjouterCreerMine      = new JMenuItem("Creer Mine");
 		this.menuAjouterCreerRoute      = new JMenuItem("Creer Route");
 
 		// les items du menu supprimer
@@ -92,7 +92,7 @@ public class Frame extends JFrame implements ActionListener
 		menuFichier.addSeparator();
 		menuFichier.add( this.menuFichierQuitter );
 
-		menuAjouter.add(this.menuAjouterCreerVille);
+		menuAjouter.add(this.menuAjouterCreerMine);
 		menuAjouter.add(this.menuAjouterCreerRoute);
 
 		menuSupprimer.add(this.menuSupprime);
@@ -122,7 +122,7 @@ public class Frame extends JFrame implements ActionListener
 		this.menuFichierEnregistrer.addActionListener 	  ( this );
 		this.menuFichierEnregistrerSous.addActionListener ( this );
 
-		this.menuAjouterCreerVille.addActionListener(this);
+		this.menuAjouterCreerMine.addActionListener(this);
 		this.menuAjouterCreerRoute.addActionListener(this);
 
 		this.menuSupprime.addActionListener(this);
@@ -141,7 +141,7 @@ public class Frame extends JFrame implements ActionListener
 		if (e.getSource() == this.menuFichierEnregistrer)
 		{
 			System.out.println("Enregistrer");
-			this.ctrl.sauvegarder(this.ctrl.getVilles(), this.ctrl.getRoutes());
+			this.ctrl.sauvegarder(this.ctrl.getMines(), this.ctrl.getRoutes());
 		}
 
 		if(e.getSource() == this.menuFichierEnregistrerSous)
@@ -164,7 +164,7 @@ public class Frame extends JFrame implements ActionListener
 			this.dispose(); // détruit la frame 
 		}
 
-		if(e.getSource() == this.menuAjouterCreerVille)
+		if(e.getSource() == this.menuAjouterCreerMine)
 		{
 			this.afficheVille = new FrameMine(ctrl);
 			this.afficheVille.setVisible(true);

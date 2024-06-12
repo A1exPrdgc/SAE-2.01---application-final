@@ -67,7 +67,7 @@ public class FrameMine extends JFrame implements ActionListener
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == this.btnAjouter)
 		{
-			this.ctrl.ajouterVille(this.txtRegion.getText(), Integer.parseInt(this.txtX.getText()), Integer.parseInt(this.txtY.getText()));
+			this.ctrl.ajouterMine(Integer.parseInt(this.txtX.getText()), Integer.parseInt(this.txtY.getText()), Integer.parseInt(this.txtnumero.getText()), this.txtRegion.getText().charAt(0));
             this.ctrl.majDessin();
             this.setVisible(false);
 		}
