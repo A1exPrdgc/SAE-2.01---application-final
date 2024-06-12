@@ -82,8 +82,8 @@ public class Sauvegarde
 		{
 			for (Routes route : routes)
 			{
-				writer.println(route.getNbTroncon() + "," + route.getVilleDep().toString() + ","
-						+ route.getVilleArriv().toString());
+				writer.println(route.getNbTroncon() + "," + route.getMineDep().toString() + ","
+						+ route.getMineArriv().toString());
 			}
 			writer.close();
 		} catch (IOException e)
@@ -102,8 +102,8 @@ public class Sauvegarde
 			{
 				for (Routes route : routes)
 				{
-					writer.println(route.getNbTroncon() + "," + route.getVilleDep().toString() + ","
-							+ route.getVilleArriv().toString());
+					writer.println(route.getNbTroncon() + "," + route.getMineDep().toString() + ","
+							+ route.getMineArriv().toString());
 				}
 				writer.close();
 			} catch (IOException e)

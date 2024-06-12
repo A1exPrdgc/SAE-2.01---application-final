@@ -39,26 +39,26 @@ public class FrameRoute extends JFrame implements ActionListener
 		this.panelBtn           = new JPanel();
 		this.panelTxt           = new JPanel();
 		this.panelMineDep      = new JPanel();
-		this.panelMineeArr      = new JPanel();
+		this.panelMineArr      = new JPanel();
 
 		this.txtNbTroncons      = new JTextField("",3);
 		this.btnAjouter         = new JButton("Ajouter");
 
-		String[] tabVilles      = new String[this.ctrl.getMines().size()];
+		String[] tabMine      = new String[this.ctrl.getMines().size()];
 
 		for (int i = 0; i < this.ctrl.getMines().size(); i++) 
 		{
-			tabVilles[i] = this.ctrl.getMine(i).toString();
-			System.out.println(tabVilles[i]);
+			tabMine[i] = this.ctrl.getMine(i).toString();
+			System.out.println(tabMine[i]);
 		}
 
-		this.ddlstVilleDepart   = new JComboBox<String>(tabMine);
-		this.ddlstVilleArriver  = new JComboBox<String>(tabMine);
+		this.ddlstMineDepart   = new JComboBox<String>(tabMine);
+		this.ddlstMineArriver  = new JComboBox<String>(tabMine);
 		
 		/*-------------------------*/
 		/* POSITIONEMENT VILLE DEP */
 		/*-------------------------*/
-		this.add(this.panelVilleDep);
+		this.add(this.panelMineDep);
 		this.panelMineDep.add(new JLabel("Mine Départ : "));
 		this.panelMineDep.add(this.ddlstMineDepart);
 
@@ -66,7 +66,7 @@ public class FrameRoute extends JFrame implements ActionListener
 		/*-------------------------*/
 		/* POSITIONEMENT VILLE ARR */
 		/*-------------------------*/
-		this.add(this.panelVilleArr);
+		this.add(this.panelMineArr);
 		this.panelMineArr.add(new JLabel("Mine Arriver : ") ,BorderLayout.CENTER);
 		this.panelMineArr.add(this.ddlstMineArriver);
 
