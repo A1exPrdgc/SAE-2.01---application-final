@@ -1,131 +1,58 @@
 package Etape2.metier;
-
-import java.io.File;
-import java.io.FileInputStream;
+import java.io.BufferedReader;
 import java.io.FileOutputStream;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
-import java.util.Scanner;
 
-import javax.swing.JFileChooser;
+import Etape2.metier.Mine; // Add this import statement
 
-import Etape2.metier.Mine;
+import Etape2.*;
 
 public class Sauvegarde
 {
-
 	public static void sauvegarderMine(List<Mine> mines)
 	{
-		try (PrintWriter writer = new PrintWriter(new FileOutputStream("mines.txt")))
+		try (PrintWriter writer = new PrintWriter(new FileOutputStream("ConstructeurMap/mines.txt")))
 		{
-			for (int i = 0; i < mines.size(); i++)
+			writer.println("Mines:");
+			for (Mine mine : mines)
 			{
-				writer.println(mines.get(i).getNumMine() + "," + mines.get(i).getRegion() + "," + mines.get(i).getX() + "," + mines.get(i).getY());
+				writer.println(mine.getNumMine() + "," + mine.getRegion() + "," + mine.getX() + "," + mine.getY());
 			}
-			writer.close();
 		} catch (IOException e)
 		{
 			e.printStackTrace();
 		}
-	}
-
-	public static void enregistrerSous(List<Mine> mines)
-	{
-		JFileChooser fileChooser = new JFileChooser();
-		if (fileChooser.showSaveDialog(null) == JFileChooser.APPROVE_OPTION)
-		{
-			File file = fileChooser.getSelectedFile();
-			try (PrintWriter writer = new PrintWriter(file.getAbsolutePath())) // Change the type to PrintWriter
-			{
-				for (int i = 0; i < mines.size(); i++)
-				{
-					writer.println(mines.get(i).getNumMine() + "," + mines.get(i).getRegion() + "," + mines.get(i).getX() + "," + mines.get(i).getY());
-				}
-				writer.close();
-			} catch (IOException e)
-			{
-				e.printStackTrace();
-			}
-		}
-	}
-
-	public static List<Mine> LectureVilles( List<Mine> mines)
-	{
-		try
-		{
-			Scanner sc = new Scanner(new FileInputStream("mines.txt"));
-
-			while (sc.hasNextLine()) {
-				String[] mine = sc.nextLine().split(",");
-				int nummero = Integer.parseInt(mine[0]);
-				char region = mine[1].charAt(0);
-				int x = Integer.parseInt(mine[2]);
-				int y = Integer.parseInt(mine[3]);
-				String nomVille = mine[1];
-
-				mines.add(new Mine(x,y,nummero,region));
-			}
-			sc.close();
-		} catch (Exception e)
-		{
-			e.printStackTrace();
-		}
-		return mines;
 	}
 
 	public static void sauvegarderRoutes(List<Routes> routes)
 	{
-		try (PrintWriter writer = new PrintWriter(new FileOutputStream("mines.txt")))
+		try (PrintWriter writer = new PrintWriter(new FileOutputStream("ConstructeurMap/mines.txt", true))) 
 		{
+			writer.println("\nRoutes:");
 			for (Routes route : routes)
 			{
-				writer.println(route.getNbTroncon() + "," + route.getMineDep().toString() + ","
-						+ route.getMineArriv().toString());
+				writer.println(route.getMineDep().getNumMine() + "," + route.getMineArriv().getNumMine() + ","
+						+ route.getNbTroncon());
 			}
-			writer.close();
 		} catch (IOException e)
 		{
 			e.printStackTrace();
 		}
 	}
-
-	public static void enregistrerSousRoute(List<Routes> routes)
-	{
-		JFileChooser fileChooser = new JFileChooser();
-		if (fileChooser.showSaveDialog(null) == JFileChooser.APPROVE_OPTION)
-		{
-			File file = fileChooser.getSelectedFile();
-			try (PrintWriter writer = new PrintWriter(file.getAbsolutePath())) 
-			{
-				for (Routes route : routes)
-				{
-					writer.println(route.getNbTroncon() + "," + route.getMineDep().toString() + ","
-							+ route.getMineArriv().toString());
-				}
-				writer.close();
-			} catch (IOException e)
-			{
-				e.printStackTrace();
-			}
-		}
-	}
-
-	public static void LectureRoutes(List<Routes> routes)
-	{
-		try
-		{
-			Scanner sc = new Scanner(new FileInputStream("mines.txt"));
-
-			while (sc.hasNextLine())
-				System.out.println(sc.nextLine());
-
-			sc.close();
-		} catch (Exception e)
-		{
-			e.printStackTrace();
-		}
-	}
+/*
+ * public void chargerDonnees() { try (BufferedReader reader = new
+ * BufferedReader(new FileReader("ConstructeurMap/mines.txt"))) { String line;
+ * boolean isReadingRoutes = false; while ((line = reader.readLine()) != null) {
+ * if (line.equals("Mines:")) continue; String[] parts = line.split(","); if
+ * (!isReadingRoutes) { // Créer une nouvelle mine et l'ajouter à la liste Mine
+ * mine = new Mine(Integer.parseInt(parts[0]), parts[1],
+ * Integer.parseInt(parts[2]), Integer.parseInt(parts[3])); lstMines.add(mine);
+ * } else { // Créer une nouvelle route et l'ajouter à la liste Route route =
+ * new Route(mines.get(Integer.parseInt(parts[0])),
+ * mines.get(Integer.parseInt(parts[1])), Integer.parseInt(parts[2]));
+ * lstRoutes.add(route); } } } catch (IOException e) { e.printStackTrace(); } }
+ */
 }
