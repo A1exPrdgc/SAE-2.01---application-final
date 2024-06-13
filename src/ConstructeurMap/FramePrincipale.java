@@ -1,4 +1,4 @@
-package src.ConstructeurMap;
+package ConstructeurMap;
 
 import javax.swing.JFrame;
 
@@ -21,6 +21,10 @@ public class FramePrincipale extends JFrame
 		
 	}
    
+	public static void main(String[] args)
+	{
+		new FramePrincipale(new Controleur());
+	}
 
 	
 }

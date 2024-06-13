@@ -1,3 +1,4 @@
+package ihm.PlateauIndividuel;
 import java.awt.GridLayout;
 
 import javax.swing.*;
