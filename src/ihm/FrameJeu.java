@@ -1,11 +1,15 @@
-package src.ihm;
+package ihm;
 import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 
-public class FrameJeu extends JFrame
+public class FrameJeu extends JFrame implements ActionListener
 {
 	private PanelEquipes panelEquipes	;
 	private JButton confirmerButton;
@@ -24,6 +28,7 @@ public class FrameJeu extends JFrame
 
 		// Ajouter le panel de jeu à la fenêtre	
 		this.add(panelEquipes);
+
 
 		// Afficher la fenêtre
 		this.setVisible(true);

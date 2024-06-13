@@ -1,8 +1,14 @@
-package src.ihm;
+package ihm;
 import javax.swing.*;
-import java.awt.*;
 
-public class PanelEquipes extends JPanel
+import ihm.PlateauIndividuel.FrameIndi;
+import ConstructeurMap.*;
+
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class PanelEquipes extends JPanel implements ActionListener
 {
 	private JTextField corpSolaireField;
 	private JTextField syndicatAstralField;
@@ -47,7 +53,12 @@ public class PanelEquipes extends JPanel
 		this.add(syndicatAstralPanel);
 		this.add(panelBouton);
 
+		// Ajouter l'écouteur d'événements
+		this.confirmerButton.addActionListener(this);
+
+
 	}
+
 
 	public String getCorpSolaire()
 	{
@@ -57,5 +68,32 @@ public class PanelEquipes extends JPanel
 	public String getSyndicatAstral()
 	{
 		return syndicatAstralField.getText();
+	}
+
+	public void actionPerformed(ActionEvent e)
+	{
+		if (e.getSource() == this.confirmerButton)
+		{
+			String corpSolaire = getCorpSolaire();
+			String syndicatAstral = getSyndicatAstral();
+			System.out.println("Equipe 1: " + corpSolaire);
+			System.out.println("Equipe 2: " + getSyndicatAstral());
+
+			Frame frameIndi = new FrameIndi();
+			Frame frameIndi2 = new FrameIndi();
+			Frame FramePrincipale = new FramePrincipale(null);
+
+			// Ajouter getCorpSolaire() au titre de la frame
+			frameIndi.setTitle(corpSolaire);
+			frameIndi2.setTitle(syndicatAstral);
+
+			frameIndi.setVisible(true);
+			frameIndi2.setVisible(true);
+			FramePrincipale.setVisible(true);
+
+			// Fermer la fenêtre actuelle
+			JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+			topFrame.setVisible(false);
+		}
 	}
 }

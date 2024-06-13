@@ -15,7 +15,7 @@ public class FrameIndi extends JFrame {
 
     public FrameIndi() {
         this.setLayout(new BorderLayout());
-        this.setTitle("yudgeuj");
+        this.setTitle("Plateau Individuel");
 
         this.panelCptPiecePos = new JPanel();
         this.panelMine = new PanelMine();
