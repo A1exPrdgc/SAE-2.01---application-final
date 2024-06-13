@@ -19,7 +19,7 @@ public class Sauvegarde
 			writer.println("Mines:");
 			for (Mine mine : mines)
 			{
-				writer.println(mine.getNumMine() + "," + mine.getRegion() + "," + mine.getX() + "," + mine.getY());
+				writer.println(mine.getX() + "," + mine.getY() + "," +mine.getNumMine() + "," + mine.getRegion().name().charAt(0) + "," + mine.getVisit());
 			}
 		} catch (IOException e)
 		{
@@ -34,8 +34,7 @@ public class Sauvegarde
 			writer.println("\nRoutes:");
 			for (Routes route : routes)
 			{
-				writer.println(route.getMineDep().getNumMine() + "," + route.getMineArriv().getNumMine() + ","
-						+ route.getNbTroncon());
+				writer.println(route.getNbTroncon() + "," +route.getMineDep().getNumMine() + "," + route.getMineArriv().getNumMine() );
 			}
 		} catch (IOException e)
 		{
