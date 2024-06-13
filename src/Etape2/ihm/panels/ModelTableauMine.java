@@ -1,11 +1,11 @@
-package Etape2.ihm.panels;
+package src.Etape2.ihm.panels;
 
 import java.util.List;
 
 import javax.swing.table.AbstractTableModel;
 
-import Etape2.Controleur;
-import Etape2.metier.Mine;
+import src.Etape2.Controleur;
+import src.Etape2.metier.Mine;
 
 public class ModelTableauMine extends AbstractTableModel
 {

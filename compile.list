@@ -1,14 +1,24 @@
 ./src/Controleur.java
 
+./src/ConstructeurMap/Controleur.java
+./src/ConstructeurMap/FramePrincipale.java
+./src/ConstructeurMap/PanelPrincipale.java
+
+
+./src/Etape2/metier/Mine.java
+./src/Etape2/metier/Region.java
+./src/Etape2/metier/Routes.java
+./src/Etape2/metier/Sauvegarde.java
+
+
 ./src/ihm/PanelJeu.java
 ./src/ihm/FrameJeu.java
-./src/ihm/PlateauIndividuel.java
+
 
 ./src/metier/IRessources.java
 ./src/metier/Jeton.java
-./src/metier/Mine.java
 ./src/metier/Minerai.java
 ./src/metier/Monnaie.java
-./src/metier/Route.java
-./src/metier/Equipe.java
+
+
 

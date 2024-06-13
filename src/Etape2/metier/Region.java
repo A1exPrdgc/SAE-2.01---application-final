@@ -1,4 +1,4 @@
-package Etape2.metier;
+package src.Etape2.metier;
 
 import java.awt.*;
 

@@ -1,4 +1,4 @@
-package ihm;
+package src.ihm;
 import javax.swing.*;
 import java.awt.*;
 

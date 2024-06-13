@@ -1,4 +1,4 @@
-package Etape2.metier;
+package src.Etape2.metier;
 import java.io.BufferedReader;
 import java.io.FileOutputStream;
 import java.io.FileReader;
@@ -6,9 +6,9 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
-import Etape2.metier.Mine; // Add this import statement
+import src.Etape2.metier.Mine; // Add this import statement
 
-import Etape2.*;
+import src.Etape2.*;
 
 public class Sauvegarde
 {
@@ -19,7 +19,7 @@ public class Sauvegarde
 			writer.println("Mines:");
 			for (Mine mine : mines)
 			{
-				writer.println(mine.getNumMine() + "," + mine.getRegion() + "," + mine.getX() + "," + mine.getY());
+				writer.println(mine.getX() + "," + mine.getY() + "," +mine.getNumMine() + "," + mine.getRegion() );
 			}
 		} catch (IOException e)
 		{
@@ -34,8 +34,7 @@ public class Sauvegarde
 			writer.println("\nRoutes:");
 			for (Routes route : routes)
 			{
-				writer.println(route.getMineDep().getNumMine() + "," + route.getMineArriv().getNumMine() + ","
-						+ route.getNbTroncon());
+				writer.println(route.getNbTroncon() + "," +route.getMineDep().getNumMine() + "," + route.getMineArriv().getNumMine() );
 			}
 		} catch (IOException e)
 		{

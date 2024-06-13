@@ -1,12 +1,12 @@
 
-package Etape2.ihm;
+package src.Etape2.ihm;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import Etape2.*;
+import src.Etape2.*;
 
 
 public class FrameRoute extends JFrame implements ActionListener

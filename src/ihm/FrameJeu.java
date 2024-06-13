@@ -1,4 +1,4 @@
-package ihm;
+package src.ihm;
 import java.awt.BorderLayout;
 
 import javax.swing.BoxLayout;

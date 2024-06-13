@@ -1,10 +1,10 @@
-package Etape2.ihm;
+package src.Etape2.ihm;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JTable;
 
-import Etape2.Controleur; 
+import src.Etape2.Controleur; 
 
 public class FrameFicheScore extends JFrame 
 {
