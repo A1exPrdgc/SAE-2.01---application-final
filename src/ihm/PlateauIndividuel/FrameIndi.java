@@ -1,4 +1,4 @@
-package src.ihm.PlateauIndividuel;
+package ihm.PlateauIndividuel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -39,7 +39,7 @@ public class FrameIndi extends JFrame {
 
         System.out.println(this.getSize());
 
-        this.setSize(1080, 600);
+        this.setSize(1060, 598);
         this.setVisible(true);
 
         System.out.println(this.panelPrincipal.getWidth() + this.panelMine.getWidth());

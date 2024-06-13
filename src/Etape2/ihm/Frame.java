@@ -136,6 +136,7 @@ public class Frame extends JFrame implements ActionListener
 		if ( e.getSource() == this.menuFichierOuvrir )
 		{
 			System.out.println ( "Ouvrir" );
+			
 		}
 
 		if (e.getSource() == this.menuFichierEnregistrer)

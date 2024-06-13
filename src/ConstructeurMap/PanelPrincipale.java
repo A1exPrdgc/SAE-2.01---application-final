@@ -1,4 +1,4 @@
-package src.ConstructeurMap;
+package ConstructeurMap;
 
 import javax.swing.JPanel;
 
@@ -28,7 +28,7 @@ public class PanelPrincipale extends JPanel
     {
        this.ctrl = ctrl;
      
-       this.imgFond = getToolkit().getImage("../images/plateauPrincipal.png");
+       this.imgFond = getToolkit().getImage("../images/PlateauPrincipale.png");
 
        /*this.lstSectionRoutes = new ArrayList<Routes>();*/
        
