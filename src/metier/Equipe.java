@@ -257,11 +257,8 @@ public class Equipe
 		int totMine = 0;
 		int totMineAutre = 0;
 
-		int totPlateauInd  = this.getScorePLateauIndividuel() + this.getScoreColonnes() + this.getScoreLignes();
-		int totAutrePlateauInd  = autre.getScorePLateauIndividuel() + autre.getScoreColonnes() + autre.getScoreLignes();
-
-		int totFinal = totMine + totPlateauInd + getScoreBonus(this);
-		int totFinalAutre = totMineAutre + totAutrePlateauInd + getScoreBonus(autre);
+		int totFinal = totMine + this.getScorePLateauIndividuel() + getScoreBonus(this);
+		int totFinalAutre = totMineAutre + autre.getScorePLateauIndividuel() + getScoreBonus(autre);
 
 		sRet += "------------------------------------------------------------\n" + "|" + 
 		String.format("%30s", "Fiche de Score") +
@@ -278,7 +275,7 @@ public class Equipe
 		"Points Route   " + " |" + String.format("%20s", "|") + "\n" +
 		"------------------------------------------------------------\n"  + "|"+
 		String.format("%20s", "|") +
-		//String.format("", ) + 
+		//
 		String.format("%20s", "|") +
 		String.format("%20s", "|") + "\n" +
 		"------------------------------------------------------------\n"  + "|" +
@@ -323,8 +320,8 @@ public class Equipe
 		String.format("%20s", "|") +
 		String.format("%20s", "|") +"\n" +
 		"------------------------------------------------------------\n"  + "|"+
-		"Plateau Individuel" + "|" + this.getScorePLateauIndividuel() + 
-		String.format("%10s", "|") + autre.getScorePLateauIndividuel() +
+		"Plateau Individuel" + "|" +  
+		String.format("%10s", "|") +
 		String.format("%10s", "|") + "\n" +
 		"------------------------------------------------------------\n"  + "|"+
 		"Score Pièces" +"      |" + this.getScorePiece() + 
@@ -345,8 +342,8 @@ public class Equipe
 		"------------------------------------------------------------\n" + "|"+
 		String.format("%10s","S/Total") +
 		String.format("%10s", "|") +
-		totPlateauInd + String.format("%10s", "|") +
-		+ totAutrePlateauInd + String.format("%10s", "|") + "\n" +
+		this.getScorePLateauIndividuel() + String.format("%10s", "|") +
+		+ autre.getScorePLateauIndividuel() + String.format("%10s", "|") + "\n" +
 		"------------------------------------------------------------\n"+
 		"Jeton Possession restants" + "  |" + this.getScoreJetonPossRestants() + 
 		String.format("%15s", "|") + autre.getScoreJetonPossRestants() + 
