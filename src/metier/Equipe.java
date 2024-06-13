@@ -249,10 +249,20 @@ public class Equipe
 		return tabTypeMines;
 	}
 
-	public String ficheScore()
+	public String ficheScore(Equipe autre)
 	{
-		String sRet = ""; 
-		
+		String sRet = "";
+
+		// a revoir la recup
+		int totMine = 0;
+		int totMineAutre = 0;
+
+		int totPlateauInd  = this.getScorePLateauIndividuel() + this.getScoreColonnes() + this.getScoreLignes();
+		int totAutrePlateauInd  = autre.getScorePLateauIndividuel() + autre.getScoreColonnes() + autre.getScoreLignes();
+
+		int totFinal = totMine + totPlateauInd + getScoreBonus(this);
+		int totFinalAutre = totMineAutre + totAutrePlateauInd + getScoreBonus(autre);
+
 		sRet += "------------------------------------------------------------\n" + "|" + 
 		String.format("%30s", "Fiche de Score") +
 		String.format("%30s","|") + "\n"+
@@ -268,57 +278,66 @@ public class Equipe
 		"Points Route   " + " |" + String.format("%20s", "|") + "\n" +
 		"------------------------------------------------------------\n"  + "|"+
 		String.format("%20s", "|") +
+		//String.format("", ) + 
 		String.format("%20s", "|") +
 		String.format("%20s", "|") + "\n" +
 		"------------------------------------------------------------\n"  + "|" +
 		"Points des Mines  " + " |" + String.format("%20s", "|") + "\n" +
 		"------------------------------------------------------------\n"  + "|"+
 		String.format("%10s","Jaune") +
-		String.format("%10s", "|") +  
-			String.format("%20s", "|") +
+		String.format("%10s", "|") + 
+		//String.format("", ) + 
+		String.format("%20s", "|") +
 		String.format("%20s", "|") + "\n" +
 		"------------------------------------------------------------\n" + "|"+
 		String.format("%10s","Fleur") +
 		String.format("%10s", "|") + 
-			String.format("%20s", "|") +
+		//String.format("", ) + 
+		String.format("%20s", "|") +
 		String.format("%20s", "|") + "\n" +
 		"------------------------------------------------------------\n"  + "|"+
 		String.format("%10s","Losange") +
 		String.format("%10s", "|") +
-			String.format("%20s", "|") +
+		//String.format("", ) + 
+		String.format("%20s", "|") +
 		String.format("%20s", "|") + "\n" +
 		"------------------------------------------------------------\n"  + "|"+
 		String.format("%10s","Carre") +
 		String.format("%10s", "|") +
-			String.format("%20s", "|") +
+		//String.format("", ) + 
+		String.format("%20s", "|") +
 		String.format("%20s", "|") + "\n" +
 		"------------------------------------------------------------\n"  + "|"+
 		String.format("%10s","Hexagone") +
 		String.format("%10s", "|") + 
+		//String.format("", ) + 
 		String.format("%20s", "|") +
 		String.format("%20s", "|") + "\n" +
 		"------------------------------------------------------------\n"  + "|"+
 		String.format("%10s","S/Total") +
 		String.format("%10s", "|") + 
-		String.format("%20s", "|") +
-		String.format("%20s", "|") + "\n" +
+		totMine + String.format("%10s", "|") +
+		totMineAutre + String.format("%10s", "|") + "\n" +
 		"------------------------------------------------------------\n"  + "|" +
 		String.format("%20s", "|") +  
 		String.format("%20s", "|") +
 		String.format("%20s", "|") +"\n" +
 		"------------------------------------------------------------\n"  + "|"+
-		"Plateau Individuel" + "|" + String.format("%20s", "|") +
-		String.format("%20s", "|") + "\n" +
+		"Plateau Individuel" + "|" + this.getScorePLateauIndividuel() + 
+		String.format("%10s", "|") + autre.getScorePLateauIndividuel() +
+		String.format("%10s", "|") + "\n" +
 		"------------------------------------------------------------\n"  + "|"+
-		"Score Pièces" +"      |" + String.format("%20s", "|") +
-		String.format("%20s", "|") + "\n" +
+		"Score Pièces" +"      |" + this.getScorePiece() + 
+		String.format("%10s", "|") + autre.getScorePiece() + 
+		String.format("%10s", "|") + "\n" +
 		"------------------------------------------------------------\n"  + "|"+
-		"Score des Colonnes" + "  |" + String.format("%20s", "|") +
-		String.format("%20s", "|") + "\n" +
+		"Score des Colonnes" + "  |" + this.getScoreColonnes() + 
+		String.format("%10s", "|") + autre.getScoreColonnes() + 
+		String.format("%10s", "|") + "\n" +
 		"------------------------------------------------------------\n"  + "|"+
-		"Score des Lignes" + "  |" +
-		String.format("%20s", "|") +
-		String.format("%20s", "|") + "\n" +
+		"Score des Lignes" + "  |" + this.getScoreLignes() + 
+		String.format("%10s", "|") + autre.getScoreLignes() + 
+		String.format("%10s", "|") + "\n" +
 		"------------------------------------------------------------\n"  + "|"+
 		String.format("%20s", "|") +
 		String.format("%20s", "|") +
@@ -326,15 +345,16 @@ public class Equipe
 		"------------------------------------------------------------\n" + "|"+
 		String.format("%10s","S/Total") +
 		String.format("%10s", "|") +
-			String.format("%20s", "|") +
-		String.format("%20s", "|") + "\n" +
+		totPlateauInd + String.format("%10s", "|") +
+		+ totAutrePlateauInd + String.format("%10s", "|") + "\n" +
 		"------------------------------------------------------------\n"+
-		"Jeton Possession restants" + "  |" + String.format("%15s", "|") +
+		"Jeton Possession restants" + "  |" + this.getScoreJetonPossRestants() + 
+		String.format("%15s", "|") + autre.getScoreJetonPossRestants() + 
 		String.format("%15s", "     |") + "\n" +
 		"------------------------------------------------------------\n"  + "|"+
 		"Bonus"+ String.format("%15s",  "|") + 
-		String.format("%20s", "|") +
-		String.format("%20s", "|") + "\n" +
+		getScoreBonus(this) + String.format("%10s", "|") +
+		getScoreBonus(autre) + String.format("%10s", "|") + "\n" +
 		"------------------------------------------------------------\n"  + "|"+
 		String.format("%20s", "|") +
 		String.format("%20s", "|") +
@@ -342,8 +362,8 @@ public class Equipe
 		"------------------------------------------------------------\n"  + "|"+
 		String.format("%10s","S/Total") +
 		String.format("%10s", "|") + 
-		String.format("%20s", "|") +
-		String.format("%20s", "|") + "\n" +
+		totFinal + String.format("%10s", "|") +
+		totFinalAutre + String.format("%10s", "|") + "\n" +
 		"------------------------------------------------------------\n";
 		
 		return sRet;
