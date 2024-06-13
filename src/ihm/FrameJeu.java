@@ -1,22 +1,35 @@
-package src.ihm;
+package ihm;
+import java.awt.BorderLayout;
 
+import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 
-class FrameJeu extends JFrame
+public class FrameJeu extends JFrame
 {
-	FrameJeu()
-	{
-		this.setSize(800, 800); 
-		this.setTitle("Mon Plateau"); 
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
-		this.setVisible(true); 
+	private PanelEquipes panelEquipes	;
 
-		//Creation et ajout du Panel
-		
+	public FrameJeu()
+	{
+		this.setTitle("Choix des équipes");
+		this.setLayout(new BorderLayout());
+		this.setSize(400, 200);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+		// Créer le panel de jeu
+		PanelEquipes panelEquipes = new PanelEquipes();
+		panelEquipes.setAlignmentX(CENTER_ALIGNMENT);
+		panelEquipes.setAlignmentY(CENTER_ALIGNMENT);
+
+		// Ajouter le panel de jeu à la fenêtre	
+		this.add(panelEquipes);
+
+
+		// Afficher la fenêtre
+		this.setVisible(true);
 	}
 
 	public static void main(String[] args)
 	{
-		new FrameJeu(); 
+		new FrameJeu();
 	}
 }
