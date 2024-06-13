@@ -84,8 +84,8 @@ public class PanelEquipes extends JPanel implements ActionListener
 			Frame FramePrincipale = new FramePrincipale(null);
 
 			// Ajouter getCorpSolaire() au titre de la frame
-			frameIndi.setTitle(corpSolaire);
-			frameIndi2.setTitle(syndicatAstral);
+			frameIndi.setTitle("Panel du Joueur" + corpSolaire);
+			frameIndi2.setTitle("Panel du Joueur" + syndicatAstral);
 
 			frameIndi.setVisible(true);
 			frameIndi2.setVisible(true);
