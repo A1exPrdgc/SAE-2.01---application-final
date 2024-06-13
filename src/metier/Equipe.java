@@ -251,59 +251,101 @@ public class Equipe
 
 	public String ficheScore()
 	{
-		Equipe e = new Equipe(ctrl,"");
-
 		String sRet = ""; 
-		sRet += String.format("%10s","---------------------------------\n") +
-			"|" + String.format("%10s", "Fiche de Score") + "|\n" +
-			String.format("%10s","---------------------------------\n") +
-			"|\t" + String.format("%10s", "Corporation Solaire") + "|" +
-			String.format("%10s", "Syndicat Astral") + "|\n" + 
-			String.format("%10s","---------------------------------\n") +
-			"|" + "\t" + "|" + "\t" + "|\n" +
-			String.format("%10s","---------------------------------\n") +
-			String.format("%10s","Points Route") + "\t" + "|" +
-			String.format("%10s", 10) + "|" + String.format("%10s", 10) + "|" + 
-			String.format("%10s","---------------------------------\n") +
-			"|" + "\t" + "|" + "\t" + "|\n" +
-			String.format("%10s","---------------------------------\n") +
-			"|" + "Points des Mines" + "|" + "\t" + "|" + "\t" + "|" + 
-			String.format("%10s","---------------------------------\n"); 
-
-		for (int i = 0; i < tabMine.length; i++) {
-			Char region = tabMine[i].getRegion();
-			sRet += "|" + String.format("%10s", region) + "|" + String.format("%10s", tabMine[i].getRegion()) + "|" + String.format("%10s", tabMine[i].getNumMine()) + String.format("%10s","---------------------------------\n");
-		}
-
-		sRet += "|" + "S/Total" + "|" + String.format("%10s", this.getTotalMine()) + "|\n" + 
-			String.format("%10s","---------------------------------\n") + 
-			"|" + "\t" + "|" + "\t" + "|\n" + 
-			String.format("%10s","---------------------------------\n") +
-			"|" + "\t" + "|" + "\t" + "|\n" +
-			String.format("%10s","---------------------------------\n") +
-			"|" + String.format("%10s", "Plateau Individuel") +
-			"|" + "\t" + "|" + "\t" + "|\n" +
-			String.format("%10s","---------------------------------\n") +
-			String.format("%10s", "Score Pièces") +
-			"|" + String.format("", this.getNBPiece()) + "|\n" +
-			String.format("%10s","---------------------------------\n") +
-			String.format("%10s", "Score des Colonnes") +
-			"|" + String.format("", this.getTailleCol()) + "|\n" +
-			String.format("%10s","---------------------------------\n") +
-			String.format("%10s", "Score des Lignes") +
-			"|" + String.format("", this.getTailleLig()) + "|\n" +
-			String.format("%10s","---------------------------------\n") +
-			"|" + "S/Total" + "|" + 
-			String.format("10s", this.getTotalPlateauIndividuel()) + "|\n" + 
-			String.format("%10s","---------------------------------\n") +
-			"|" + "\t" + "|" + "\t" + "|\n" +
-			String.format("%10s","---------------------------------\n") + "|" + 
-			String.format("%10s", "Jetons Possession restants") + "|\n" +
-			"|" + String.format("%10s", this.getScoreJetonPossRestants()) + "\n" +
-			String.format("%10s","---------------------------------\n") + "|" + 
-			String.format("%10s", "Bonus (10)") + "|" +
-			String.format("%10s", this.getScoreBonus(e)) + "|\n";
-
+		
+		sRet += "------------------------------------------------------------\n" + "|" + 
+		String.format("%30s", "Fiche de Score") +
+		String.format("%30s","|") + "\n"+
+		"------------------------------------------------------------\n"  + "|" + 
+		String.format("%20s", " ")+ "|"+
+		String.format("%5s", "Corporation Solaire") + "|" +
+		String.format("%10s", "Syndicat Astral") + "   |\n" + 
+		"------------------------------------------------------------\n"  + "|" +
+		String.format("%20s", "|") +  
+		String.format("%20s", "|") +
+		String.format("%20s", "|") +"\n" +
+		"------------------------------------------------------------\n"  + "|   " +
+		"Points Route   " + " |" + String.format("%20s", "|") + "\n" +
+		"------------------------------------------------------------\n"  + "|"+
+		String.format("%20s", "|") +
+		String.format("%20s", "|") +
+		String.format("%20s", "|") + "\n" +
+		"------------------------------------------------------------\n"  + "|" +
+		"Points des Mines  " + " |" + String.format("%20s", "|") + "\n" +
+		"------------------------------------------------------------\n"  + "|"+
+		String.format("%10s","Jaune") +
+		String.format("%10s", "|") +  
+			String.format("%20s", "|") +
+		String.format("%20s", "|") + "\n" +
+		"------------------------------------------------------------\n" + "|"+
+		String.format("%10s","Fleur") +
+		String.format("%10s", "|") + 
+			String.format("%20s", "|") +
+		String.format("%20s", "|") + "\n" +
+		"------------------------------------------------------------\n"  + "|"+
+		String.format("%10s","Losange") +
+		String.format("%10s", "|") +
+			String.format("%20s", "|") +
+		String.format("%20s", "|") + "\n" +
+		"------------------------------------------------------------\n"  + "|"+
+		String.format("%10s","Carre") +
+		String.format("%10s", "|") +
+			String.format("%20s", "|") +
+		String.format("%20s", "|") + "\n" +
+		"------------------------------------------------------------\n"  + "|"+
+		String.format("%10s","Hexagone") +
+		String.format("%10s", "|") + 
+		String.format("%20s", "|") +
+		String.format("%20s", "|") + "\n" +
+		"------------------------------------------------------------\n"  + "|"+
+		String.format("%10s","S/Total") +
+		String.format("%10s", "|") + 
+		String.format("%20s", "|") +
+		String.format("%20s", "|") + "\n" +
+		"------------------------------------------------------------\n"  + "|" +
+		String.format("%20s", "|") +  
+		String.format("%20s", "|") +
+		String.format("%20s", "|") +"\n" +
+		"------------------------------------------------------------\n"  + "|"+
+		"Plateau Individuel" + "|" + String.format("%20s", "|") +
+		String.format("%20s", "|") + "\n" +
+		"------------------------------------------------------------\n"  + "|"+
+		"Score Pièces" +"      |" + String.format("%20s", "|") +
+		String.format("%20s", "|") + "\n" +
+		"------------------------------------------------------------\n"  + "|"+
+		"Score des Colonnes" + "  |" + String.format("%20s", "|") +
+		String.format("%20s", "|") + "\n" +
+		"------------------------------------------------------------\n"  + "|"+
+		"Score des Lignes" + "  |" +
+		String.format("%20s", "|") +
+		String.format("%20s", "|") + "\n" +
+		"------------------------------------------------------------\n"  + "|"+
+		String.format("%20s", "|") +
+		String.format("%20s", "|") +
+		String.format("%20s", "|") + "\n" +
+		"------------------------------------------------------------\n" + "|"+
+		String.format("%10s","S/Total") +
+		String.format("%10s", "|") +
+			String.format("%20s", "|") +
+		String.format("%20s", "|") + "\n" +
+		"------------------------------------------------------------\n"+
+		"Jeton Possession restants" + "  |" + String.format("%15s", "|") +
+		String.format("%15s", "     |") + "\n" +
+		"------------------------------------------------------------\n"  + "|"+
+		"Bonus"+ String.format("%15s",  "|") + 
+		String.format("%20s", "|") +
+		String.format("%20s", "|") + "\n" +
+		"------------------------------------------------------------\n"  + "|"+
+		String.format("%20s", "|") +
+		String.format("%20s", "|") +
+		String.format("%20s", "|") + "\n" +
+		"------------------------------------------------------------\n"  + "|"+
+		String.format("%10s","S/Total") +
+		String.format("%10s", "|") + 
+		String.format("%20s", "|") +
+		String.format("%20s", "|") + "\n" +
+		"------------------------------------------------------------\n";
+		
 		return sRet;
 
 	}
