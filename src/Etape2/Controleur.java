@@ -1,8 +1,8 @@
-package Etape2;
+package src.Etape2;
 
-import Etape2.metier.*;
-import Etape2.metier.Mine;
-import Etape2.metier.Region;
+import src.Etape2.metier.*;
+import src.Etape2.metier.Mine;
+import src.Etape2.metier.Region;
 
 import java.awt.Color;
 import java.io.File;
@@ -13,7 +13,7 @@ import java.util.List;
 
 import javax.swing.JFileChooser;
 
-import Etape2.ihm.Frame;
+import src.Etape2.ihm.Frame;
 
 public class Controleur 
 {

@@ -2,11 +2,11 @@ package src;
 
 import java.util.List;
 
-import src.metier.Route;
+import src.Etape2.metier.Routes;
 
 public class Controleur
 {
-    private List<Route> lstRoutes;
+    private List<Routes> lstRoutes;
 
 
     public Controleur()

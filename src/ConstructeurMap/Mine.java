@@ -1,4 +1,4 @@
-package src.Etape2.metier;
+
 
 import java.awt.Color;
 
