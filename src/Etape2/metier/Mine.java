@@ -8,6 +8,7 @@ public class Mine
 	private int y ; 
 	private int numero ;
 	private Region region;
+	private boolean isVisited;
 
 	public Mine(int x , int y , int numero, Region region)
 	{
@@ -15,15 +16,17 @@ public class Mine
 		this.y = y;
 		this.numero = numero;
 		this.region = region;
+		this.isVisited = false;
 	}
 
 
-	public int getX() 						{ return this.x;	 }
-	public int getY() 						{ return this.y;	 }
-	public int getNumMine() 				{ return this.numero;}
-	public Region getRegion() 				{ return this.region;}
-	public int getTailleX() 				{ return 50;		 }
-	public int getTailleY() 				{ return 50;		 }
+	public int getX() 						{ return this.x;	    }
+	public int getY() 						{ return this.y;	    }
+	public int getNumMine() 				{ return this.numero;   }
+	public Region getRegion() 				{ return this.region;   }
+	public int getTailleX() 				{ return 50;		    }
+	public int getTailleY() 				{ return 50;		    }
+	public boolean getVisit()				{ return this.isVisited;}
 
 	public boolean possede(int x, int y)
 	{
@@ -42,5 +45,10 @@ public class Mine
 	public void setY(int y2)
 	{
 		this.y = y2;
+	}
+
+	public void visiteMine()
+	{
+		if (!this.isVisited){this.isVisited = true;}
 	}
 }
