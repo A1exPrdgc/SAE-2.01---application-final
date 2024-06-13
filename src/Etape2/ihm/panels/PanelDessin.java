@@ -61,7 +61,11 @@ public class PanelDessin extends JPanel
 
 			graphics2D.setColor(Color.DARK_GRAY);
 			graphics2D. drawLine(villeDep.getX(), villeDep.getY(), villeArr.getX(), villeArr.getY());
-			graphics2D.fillOval(((villeDep.getX() + villeArr.getX()) / trait.getNbTroncon()) - TAILLE_CERCLE / 2, ((villeDep.getY() + villeArr.getY()) / trait.getNbTroncon()) - TAILLE_CERCLE / 2, TAILLE_CERCLE, TAILLE_CERCLE);
+			
+			if (trait.getNbTroncon() > 1)
+			{
+				graphics2D.fillOval(((villeDep.getX() + villeArr.getX()) / trait.getNbTroncon()) - TAILLE_CERCLE / 2, ((villeDep.getY() + villeArr.getY()) / trait.getNbTroncon()) - TAILLE_CERCLE / 2, TAILLE_CERCLE, TAILLE_CERCLE);
+			}
 			/* 
 			int radius = PanelDessin.TAILLE_CERCLE / 2;
 
