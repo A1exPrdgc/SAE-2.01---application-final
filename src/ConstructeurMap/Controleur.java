@@ -1,17 +1,17 @@
 
 package src.ConstructeurMap;
 
-/*import src.*;
+import src.*;
 import src.Etape2.metier.Routes;
 import src.Etape2.metier.Mine;
-import src.Etape2.metier.Region;*/
+import src.Etape2.metier.Region;
 
 import java.io.BufferedReader;
 import java.io.*;
 import java.io.FileReader;
 import java.util.*;
-/*import src.Etape2.metier.*;
-import src.Etape2.metier.Mine;*/
+import src.Etape2.metier.*;
+import src.Etape2.metier.Mine;
 
 public class Controleur 
 {

@@ -13,10 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-
 
 public class FrameMine extends JFrame implements ActionListener
 {
@@ -24,7 +20,7 @@ public class FrameMine extends JFrame implements ActionListener
 	private JPanel     panel;   
     private JPanel     panel2;
     private JPanel     panel3;
-	private JTextField txtnumero;
+	private JComboBox<String> txtnumero;
     private JComboBox<String> txtRegion;
     private JTextField txtX;
     private JTextField txtY;
@@ -46,12 +42,19 @@ public class FrameMine extends JFrame implements ActionListener
             forme.add(0, r.name());
         }
 
+        String[] tabInt = new String[8];
+
+        for (int i = 0; i < tabInt.length; i++) 
+        {
+            tabInt[i] = i + 1 + "";    
+        }
+
 		this.ctrl = ctrl;
 		this.panel  = new JPanel();
         this.panel2 = new JPanel();
         this.panel3 = new JPanel();
         this.txtRegion = new JComboBox<String>(FrameMine.listToTab(forme));
-		this.txtnumero = new JTextField("" , 3);
+		this.txtnumero = new JComboBox<String>(tabInt);
         this.txtX = new JTextField  ("" , 3);
         this.txtY = new JTextField  ("" , 3);
         this.btnAjouter = new JButton("Ajouter");
@@ -84,7 +87,7 @@ public class FrameMine extends JFrame implements ActionListener
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == this.btnAjouter)
 		{
-			this.ctrl.ajouterMine(Integer.parseInt(this.txtX.getText()), Integer.parseInt(this.txtY.getText()), Integer.parseInt(this.txtnumero.getText()), this.ctrl.rechercherRegion((String)this.txtRegion.getSelectedItem()));
+			this.ctrl.ajouterMine(Integer.parseInt(this.txtX.getText()), Integer.parseInt(this.txtY.getText()), Integer.parseInt((String)this.txtnumero.getSelectedItem()), this.ctrl.rechercherRegion((String)this.txtRegion.getSelectedItem()));
             this.ctrl.majDessin();
             this.setVisible(false);
 		}

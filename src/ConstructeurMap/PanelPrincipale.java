@@ -1,4 +1,4 @@
-
+package src.ConstructeurMap;
 
 import javax.swing.JPanel;
 
