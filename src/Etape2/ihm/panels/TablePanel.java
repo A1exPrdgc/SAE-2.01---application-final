@@ -1,11 +1,11 @@
-package src.Etape2.ihm.panels;
+package Etape2.ihm.panels;
 
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import src.Etape2.Controleur;
+import Etape2.Controleur;
 
 
 public class TablePanel extends JPanel

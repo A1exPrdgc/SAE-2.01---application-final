@@ -1,7 +1,7 @@
-package src.Etape2.ihm;
+package Etape2.ihm;
 
-import src.Etape2.Controleur;
-import src.Etape2.metier.*;
+import Etape2.Controleur;
+import Etape2.metier.*;
 
 import javax.swing.*;
 import java.awt.event.*;

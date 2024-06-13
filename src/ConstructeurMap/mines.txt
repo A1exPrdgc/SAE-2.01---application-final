@@ -1,6 +1,6 @@
 Mines:
-425,125,5,HEXAGONE
-123,123,2,ROND
+977,556,4,R,false
+567,545,1,C,false
 
 Routes:
-2,5,2
+2,4,1

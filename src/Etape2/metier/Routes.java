@@ -1,6 +1,6 @@
-package src.Etape2.metier;
+package Etape2.metier;
 
-import src.Etape2.metier.Mine;
+import Etape2.metier.Mine;
 
 public class Routes
 {

@@ -4,8 +4,8 @@ import java.util.List;
 
 import javax.swing.table.AbstractTableModel;
 
-import src.Etape2.Controleur;
-import src.Etape2.metier.Routes;
+import Etape2.Controleur;
+import Etape2.metier.Routes;
 
 
 public class ModelTableauRoute extends AbstractTableModel
