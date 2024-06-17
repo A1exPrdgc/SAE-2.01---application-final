@@ -7,6 +7,7 @@ public class Mine
 	private int numero ;
 	private Region region;
 	private boolean isVisited;
+	private Jeton ressource;
 
 	private static int nbMine = 0;
 	private int idMine;
@@ -30,6 +31,9 @@ public class Mine
 	public int getTailleY() 				{ return 50;		    }
 	public boolean getVisit()				{ return this.isVisited;}
 	public int getIdMine()                  { return idMine;        }
+	public Jeton getRessource()             { return ressource;     }
+		
+	
 
 	public boolean possede(int x, int y)
 	{
@@ -53,5 +57,15 @@ public class Mine
 	public void visiteMine()
 	{
 		if (!this.isVisited){this.isVisited = true;}
+	}
+
+	public boolean ajouterRessource(Jeton r)
+	{
+		if (this.ressource == null)
+		{
+			this.ressource = r;
+			return true;
+		}
+		return false;
 	}
 }

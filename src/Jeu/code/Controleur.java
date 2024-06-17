@@ -48,6 +48,18 @@ public class Controleur
 		return null;
 	}
 
+	public Minerai recherchMinerai(IRessources val)
+	{
+		for (Minerai m : Minerai.values()) 
+		{
+			if (m == val)
+			{
+				return m;
+			}
+		}
+		return null;
+	}
+
 	public void supprimerMine(Mine mines)
 	{
 		this.lstMines.remove(mines);
@@ -156,6 +168,11 @@ public class Controleur
 	public static void main(String[] args)
 	{
 		new Controleur();
+	}
+
+	public static void initRessourceMines(Controleur)
+	{
+
 	}
 
 	

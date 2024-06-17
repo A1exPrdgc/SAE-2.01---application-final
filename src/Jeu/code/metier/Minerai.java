@@ -21,7 +21,8 @@ public enum Minerai implements IRessources
         this.coul = coul;
     }
 
-    public Color getCoul() {
+    public Color getCoul() 
+    {
         return this.coul;
     }
 }

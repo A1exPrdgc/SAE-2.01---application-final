@@ -39,8 +39,6 @@ public class Frame extends JFrame implements ActionListener
 		
 		this.menuFichierOuvrir           = new JMenuItem("Ouvrir" );
 
-		this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-
 		this.afficheDessin = new PanelDessin(this.ctrl);
 
 
