@@ -4,23 +4,27 @@ import java.awt.*;
 
 public enum Region 
 {
-	ROME(Color.BLACK),
-    ETOILE(Color.YELLOW),
-    FLEUR(Color.BLUE),
-    LOSANGE(Color.GRAY),
-    CARRE(Color.GREEN),
-    HEXAGONE(Color.RED),
-    ROND(Color.MAGENTA);
+    ETOILE(Color.YELLOW, "Jaune"),
+    FLEUR(Color.BLUE, "Bleu"),
+    LOSANGE(Color.GRAY, "Gris"),
+    CARRE(Color.GREEN, "Vert"),
+    HEXAGONE(Color.RED, "Rouge"),
+    ROND(Color.MAGENTA, "Marron");
 
     private Color coul;
+    private String nomCoul;
 
-    private Region(Color coul)
+    private Region(Color coul, String nomCoul)
     {
+        this.nomCoul = nomCoul;
         this.coul = coul; 
     }
 
-    public Color getCoul()
-    {
+    public Color getCoul() {
         return this.coul;
+    }
+
+    public String getNomCoul() {
+        return this.nomCoul;
     }
 }
