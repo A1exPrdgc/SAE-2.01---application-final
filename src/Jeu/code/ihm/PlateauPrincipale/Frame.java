@@ -22,8 +22,8 @@ public class Frame extends JFrame implements ActionListener
     {
 		this.ctrl = ctrl;
 	
-        this.setSize(300, 400);
-        this.setTitle("GeoTerra");
+        this.setSize(1000, 1000);
+        this.setTitle("Plateau jeu");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLayout(new BorderLayout());
 

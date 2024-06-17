@@ -42,6 +42,8 @@ public class PanelDessin extends JPanel
 
 		graphics2D = (Graphics2D) g;
 
+		graphics2D.drawImage(this.getToolkit().getImage("/images/distrib_images_2/Plateau_vierge.png"), 0, 0, this.getWidth(), this.getHeight(), this);
+
 		for (int i = 0; i < this.ctrl.getMines().size(); i++)
 		{
 			Mine point = this.ctrl.getMine(i);
