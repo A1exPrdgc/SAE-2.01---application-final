@@ -44,7 +44,7 @@ public class FrameMine extends JFrame implements ActionListener
 
         for (int i = 0; i < tabInt.length; i++) 
         {
-            tabInt[i] = i + 1 + "";    
+            tabInt[i] = i + "";    
         }
 
 		this.ctrl = ctrl;
