@@ -17,7 +17,7 @@ public class Sauvegarde
 			writer.println("Mines:");
 			for (Mine mine : mines)
 			{
-				writer.println(mine.getX() + "," + mine.getY() + "," +mine.getNumMine() + "," + mine.getRegion().name().charAt(0));
+				writer.println(mine.getX() + "," + mine.getY() + "," +mine.getNumMine() + "," + mine.getRegion().name().charAt(0) + "," + mine.getVisit());
 			}
 		} catch (IOException e)
 		{

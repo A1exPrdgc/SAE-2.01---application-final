@@ -51,18 +51,25 @@ public class Controleur
 
 	public void supprimerMine(Mine mines)
 	{
+		this.supprimerRoute(mines);
 		this.lstMines.remove(mines);
+		this.majTab();
 	}
 
-	public void supprimerRoute(Mine depart, Mine arrivee)
+	public void supprimerRoute(Mine mine)
 	{
-		for (Routes route : this.lstRoutes)
+		Routes[] tabRoute = new Routes[this.lstRoutes.size()];
+
+		for (int i = 0; i < tabRoute.length; i++) {
+			tabRoute[i] = this.lstRoutes.get(i);
+		}
+
+		for (Routes r : tabRoute)
 		{
-			if (route.getMineDep().equals(depart) && route.getMineArriv().equals(arrivee))
+			if(r.getMineArriv().equals(mine) || r.getMineDep().equals(mine))
 			{
-				this.lstRoutes.remove(route);
-				break;
-			}
+				this.lstRoutes.remove(r);
+			}	
 		}
 	}
 
