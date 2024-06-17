@@ -25,7 +25,7 @@ public class Equipe
         this.nbPiece = 0;
 
         this.tabMine   = new Mine [ 15 ];
-        this.tabJetons = new Jeton[3][5];
+        this.tabJetons = new Jeton[][] {{}};
     }    
 
     public boolean ajouterRessource(Jeton r)

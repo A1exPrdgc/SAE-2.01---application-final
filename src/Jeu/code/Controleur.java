@@ -1,6 +1,7 @@
 package code;
 
 import code.metier.*;
+import code.ihm.PlateauIndividuel.FrameIndi;
 import code.ihm.PlateauPrincipale.Frame;
 
 import java.util.ArrayList;
@@ -9,6 +10,7 @@ import java.util.List;
 public class Controleur 
 {	
 	private Frame ihm;
+	private FrameIndi platIndiv;
 
 	private Lecture lecture;
 	private List<Mine> lstMines;
@@ -16,10 +18,11 @@ public class Controleur
 
 	public Controleur()
 	{
-		this.lecture = new Lecture(this);
+		this.lecture   = new Lecture(this);
 		this.lstMines  = new ArrayList<Mine>();
 		this.lstRoutes = new ArrayList<Routes>();
 		this.ihm       = new Frame(this);
+		this.platIndiv = new FrameIndi(this);
 	}
 
 	public void ajouterMine(int x, int y, int numero, Region region )
