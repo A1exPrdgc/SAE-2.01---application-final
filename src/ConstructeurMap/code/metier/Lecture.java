@@ -55,12 +55,15 @@ public class Lecture
                 {
                    
                     char charRegion = parts[3].charAt(0);
-                   
                     Region region = Lecture.getRegionChar0(charRegion);
                  
-
+					boolean visite = Boolean.parseBoolean(parts[4].trim());
+					String ressources = parts[5].trim();
+					
                     this.ctrl.ajouterMine(Integer.parseInt(parts[0].trim()),Integer.parseInt(parts[1].trim()), Integer.parseInt(parts[2].trim()), region );
-                   
+					Mine.setVisite(visite);
+					Mine.setRessources(ressources);
+
                 } else if (routesSection) 
                 {
                    
