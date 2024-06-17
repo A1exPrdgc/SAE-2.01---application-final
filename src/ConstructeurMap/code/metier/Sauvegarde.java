@@ -1,7 +1,6 @@
 package code.metier;
 import java.io.BufferedReader;
 import java.io.FileOutputStream;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -13,7 +12,7 @@ public class Sauvegarde
 {
 	public static void sauvegarderMine(List<Mine> mines)
 	{
-		try (PrintWriter writer = new PrintWriter(new FileOutputStream("../ConstructeurMap/code/save/mines.txt")))
+		try (PrintWriter writer = new PrintWriter(new FileOutputStream("../save/mines.txt")))
 		{
 			writer.println("Mines:");
 			for (Mine mine : mines)
@@ -28,7 +27,7 @@ public class Sauvegarde
 
 	public static void sauvegarderRoutes(List<Routes> routes)
 	{
-		try (PrintWriter writer = new PrintWriter(new FileOutputStream("../ConstructeurMap/code/save/mines.txt", true))) 
+		try (PrintWriter writer = new PrintWriter(new FileOutputStream("../save/mines.txt", true))) 
 		{
 			writer.println("\nRoutes:");
 			for (Routes route : routes)

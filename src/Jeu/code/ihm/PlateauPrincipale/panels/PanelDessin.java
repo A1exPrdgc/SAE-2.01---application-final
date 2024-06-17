@@ -16,8 +16,8 @@ import java.awt.event.MouseEvent;
 public class PanelDessin extends JPanel
 {
 	private static final int TAILLE_CERCLE = 25;
-	private static final int DECALAGE = 20;
 
+	
 	private Controleur ctrl;
 	private Graphics2D graphics2D;
 	private GererSouris souris;
@@ -97,7 +97,6 @@ public class PanelDessin extends JPanel
 
 		}
 		graphics2D.setStroke(new BasicStroke(0));
-		this.ctrl.majTab();
 	}
 
 	private static double getLongueur(Mine v1, Mine v2)
@@ -134,7 +133,6 @@ public class PanelDessin extends JPanel
 				this.x = e.getX();
 				this.y = e.getY();
 
-				PanelDessin.this.ctrl.majTab();
 				PanelDessin.this.repaint();
 			}
 			

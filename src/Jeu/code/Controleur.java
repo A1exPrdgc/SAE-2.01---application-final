@@ -7,14 +7,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Controleur 
-{
+{	
 	private Frame ihm;
 
+	private Lecture lecture;
 	private List<Mine> lstMines;
 	private List<Routes> lstRoutes; 
 
 	public Controleur()
 	{
+		this.lecture = new Lecture(this);
 		this.lstMines  = new ArrayList<Mine>();
 		this.lstRoutes = new ArrayList<Routes>();
 		this.ihm       = new Frame(this);
@@ -23,6 +25,8 @@ public class Controleur
 	public void ajouterMine(int x, int y, int numero, Region region )
 	{
 		 this.lstMines.add(0,new Mine(x, y, numero, region));
+		 System.out.println(this.lstMines.get(0));
+		 this.ihm.majDessin();
 	}
 
 	public boolean ajouterRoute(int nbTroncon, Mine depart, Mine arrivee)
@@ -80,14 +84,11 @@ public class Controleur
 		System.out.println("Routes Sauvegarder");
 	}
 
-	public List<Mine> charger()
+	public void charger()
 	{
-		//Sauvegarde.LectureMine(this.lstMines);
-		System.out.println("Villes chargés");
-		//Sauvegarde.LectureRoutes(this.lstRoutes);
-		System.out.println("Routes chargés");
-
-		return this.lstMines;
+		this.lecture = new Lecture(this);
+		if (this.getMines().isEmpty())
+			this.lecture.lectureGraphe();
 	}
 
 	public Mine rechercherMine(char nomMine, int numMine)
@@ -113,11 +114,6 @@ public class Controleur
 			}
 		}
 		return null;
-	}
-
-	public void majTab()
-	{
-		this.ihm.majTab();
 	}
 
 
