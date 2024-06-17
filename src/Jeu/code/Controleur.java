@@ -169,11 +169,4 @@ public class Controleur
 	{
 		new Controleur();
 	}
-
-	public static void initRessourceMines(Controleur)
-	{
-
-	}
-
-	
 }

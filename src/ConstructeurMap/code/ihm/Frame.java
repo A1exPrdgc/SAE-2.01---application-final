@@ -42,7 +42,7 @@ public class Frame extends JFrame implements ActionListener
     {
 		this.ctrl = ctrl;
 	
-        this.setSize(300, 400);
+        this.setSize(1000, 1000);
         this.setTitle("GeoTerra");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLayout(new BorderLayout());
@@ -80,8 +80,6 @@ public class Frame extends JFrame implements ActionListener
 		this.afficheVille = new FrameMine(this.ctrl);
 		this.afficheRoute = new FrameRoute(this.ctrl);
 		this.supprime = new FrameRemove(this.ctrl);
-
-		this.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
 		//l'ensemble des panels
 		this.tablePanel = new TablePanel(this.ctrl);
@@ -141,6 +139,8 @@ public class Frame extends JFrame implements ActionListener
 		if ( e.getSource() == this.menuFichierOuvrir )
 		{
 			System.out.println ( "Ouvrir" );
+			this.ctrl.charger();
+			this.ctrl.majDessin();
 			
 		}
 
