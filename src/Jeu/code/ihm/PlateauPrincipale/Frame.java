@@ -1,4 +1,4 @@
-package code.ihm.PlateauPrincipale;
+	package code.ihm.PlateauPrincipale;
 
 import javax.swing.*;
 

@@ -64,7 +64,7 @@ public class PanelDessin extends JPanel
 			{
 				graphics2D.fillOval(((villeDep.getX() + villeArr.getX()) / trait.getNbTroncon()) - TAILLE_CERCLE / 2, ((villeDep.getY() + villeArr.getY()) / trait.getNbTroncon()) - TAILLE_CERCLE / 2, TAILLE_CERCLE, TAILLE_CERCLE);
 			}
-			/* 
+			/* gi
 			int radius = PanelDessin.TAILLE_CERCLE / 2;
 
 			int x1 = villeDep.getX() - radius;
