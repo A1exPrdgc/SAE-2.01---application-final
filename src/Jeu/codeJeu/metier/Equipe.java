@@ -1,7 +1,7 @@
 package codeJeu.metier;
 
 import codeJeu.Controleur;
-import codeJeu.metier.Mine;
+import codeJeu.metier.*;
 
 public class Equipe 
 {
@@ -25,19 +25,20 @@ public class Equipe
         this.nbMine  = 0;
         this.nbPiece = 0;
 
-        this.tabMine   = new Mine[15];
-        this.tabJetons = new Jeton[][] {{}};
+        this.tabMine   = new Mine [ 15 ];
+        this.tabJetons = new Jeton[4][8];
     }    
 
-    public boolean ajouterRessource(Jeton r)
-    {
-        IRessources ressource = r.getType();
+	public boolean ajouterRessource(Jeton r)
+	{
+		IRessources ressource = r.getType();
 		if (ressource instanceof Monnaie) 
-        {
-            this.nbPiece++;
+		{
+			this.nbPiece++;
 		} 
         else if (ressource instanceof Minerai) {
 			Minerai minerai = (Minerai) ressource;
+
 			for (int j = 0; j < this.getTailleCol(); j++) {
 				if (colonneAccepteMinerai(j, minerai)) {
 					for (int i = this.getTailleLig() - 1; i >= 0; i--) {
@@ -46,18 +47,18 @@ public class Equipe
 							return true;
 						}
 					}
-					break;  // Colonne pleine, ne pas chercher plus loin
+					break; // Colonne pleine, ne pas chercher plus loin
 				}
 			}
 		}
 		return false;
-    }
+	}
 
-    private boolean colonneAccepteMinerai(int col, Minerai Minerai) {
+	private boolean colonneAccepteMinerai(int col, Minerai Minerai) {
 		for (int i = 0; i < this.getTailleLig(); i++) {
 			if (tabJetons[i][col] != null) {
 				if (tabJetons[i][col].getType() != Minerai) {
-					return false;  // Colonne contient une autre épice
+					return false;  // Colonne contient une autre Minerai
 				}
 			}
 		}

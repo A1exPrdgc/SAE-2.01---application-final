@@ -1,14 +1,10 @@
 package codeJeu.ihm.PlateauIndividuel;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.GridLayout;
-import java.awt.Image;
 
+import java.awt.*;
 import javax.swing.*;
 
+import codeJeu.metier.*;
 import codeJeu.Controleur;
-import codeJeu.metier.Equipe;
-import codeJeu.metier.Mine;
 
 public class PanelMine extends JPanel
 {
@@ -16,14 +12,14 @@ public class PanelMine extends JPanel
 	private Mine[] tabMine;
 	private Image[] tabImageMine;
 	private Equipe equipe;
+	private Controleur controleur;
 
-	public PanelMine(Equipe equipe)
+	public PanelMine(Equipe equipe, Controleur controleur)
 	{
-		this.equipe = equipe;
+		this.controleur = controleur;
+		this.equipe = controleur.getEquipe();
 		this.tabImageMine = new Image[15];
 		this.tabMine = equipe.getMines();
-
-		System.out.println("mine");
 
 		// CrÃ©ation des Image Mines
 		for (int i = 0; i < tabMine.length; i++)
@@ -31,8 +27,7 @@ public class PanelMine extends JPanel
 			if (this.tabMine[i] != null)
 			{
 				this.tabImageMine[i] = new ImageIcon(
-						"../../images/distrib_images_2/opaqueMines_" + tabMine[i].getRegion().getNomCoul() + ".png")
-								.getImage(); // a revoir
+						"src\\Jeu\\codeJeu\\images\\distrib_images_2\\transparent\\" + tabMine[i].getRegion().getNomCoul() + ".png").getImage(); 
 			}
 
 		}

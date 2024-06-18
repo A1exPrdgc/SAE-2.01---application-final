@@ -25,12 +25,14 @@ public class PanelDessin extends JPanel
 	private Controleur ctrl;
 	private Graphics2D graphics2D;
 	private GererSouris souris;
+	private boolean aCliqueSurOui;
 
 	public PanelDessin(Controleur ctrl)
 	{
 		this.ctrl = ctrl;
 
 		this.souris = new GererSouris();
+		this.aCliqueSurOui = false;
 		this.addMouseListener(this.souris);
 		this.addMouseMotionListener(this.souris);
 	}
@@ -69,7 +71,7 @@ public class PanelDessin extends JPanel
 			{
 				if (point.getRessource().getType() instanceof Minerai)
 				{
-					temp = this.getToolkit().getImage("./codeJeu/images/distrib_images_2/transparent/Mine_" + this.ctrl.recherchMinerai(point.getRessource().getType()).name() + ".png");
+					temp = this.getToolkit().getImage("./codeJeu/images/distrib_images_2/transparent/Mine_" + this.ctrl.rechercheMinerai(point.getRessource().getType()).name() + ".png");
 				}
 				if (point.getRessource().getType() instanceof Monnaie)
 				{
@@ -102,6 +104,13 @@ public class PanelDessin extends JPanel
 
 		}
 		graphics2D.setStroke(new BasicStroke(0));
+
+		if(aCliqueSurOui)
+		{
+			Mine point = this.ctrl.getMineTouche(souris.x, souris.y);
+		 	this.getToolkit().getImage("./codeJeu/images/distrib_images_2/transparent/Mine_" + point.getRegion().getNomCoul() + ".png");
+		}
+
 	}
 
 	private static double getLongueur(Mine v1, Mine v2)
@@ -121,8 +130,8 @@ public class PanelDessin extends JPanel
 		private int x;
 		private int y;
 		private Mine v;
+		private Boolean choisie;
 
-		@Override
 		public void mousePressed(MouseEvent e) 
 		{
 			this.v = PanelDessin.this.ctrl.getMineTouche(e.getX(), e.getY());
@@ -130,5 +139,23 @@ public class PanelDessin extends JPanel
 			this.y = e.getY();	
 			System.out.println("cliqué : " + this.v);
 		}
+
+		public void mouseClicked(MouseEvent e)
+		{
+			for (Mine mine : ctrl.getMines())
+			{
+				if (mine.possede(e.getX(), e.getY()))
+				{
+					int response = JOptionPane.showConfirmDialog(null, "Êtes-vous sûr de vouloir cette mine ?",
+							"Confirmation", JOptionPane.YES_NO_OPTION);
+					if (response == JOptionPane.YES_OPTION)
+					{
+						PanelDessin.this.aCliqueSurOui = true;
+					}
+				}
+			}
+		}
 	}
+
+
 }
