@@ -57,7 +57,7 @@ public class PanelDessin extends JPanel
 			{
 				if (point.getRessource().getType() instanceof Minerai)
 				{
-					temp = this.getToolkit().getImage("./code/images/distrib_images_2/transparent/Mine_" + this.ctrl.recherchMinerai(point.getRessource().getType()).name() + ".png");
+					temp = this.getToolkit().getImage("./code/images/distrib_images_2/transparent/Mine_" + this.ctrl.rechercheMinerai(point.getRessource().getType()).name() + ".png");
 				}
 				if (point.getRessource().getType() instanceof Minerai)
 				{
