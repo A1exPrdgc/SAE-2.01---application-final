@@ -2,14 +2,8 @@ package codeJeu;
 
 import codeJeu.Controleur;
 import codeJeu.metier.*;
+import codeJeu.ihm.PlateauIndividuel.FrameIndi;
 import codeJeu.ihm.PlateauPrincipale.Frame;
-import codeJeu.metier.IRessources;
-import codeJeu.metier.Lecture;
-import codeJeu.metier.Mine;
-import codeJeu.metier.Minerai;
-import codeJeu.metier.Region;
-import codeJeu.metier.Routes;
-import codeJeu.metier.Sauvegarde;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +11,7 @@ import java.util.List;
 public class Controleur 
 {	
 	private Frame ihm;
+	private FrameIndi platIndiv;
 
 	private Lecture lecture;
 	private List<Mine> lstMines;
@@ -24,10 +19,11 @@ public class Controleur
 
 	public Controleur()
 	{
-		this.lecture = new Lecture(this);
+		this.lecture   = new Lecture(this);
 		this.lstMines  = new ArrayList<Mine>();
 		this.lstRoutes = new ArrayList<Routes>();
 		this.ihm       = new Frame(this);
+		this.platIndiv = new FrameIndi(this);
 	}
 
 	public void ajouterMine(int x, int y, int numero, Region region )

@@ -1,7 +1,7 @@
 package codeJeu.metier;
 
-import codeBuild.Controleur;
-import codeBuild.metier.Mine;
+import codeJeu.Controleur;
+import codeJeu.metier.Mine;
 
 public class Equipe 
 {
@@ -11,7 +11,7 @@ public class Equipe
 
     private int nbJetonPossession;
     private int nbMine;
-    private codeBuild.metier.Mine[] tabMine;
+    private Mine[] tabMine;
     private String nom;
     private Jeton[][] tabJetons;
     private int nbPiece;
@@ -25,8 +25,8 @@ public class Equipe
         this.nbMine  = 0;
         this.nbPiece = 0;
 
-        this.tabMine   = new Mine [ 15 ];
-        this.tabJetons = new Jeton[3][5];
+        this.tabMine   = new Mine[15];
+        this.tabJetons = new Jeton[][] {{}};
     }    
 
     public boolean ajouterRessource(Jeton r)
