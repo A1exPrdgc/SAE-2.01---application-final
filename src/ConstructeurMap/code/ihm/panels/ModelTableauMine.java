@@ -54,7 +54,6 @@ public class ModelTableauMine extends AbstractTableModel
             s[i][1] = "" + lst.get(i).getRegion();
             s[i][2] = "" + lst.get(i).getX();
             s[i][3] = "" + lst.get(i).getY();
-            System.out.println(s[i][0] + ", " + s[i][1] + ", " + s[i][2] + ", " + s[i][3]);
         }
         return s;
     }

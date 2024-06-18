@@ -32,9 +32,21 @@ public class Controleur
 
 	public boolean ajouterRoute(int nbTroncon, Mine depart, Mine arrivee)
 	{
-		boolean worked = this.lstRoutes.add(new Routes(nbTroncon, depart, arrivee));
-		System.out.println(this.lstRoutes.get(0).getNbTroncon());
-		return worked;
+		for (Routes r : lstRoutes) 
+		{
+			if (depart == r.getMineDep() && arrivee == r.getMineArriv() ||
+				depart == r.getMineArriv() && arrivee == r.getMineDep())
+			{
+				return false;
+			}		
+		}
+
+		if (depart.getIdMine() != arrivee.getIdMine())
+		{
+			boolean worked = this.lstRoutes.add(new Routes(nbTroncon, depart, arrivee));
+			return worked;
+		}
+		return false;
 	}
 
 	public Region rechercherRegion(String nomRegion)
@@ -128,7 +140,6 @@ public class Controleur
 	{
 		this.ihm.majTab();
 	}
-
 
 	public void reset()
 	{

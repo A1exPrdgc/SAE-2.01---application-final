@@ -45,7 +45,6 @@ public class PanelDessin extends JPanel
 		{
 			Mine point = this.ctrl.getMine(i);
 			graphics2D.setColor(point.getRegion().getCoul());
-			//graphics2D.drawOval(point.getX() - point.getTailleX() / 2, point.getY() - point.getTailleY() / 2, point.getTailleX(),point.getTailleY()); 
 			graphics2D.fillOval(point.getX() - point.getTailleX() / 2, point.getY() - point.getTailleY() / 2, point.getTailleX(),point.getTailleY());
 		}
 
@@ -64,36 +63,6 @@ public class PanelDessin extends JPanel
 			{
 				graphics2D.fillOval(((villeDep.getX() + villeArr.getX()) / trait.getNbTroncon()) - TAILLE_CERCLE / 2, ((villeDep.getY() + villeArr.getY()) / trait.getNbTroncon()) - TAILLE_CERCLE / 2, TAILLE_CERCLE, TAILLE_CERCLE);
 			}
-			/* gi
-			int radius = PanelDessin.TAILLE_CERCLE / 2;
-
-			int x1 = villeDep.getX() - radius;
-			int x2 = villeArr.getX() - radius;
-			int y1 = villeDep.getY() - radius;
-			int y2 = villeArr.getY() - radius;
-
-            double angle = Math.atan2(y2 - y1, x2 - x1);
-
-			if (x1 - x2 > 0)
-			{
-				x2 += DECALAGE;
-				x1 += -DECALAGE;
-			}
-			
-			if (y1 - y2 > 0 && y1 - y2 > DECALAGE || y1 - y2 < -DECALAGE)
-			{
-				y2 += DECALAGE;
-				y1 += -DECALAGE;
-			}
-
-            int debutX = (int) (x1 + radius * Math.cos(angle));
-            int debutY = (int) (y1 + radius * Math.sin(angle));
-            int finX   = (int) (x2 - radius * Math.cos(angle));
-            int finY   = (int) (y2 - radius * Math.sin(angle));
-
-			graphics2D.fillOval(debutX, debutY, TAILLE_CERCLE, TAILLE_CERCLE);
-			graphics2D.fillOval(finX, finY, TAILLE_CERCLE, TAILLE_CERCLE);*/
-
 		}
 		graphics2D.setStroke(new BasicStroke(0));
 		this.ctrl.majTab();
@@ -101,7 +70,14 @@ public class PanelDessin extends JPanel
 
 	private static double getLongueur(Mine v1, Mine v2)
 	{
-		return Math.sqrt(Math.pow(v2.getX() - v1.getX(), 2) + Math.pow(v2.getY() - v1.getY(), 2));
+		if (v2.getX() > v1.getX() || v2.getY() > v1.getY())
+		{
+			return Math.sqrt(Math.pow(v2.getX() - v1.getX(), 2) + Math.pow(v2.getY() - v1.getY(), 2));
+		}
+		else
+		{
+			return Math.sqrt(Math.pow(v1.getX() - v2.getX(), 2) + Math.pow(v1.getY() - v2.getY(), 2));
+		}
 	}
 
 	private class GererSouris extends MouseAdapter
@@ -122,13 +98,11 @@ public class PanelDessin extends JPanel
 		@Override
 		public void mouseDragged(MouseEvent e) 
 		{
-			System.out.println("dragged : " + this.v);
 
 			if (this.v != null)
 			{
 				this.v.setX(this.x);
 				this.v.setY(this.y);
-				System.out.println(v.getX() + " : " + v.getY());
 
 				this.x = e.getX();
 				this.y = e.getY();
@@ -138,12 +112,5 @@ public class PanelDessin extends JPanel
 			}
 			
 		}
-
-		@Override
-		public void mouseReleased(MouseEvent e) {
-			PanelDessin.this.souris = new GererSouris();
-		}
-
-		
 	}
 }

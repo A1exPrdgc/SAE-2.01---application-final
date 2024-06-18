@@ -50,7 +50,6 @@ public class FrameRoute extends JFrame implements ActionListener
 		for (int i = 0; i < this.ctrl.getMines().size(); i++) 
 		{
 			tabMine[i] = this.ctrl.getMine(i).getNumMine() + "_" + this.ctrl.getMine(i).getRegion().name() + " - id" + this.ctrl.getMine(i).getIdMine();
-			System.out.println(tabMine[i]);
 		}
 
 		this.ddlstMineDepart   = new JComboBox<String>(tabMine);
@@ -95,9 +94,9 @@ public class FrameRoute extends JFrame implements ActionListener
 		String tempDep = resMineDep.charAt(0) + "";
 		String tempArr = resMineArr.charAt(0) + "";
 
-		System.out.println(this.ctrl.ajouterRoute(Integer.parseInt(this.txtNbTroncons.getText()),
-												  this.ctrl.rechercherMine(resMineDep.charAt(2), Integer.parseInt(tempDep)),
-												  this.ctrl.rechercherMine(resMineArr.charAt(2), Integer.parseInt(tempArr))));
+		this.ctrl.ajouterRoute(Integer.parseInt(this.txtNbTroncons.getText()),
+												this.ctrl.rechercherMine(resMineDep.charAt(2), Integer.parseInt(tempDep)),
+												this.ctrl.rechercherMine(resMineArr.charAt(2), Integer.parseInt(tempArr)));
 		this.ctrl.majDessin();										  									  
 		this.setVisible(false);
 	}

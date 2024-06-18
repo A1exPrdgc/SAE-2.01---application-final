@@ -54,4 +54,9 @@ public class Mine
 	{
 		if (!this.isVisited){this.isVisited = true;}
 	}
+
+	public String toString()
+	{
+		return this.getIdMine() + " -> " + this.getNumMine() + "_" + this.getRegion().name() + " (" + this.getX() + " : " + this.getY() + ") : " + this.getVisit();
+	}
 }

@@ -4,6 +4,7 @@ import java.awt.*;
 
 public enum Region 
 {
+    VILLE(Color.BLACK, "Noir"),
     ETOILE(Color.YELLOW, "Jaune"),
     FLEUR(Color.BLUE, "Bleu"),
     LOSANGE(Color.GRAY, "Gris"),

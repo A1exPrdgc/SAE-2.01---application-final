@@ -1,47 +1,59 @@
 package code.metier;
-import java.io.BufferedReader;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 
-import code.*;
 import code.metier.Mine;
+import code.metier.Routes;
 
 public class Sauvegarde
 {
-	public static void sauvegarderMine(List<Mine> mines)
-	{
-		try (PrintWriter writer = new PrintWriter(new FileOutputStream("../save/mines.txt")))
-		{
-			writer.println("Mines:");
-			for (Mine mine : mines)
-			{
-				writer.println(mine.getX() + "," + mine.getY() + "," +mine.getNumMine() + "," + mine.getRegion().name().charAt(0) + "," + mine.getVisit());
+    public static void sauvegarderMine(List<Mine> mines)
+    {
+        List<String> lines = new ArrayList<>();
+        for (Mine mine : mines)
+        {
+            String line = mine.getX() + "," + mine.getY() + "," + mine.getNumMine() + ","
+                    + mine.getRegion().name().charAt(0) + "," + mine.getVisit() + "," + mine.getIdMine();
+            lines.add(line);
+        }
+        Collections.reverse(lines);
+        try (PrintWriter writer = new PrintWriter(new FileOutputStream("../save/mines.txt")))
+        {
+            writer.println("Mines:");
+            for (String line : lines)
+            {
+                writer.println(line);
+            }
+        } catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
 
-				if(mine.getRessource().getType() instanceof Minerai)
-				{
-					writer.println(((Minerai) mine.getRessource().getType()).name());
-				}
-			}
-		} catch (IOException e)
-		{
-			e.printStackTrace();
-		}
-	}
-
-	public static void sauvegarderRoutes(List<Routes> routes)
-	{
-		try (PrintWriter writer = new PrintWriter(new FileOutputStream("../save/mines.txt", true))) 
-		{
-			writer.println("\nRoutes:");
-			for (Routes route : routes)
-			{
-				writer.println(route.getNbTroncon() + "," +route.getMineDep().getNumMine() + "," + route.getMineArriv().getNumMine() );
-			}
-		} catch (IOException e)
-		{
-			e.printStackTrace();
-		}
-	}
+    public static void sauvegarderRoutes(List<Routes> routes)
+    {
+        List<String> lines = new ArrayList<>();
+        lines.add("\nRoutes:");
+        for (Routes route : routes)
+        {
+            String line = route.getNbTroncon() + "," + route.getMineDep().getIdMine() + ","
+                    + route.getMineArriv().getIdMine();
+            lines.add(line);
+        }
+        try (PrintWriter writer = new PrintWriter(new FileOutputStream("../save/mines.txt", true)))
+        {
+            for (String line : lines)
+            {
+                writer.println(line);
+            }
+        } catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
 }

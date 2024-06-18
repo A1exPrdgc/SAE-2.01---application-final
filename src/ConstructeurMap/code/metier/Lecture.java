@@ -51,6 +51,7 @@ public class Lecture
                 }
 
                 String[] parts = line.split(",");
+                
                 if (minesSection) 
                 {
                    
@@ -58,11 +59,9 @@ public class Lecture
                     Region region = Lecture.getRegionChar0(charRegion);
                  
 					boolean visite = Boolean.parseBoolean(parts[4].trim());
-					String ressources = parts[5].trim();
 					
                     this.ctrl.ajouterMine(Integer.parseInt(parts[0].trim()),Integer.parseInt(parts[1].trim()), Integer.parseInt(parts[2].trim()), region );
-					Mine.setVisite(visite);
-					Mine.setRessources(ressources);
+
 
                 } else if (routesSection) 
                 {
@@ -71,10 +70,15 @@ public class Lecture
                     Mine mineDep = getNumMine(Integer.parseInt(parts[1].trim()));
                     Mine mineArr = getNumMine(Integer.parseInt(parts[2].trim()));
 
+                    System.out.println(mineDep);
+                    System.out.println(mineArr);
+
                     if (mineDep != null && mineArr != null) 
                     {
                         this.ctrl.ajouterRoute(Integer.parseInt(parts[0].trim()), mineDep, mineArr);
+                        System.out.println("routes ajouté");
                     }
+
                 }
             }
         } catch (Exception e) {
@@ -86,7 +90,7 @@ public class Lecture
     {
         for(Mine mine : this.lstMines)
         {
-            if(mine.getNumMine() == num)
+            if(mine.getIdMine() == num)
             {
                 return mine;
             }

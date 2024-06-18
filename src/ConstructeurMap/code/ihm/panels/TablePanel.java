@@ -21,7 +21,7 @@ public class TablePanel extends JPanel
     private ModelTableauMine modelMine;
     private ModelTableauRoute modelRoute;
 
-    public TablePanel(Controleur ctrl)
+    public TablePanel(Controleur ctrl) 
     {
         this.ctrl = ctrl;
 
