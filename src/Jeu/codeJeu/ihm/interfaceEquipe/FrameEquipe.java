@@ -4,13 +4,18 @@ import java.awt.BorderLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
+import codeJeu.Controleur;
+
 public class FrameEquipe extends JFrame
 {
 	private PanelEquipes panelEquipes	;
 	private JButton confirmerButton;
+	private Controleur ctrl;
 
-	public FrameEquipe()
-	{
+
+	public FrameEquipe(Controleur ctrl)
+	{	
+		this.ctrl = ctrl;
 		this.setTitle("Choix des équipes");
 		this.setLayout(new BorderLayout());
 		this.setSize(500, 200);
@@ -26,10 +31,5 @@ public class FrameEquipe extends JFrame
 
 		// Afficher la fenêtre
 		this.setVisible(true);
-	}
-
-	public static void main(String[] args)
-	{
-		new FrameEquipe();
 	}
 }

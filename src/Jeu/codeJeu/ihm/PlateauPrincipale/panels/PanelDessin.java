@@ -6,6 +6,7 @@ import codeJeu.Controleur;
 import codeJeu.metier.Mine;
 import codeJeu.metier.Routes;
 import codeJeu.metier.Minerai;
+import codeJeu.metier.Monnaie;
 import codeJeu.metier.Region;
 
 import java.awt.BasicStroke;
@@ -43,6 +44,7 @@ public class PanelDessin extends JPanel
 	{
 		super.paintComponent(g);
 
+		Image temp;
 		graphics2D = (Graphics2D) g;
 
 		graphics2D.drawImage(this.getToolkit().getImage("./codeJeu/images/distrib_images_2/Plateau_vierge.png"), 0, 0, this.getWidth(), this.getHeight(), this);
@@ -51,11 +53,17 @@ public class PanelDessin extends JPanel
 		{
 			Mine point = this.ctrl.getMine(i);
 			//graphics2D.fillOval(point.getX() - point.getTailleX() / 2, point.getY() - point.getTailleY() / 2, point.getTailleX(),point.getTailleY());
-			Image temp = this.getToolkit().getImage("./codeJeu/images/distrib_images_2/transparent/Mine_" + point.getRegion().getNomCoul() + ".png");
-			graphics2D.drawImage(temp, point.getX() - temp.getWidth(this) / 2 ,point.getY() - temp.getHeight(this) / 2, this);
+
 			if (point.getRegion() != Region.VILLE)
 			{
-				graphics2D.drawString(point.getNumMine() + "", point.getX() - 3, point.getY() - 15);
+				temp = this.getToolkit().getImage("./codeJeu/images/distrib_images_2/transparent/Mine_" + point.getRegion().getNomCoul() + ".png");
+				graphics2D.drawImage(temp, point.getX() ,point.getY(), this);
+				graphics2D.drawString(point.getNumMine() + "", point.getX() + 21, point.getY() + 30);
+			}
+			else
+			{
+				temp = this.getToolkit().getImage("./codeJeu/images/distrib_images_2/NR.png");
+				graphics2D.drawImage(temp, point.getX() ,point.getY(), this);
 			}
 			if (point.getRessource() != null)
 			{
@@ -63,7 +71,7 @@ public class PanelDessin extends JPanel
 				{
 					temp = this.getToolkit().getImage("./codeJeu/images/distrib_images_2/transparent/Mine_" + this.ctrl.recherchMinerai(point.getRessource().getType()).name() + ".png");
 				}
-				if (point.getRessource().getType() instanceof Minerai)
+				if (point.getRessource().getType() instanceof Monnaie)
 				{
 					temp = this.getToolkit().getImage("./code/images/distrib_images_2/transparent/Mine_NR.png");
 				}
@@ -85,11 +93,11 @@ public class PanelDessin extends JPanel
 			graphics2D.setStroke(new BasicStroke(3, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 0, new float[]{0, 30, (float)getLongueur(villeDep, villeArr) - 60, 30, 0}, 0));  // Chiffres à réfléchirs
 
 			graphics2D.setColor(Color.DARK_GRAY);
-			graphics2D. drawLine(villeDep.getX(), villeDep.getY(), villeArr.getX(), villeArr.getY());
+			graphics2D. drawLine(villeDep.getX() + villeDep.getTailleX() / 2, villeDep.getY() + villeDep.getTailleY() / 2, villeArr.getX() + villeArr.getTailleX() / 2, villeArr.getY() + villeArr.getTailleY() / 2);
 			
 			if (trait.getNbTroncon() > 1)
 			{
-				graphics2D.fillOval(((villeDep.getX() + villeArr.getX()) / trait.getNbTroncon()) - TAILLE_CERCLE / 2, ((villeDep.getY() + villeArr.getY()) / trait.getNbTroncon()) - TAILLE_CERCLE / 2, TAILLE_CERCLE, TAILLE_CERCLE);
+				graphics2D.fillOval(((villeDep.getX() + villeArr.getX()) / trait.getNbTroncon()) + TAILLE_CERCLE / 2, ((villeDep.getY() + villeArr.getY()) / trait.getNbTroncon()) + TAILLE_CERCLE / 2, TAILLE_CERCLE, TAILLE_CERCLE);
 			}
 
 		}
@@ -117,7 +125,7 @@ public class PanelDessin extends JPanel
 		@Override
 		public void mousePressed(MouseEvent e) 
 		{
-			this.v = PanelDessin.this.ctrl.getMineTouche(e.getX(), e.getX());
+			this.v = PanelDessin.this.ctrl.getMineTouche(e.getX(), e.getY());
 			this.x = e.getX();
 			this.y = e.getY();	
 			System.out.println("cliqué : " + this.v);

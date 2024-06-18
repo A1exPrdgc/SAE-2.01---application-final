@@ -37,20 +37,20 @@ public class Mine
 	public boolean possede(int x, int y)
 	{
 		int rayon = getTailleX() / 2;
-        double distanceCarree = Math.pow(x - this.x, 2) + Math.pow(y - this.x, 2);
+        double distanceCarree = Math.pow(x - this.x - this.getTailleX() / 2, 2) + Math.pow(y - this.y - this.getTailleX() / 2, 2);
         return distanceCarree <= rayon * rayon;
 	}
 
 
 	public void setX(int x2)
 	{
-		this.x = x2;
+		this.x = x2 - this.getTailleX() / 2;
 	}
 
 
 	public void setY(int y2)
 	{
-		this.y = y2;
+		this.y = y2 - this.getTailleY() / 2;
 	}
 
 	public void visiteMine()

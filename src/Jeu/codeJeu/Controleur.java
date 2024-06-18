@@ -4,6 +4,7 @@ import codeJeu.Controleur;
 import codeJeu.metier.*;
 import codeJeu.ihm.PlateauIndividuel.FrameIndi;
 import codeJeu.ihm.PlateauPrincipale.Frame;
+import codeJeu.ihm.interfaceEquipe.FrameEquipe;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +13,7 @@ public class Controleur
 {	
 	private Frame ihm;
 	private FrameIndi platIndiv;
+	private FrameEquipe frameEquipe;
 
 	private Lecture lecture;
 	private List<Mine> lstMines;
@@ -19,11 +21,12 @@ public class Controleur
 
 	public Controleur()
 	{
-		this.lecture   = new Lecture(this);
-		this.lstMines  = new ArrayList<Mine>();
-		this.lstRoutes = new ArrayList<Routes>();
-		this.ihm       = new Frame(this);
-		this.platIndiv = new FrameIndi(this);
+		this.lecture     = new Lecture(this);
+		this.lstMines    = new ArrayList<Mine>();
+		this.lstRoutes   = new ArrayList<Routes>();
+		this.ihm         = new Frame(this);
+		this.frameEquipe = new FrameEquipe(this);
+		this.platIndiv   = new FrameIndi(this);
 	}
 
 	public void ajouterMine(int x, int y, int numero, Region region )
@@ -157,14 +160,23 @@ public class Controleur
 
 	public Mine getMineTouche(int x, int y)
 	{
-		for (int i = 0; i < this.getMines().size(); i++)
+
+
+		for (Mine m : this.getMines())
 		{
-			if (this.getMines().get(i).possede(x, y))
+
+			System.out.println("Souris : (" + x + ";" + y + ") && mine : (" + m.getX() + ";" + m.getY() + ") " + m.getRegion().name() + " " + m.getNumMine());
+
+			if (m.possede(x, y))
 			{
-				return this.getMines().get(i);
+				System.out.println("OK");
+				return m;
 			}
+
 		}
+
 		return null;
+		
 	}
 	
 

@@ -35,12 +35,12 @@ public class Mine
 	public boolean getVisit()				{ return this.isVisited;}
 	public int getIdMine()                  { return idMine;        }
 
-	public boolean possede(int x, int y)
-	{
-		int rayon = getTailleX() / 2;
-        double distanceCarree = Math.pow(x - this.x, 2) + Math.pow(y - this.x, 2);
-        return distanceCarree <= rayon * rayon;
-	}
+	public boolean possede( int x, int y )
+    {
+		return 	x >= this.x && x <= this.x + this.getTailleX() &&
+				y >= this.y && y <= this.y + this.getTailleY();
+
+    }
 
 
 	public void setX(int x2)

@@ -45,7 +45,7 @@ public class PanelDessin extends JPanel
 		{
 			Mine point = this.ctrl.getMine(i);
 			graphics2D.setColor(point.getRegion().getCoul());
-			graphics2D.fillOval(point.getX() - point.getTailleX() / 2, point.getY() - point.getTailleY() / 2, point.getTailleX(),point.getTailleY());
+			graphics2D.fillOval(point.getX(), point.getY(), point.getTailleX(),point.getTailleY());
 		}
 
 		for (int i = 0; i < this.ctrl.getRoutes().size(); i++)
@@ -57,11 +57,11 @@ public class PanelDessin extends JPanel
 			graphics2D.setStroke(new BasicStroke(3, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 0, new float[]{0, 30, (float)getLongueur(villeDep, villeArr) - 60, 30, 0}, 0));  // Chiffres à réfléchirs
 
 			graphics2D.setColor(Color.DARK_GRAY);
-			graphics2D. drawLine(villeDep.getX(), villeDep.getY(), villeArr.getX(), villeArr.getY());
+			graphics2D. drawLine(villeDep.getX() + villeDep.getTailleX() / 2, villeDep.getY() + villeDep.getTailleY() / 2, villeArr.getX() + villeArr.getTailleX() / 2, villeArr.getY() + villeArr.getTailleY() / 2);
 			
 			if (trait.getNbTroncon() > 1)
 			{
-				graphics2D.fillOval(((villeDep.getX() + villeArr.getX()) / trait.getNbTroncon()) - TAILLE_CERCLE / 2, ((villeDep.getY() + villeArr.getY()) / trait.getNbTroncon()) - TAILLE_CERCLE / 2, TAILLE_CERCLE, TAILLE_CERCLE);
+				graphics2D.fillOval(((villeDep.getX() + villeArr.getX()) / trait.getNbTroncon()) + TAILLE_CERCLE / 2, ((villeDep.getY() + villeArr.getY()) / trait.getNbTroncon()) + TAILLE_CERCLE / 2, TAILLE_CERCLE, TAILLE_CERCLE);
 			}
 		}
 		graphics2D.setStroke(new BasicStroke(0));
@@ -89,7 +89,7 @@ public class PanelDessin extends JPanel
 		@Override
 		public void mousePressed(MouseEvent e) 
 		{
-			this.v = PanelDessin.this.ctrl.getMineTouche(e.getX(), e.getX());
+			this.v = PanelDessin.this.ctrl.getMineTouche(e.getX(), e.getY());
 			this.x = e.getX();
 			this.y = e.getY();	
 			System.out.println("cliqué : " + this.v);
