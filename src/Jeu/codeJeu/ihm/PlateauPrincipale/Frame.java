@@ -9,7 +9,7 @@ import java.awt.event.*;
 import java.awt.BorderLayout;
 
 
-public class Frame extends JFrame implements ActionListener
+public class Frame extends JFrame /*implements ActionListener*/
 {
 	private Controleur ctrl;
 
@@ -21,49 +21,33 @@ public class Frame extends JFrame implements ActionListener
     {
 		this.ctrl = ctrl;
 	
-        this.setSize(1000, 1000);
+        this.setSize(1090, 1000);
         this.setTitle("Plateau jeu");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLayout(new BorderLayout());
 
-        //this.cartePanel
 
-        /*-------------------------*/
-		/* Création des composants */
-		/*-------------------------*/
+		//JMenuBar menuMaBarre = new JMenuBar();
 
-		JMenuBar menuMaBarre = new JMenuBar();
-
-		JMenu menuFichier    = new JMenu("Fichier");
+		//JMenu menuFichier    = new JMenu("Fichier");
 		
-		this.menuFichierOuvrir           = new JMenuItem("Ouvrir" );
+		//this.menuFichierOuvrir           = new JMenuItem("Ouvrir" );
 
 		this.afficheDessin = new PanelDessin(this.ctrl);
 
 
-		menuFichier.add( this.menuFichierOuvrir );
-
-		// ajouts des panels
+		//menuFichier.add( this.menuFichierOuvrir );
 		this.add(this.afficheDessin, BorderLayout.CENTER);
+		//menuMaBarre.add( menuFichier );
 
-		// ajout du menu 'Fichier' a la barre de menu
-		menuMaBarre.add( menuFichier );
+		//this.setJMenuBar( menuMaBarre );
 
-		/*-------------------------------*/
-		/* positionnement des composants */
-		/*-------------------------------*/
-		this.setJMenuBar( menuMaBarre );
-
-
-		/*-------------------------------*/
-		/* Activation des composants     */
-		/*-------------------------------*/
-		this.menuFichierOuvrir .addActionListener 		  ( this );
+		//this.menuFichierOuvrir .addActionListener 		  ( this );
 
 		this.setVisible( true );
 	}
 
-	public void actionPerformed ( ActionEvent e )
+	/*public void actionPerformed ( ActionEvent e )
 	{
 		if ( e.getSource() == this.menuFichierOuvrir )
 		{
@@ -71,7 +55,7 @@ public class Frame extends JFrame implements ActionListener
 			this.ctrl.charger();
 			this.ctrl.majDessin();
 		}
-    }
+    }*/
 
 	public void majDessin()
 	{

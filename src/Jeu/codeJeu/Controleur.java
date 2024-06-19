@@ -19,25 +19,26 @@ public class Controleur
 	private List<Mine> lstMines;
 	private List<Routes> lstRoutes; 
 
+	private String sauvegarde;
 	private List<Jeton> jetonsRessources;
-	private Equipe equipe;
 	private Jeton[][] tabJetonEquipe;
 
-	public Controleur()
+	public Controleur(String nomSave)
 	{
-		initList();
+		this.initList();
 		
+		this.sauvegarde = nomSave;
 		this.lecture   = new Lecture(this);
 		this.lstMines  = new ArrayList<Mine>();
 		this.lstRoutes = new ArrayList<Routes>();
 		this.ihm       = new Frame(this);
-		this.platIndiv = new FrameIndi(this);
+		this.frameEquipe = new FrameEquipe(this);
+		this.charger();
+		this.majDessin();
 	}
 
 	public void initList()
 	{
-		this.equipe = new Equipe(this, "test");
-
 		this.jetonsRessources = new ArrayList<Jeton>();
 
 		this.jetonsRessources.add(new Jeton(Minerai.AL));
@@ -144,6 +145,10 @@ public class Controleur
 		return this.lstRoutes;
 	}
 
+	public String getSauvegarde() {
+		return this.sauvegarde;
+	}
+
 
 	public List<Mine> getMines()
 	{
@@ -236,11 +241,28 @@ public class Controleur
 	public Equipe getEquipe() {
 		return this.equipe;
 	}
+
+	public boolean obtenirMine(Mine m)
+	{
+		for (Routes r : this.lstRoutes) 
+		{
+			if (r.getMineDep() == m && r.getMineArriv().getVisit())
+			{
+				return true;
+			}	
+
+			if (r.getMineArriv() == m && r.getMineDep().getVisit())
+			{
+				return true;
+			}
+		}
+		return false;
+	}
 	
 
 
 	public static void main(String[] args)
 	{
-		new Controleur();
+		new Controleur(args[0]);
 	}
 }

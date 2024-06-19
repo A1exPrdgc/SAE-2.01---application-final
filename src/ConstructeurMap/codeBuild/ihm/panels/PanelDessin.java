@@ -44,27 +44,8 @@ public class PanelDessin extends JPanel
 		for (int i = 0; i < this.ctrl.getMines().size(); i++)
 		{
 			Mine point = this.ctrl.getMine(i);
-<<<<<<< HEAD:src/Jeu/code/ihm/PlateauPrincipale/panels/PanelDessin.java
-			//graphics2D.fillOval(point.getX() - point.getTailleX() / 2, point.getY() - point.getTailleY() / 2, point.getTailleX(),point.getTailleY());
-			Image temp = this.getToolkit().getImage("./code/images/distrib_images_2/transparent/Mine_" + point.getRegion().getNomCoul() + ".png");
-			graphics2D.drawImage(temp, point.getX() - temp.getWidth(this) / 2 ,point.getY() - temp.getHeight(this) / 2, this);
-			graphics2D.drawString(point.getNumMine() + "", point.getX() - 3, point.getY() - 15);
-			if (point.getRessource() != null)
-			{
-				if (point.getRessource().getType() instanceof Minerai)
-				{
-					temp = this.getToolkit().getImage("./code/images/distrib_images_2/transparent/Mine_" + this.ctrl.rechercheMinerai(point.getRessource().getType()).name() + ".png");
-				}
-				if (point.getRessource().getType() instanceof Minerai)
-				{
-					temp = this.getToolkit().getImage("./code/images/distrib_images_2/transparent/Mine_NR.png");
-				}
-				graphics2D.drawImage(temp, point.getX(), point.getY(), this);
-			}
-=======
 			graphics2D.setColor(point.getRegion().getCoul());
 			graphics2D.fillOval(point.getX() - point.getTailleX() / 2, point.getY() - point.getTailleY() / 2, point.getTailleX(),point.getTailleY());
->>>>>>> 0d48cfe0de95970a040270d43d3a292bf3745677:src/ConstructeurMap/codeBuild/ihm/panels/PanelDessin.java
 		}
 
 		for (int i = 0; i < this.ctrl.getRoutes().size(); i++)

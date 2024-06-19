@@ -30,7 +30,7 @@ public class PanelPrincipal extends JPanel
 				if (this.tabJetons[i][j] != null)
 				{
 					this.tabImagesRessource[i][j] = new ImageIcon(
-							"src\\Jeu\\codeJeu\\images\\distrib_images_2\\ressources\\" + tabJetons[i][j].getType() + ".png").getImage();
+							"./codeJeu/images/distrib_images_2/ressources/" + tabJetons[i][j].getType() + ".png").getImage();
 				}
 			}
 		}
@@ -43,7 +43,7 @@ public class PanelPrincipal extends JPanel
 		g2 = (Graphics2D) g;
 
 		// Affichage image de Fond
-		g2.drawImage(this.getToolkit().getImage("src\\Jeu\\codeJeu\\images\\distrib_images_2\\plateau_joueur_1.png"), 0, 0, this);
+		g2.drawImage(this.getToolkit().getImage("./codeJeu/images/distrib_images_2/plateau_joueur_1.png"), 0, 0, this);
 
 		
 
@@ -62,9 +62,9 @@ public class PanelPrincipal extends JPanel
 		// Affichage images Pieces
 		int tmp = 14;
 		int x = 53;
-		for (int i = 0; i < this.equipe.getNBPiece(); i++)
+		for (int i = 0; i < 8; i++)
 		{ // nb pieces
-			Image pieceImage = new ImageIcon("src\\Jeu\\code\\images\\distrib_images_2\\ressources\\NR.png").getImage();
+			Image pieceImage = new ImageIcon("./codeJeu/images/distrib_images_2/ressources/NR.png").getImage();
 			g2.drawImage(pieceImage, x+tmp, 328, this);
 			tmp += x;
 		}

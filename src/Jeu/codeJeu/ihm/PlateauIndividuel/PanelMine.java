@@ -27,7 +27,7 @@ public class PanelMine extends JPanel
 			if (this.tabMine[i] != null)
 			{
 				this.tabImageMine[i] = new ImageIcon(
-						"src\\Jeu\\codeJeu\\images\\distrib_images_2\\transparent\\" + tabMine[i].getRegion().getNomCoul() + ".png").getImage(); 
+						"./codeJeu/images/distrib_images_2/transparent/Mine_" + tabMine[i].getRegion().getNomCoul() + ".png").getImage(); 
 			}
 
 		}

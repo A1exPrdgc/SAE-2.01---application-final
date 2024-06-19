@@ -19,7 +19,7 @@ public class PanelPiece extends JPanel
 		this.controleur = controleur;
 		this.equipe = controleur.getEquipe();
 
-		this.setLayout(new BorderLayout());
+		this.setLayout(new FlowLayout(FlowLayout.LEFT));
 
 		this.piecePosImage = new JLabel();
 		this.nbPiecePos = new JLabel("X" + equipe.getNBPointPos());
@@ -27,20 +27,20 @@ public class PanelPiece extends JPanel
 
 		System.out.println("piecePos");
 		this.piecePosImage.setIcon(new ImageIcon(
-				"src\\Jeu\\codeJeu\\images\\distrib_images_2\\pion_joueur1.png"));
+				"./codeJeu/images/distrib_images_2/pion_joueur_1.png"));
 
-		this.add(this.piecePosImage, BorderLayout.WEST);
+		this.add(this.piecePosImage);
 		this.add(this.nbPiecePos);
 	}
 
-	public void paintComponent(Graphics g)
+	/*public void paintComponent(Graphics g)
 	{
 		super.paintComponent(g);
 
 		g2 = (Graphics2D) g;
 
 		// Affichage image de Fond
-		g2.drawImage(this.getToolkit().getImage("src\\Jeu\\codeJeu\\images\\distrib_images_2\\pion_joueur_1.png"), 0, 0, this);
+		g2.drawImage(this.getToolkit().getImage("./codeJeu/images/distrib_images_2/pion_joueur_1.png"), 0, 0, this);
 	
-	}
+	}*/
 }

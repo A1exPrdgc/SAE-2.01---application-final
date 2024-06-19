@@ -23,7 +23,7 @@ public class Lecture
 
     public void lectureGraphe() 
     {
-        try (BufferedReader lecture = new BufferedReader(new FileReader("../save/mines.txt"))) 
+        try (BufferedReader lecture = new BufferedReader(new FileReader("../save/" + this.ctrl.getSauvegarde()))) 
         {
             String line;
             boolean minesSection = false;
