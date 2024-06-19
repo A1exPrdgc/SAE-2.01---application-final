@@ -11,6 +11,7 @@ import codeJeu.metier.Region;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -83,7 +84,11 @@ public class PanelDessin extends JPanel
 				temp = this.getToolkit().getImage("./codeJeu/images/distrib_images_2/transparent/Mine_"
 						+ point.getRegion().getNomCoul() + ".png");
 				graphics2D.drawImage(temp, point.getX(), point.getY(), this);
-				graphics2D.drawString(point.getNumMine() + "", point.getX() + 21, point.getY() + 30);
+
+				Font fontChiffre = new Font("Arial", Font.BOLD, 20);
+				graphics2D.setFont(fontChiffre);
+
+				graphics2D.drawString(point.getNumMine() + "", point.getX() + 17, point.getY() + 30);
 			}
 			else
 			{
