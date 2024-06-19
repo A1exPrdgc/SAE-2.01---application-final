@@ -241,18 +241,21 @@ public class Controleur
 		{
 			for(int j = 0; j < 4; j++)
 			{
+
 				lstRessources.add(new Jeton(Minerai.values()[i]));
 			}
 		}
 
 		for (Mine m : this.lstMines)
 		{
-			Random rand = new Random();
-			int nb = rand.nextInt(lstRessources.size());
+			if(m.getRegion() != Region.VILLE)
+			{
+				Random rand = new Random();
+				int nb = rand.nextInt(lstRessources.size());
 
-
-			m.ajouterRessource(lstRessources.get(nb));
-			lstRessources.remove(nb);
+				m.ajouterRessource(lstRessources.get(nb));
+				lstRessources.remove(nb);
+			}
 		}
 	}
 

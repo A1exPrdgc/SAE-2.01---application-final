@@ -77,7 +77,7 @@ public class PanelDessin extends JPanel
 				{
 					temp = this.getToolkit().getImage("./code/images/distrib_images_2/transparent/Mine_NR.png");
 				}
-				graphics2D.drawImage(temp, point.getX() + 2, point.getY() + 40, this);
+				graphics2D.drawImage(temp, point.getX() + 2, point.getY() + 40,45,40, this);
 			}
 		}
 
