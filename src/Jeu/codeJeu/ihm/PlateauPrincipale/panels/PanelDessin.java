@@ -72,10 +72,6 @@ public class PanelDessin extends JPanel
 				if (point.getRessource().getType() instanceof Minerai)
 				{
 					temp = this.getToolkit().getImage("./codeJeu/images/distrib_images_2/ressources/" + this.ctrl.rechercheMinerai(point.getRessource().getType()).name() + ".png");
-
-					System.out.println("Ressource : " + this.ctrl.rechercheMinerai(point.getRessource().getType()).name());
-					System.out.println("./codeJeu/images/distrib_images_2/ressources/"+ this.ctrl.rechercheMinerai(point.getRessource().getType()).name() + ".png");
-
 				}
 				if (point.getRessource().getType() instanceof Monnaie)
 				{
