@@ -99,7 +99,7 @@ public class PanelDessin extends JPanel
 				}
 				if (point.getRessource().getType() instanceof Monnaie)
 				{
-					temp = this.getToolkit().getImage("./code/images/distrib_images_2/transparent/Mine_NR.png");
+					temp = this.getToolkit().getImage("./codeJeu/images/distrib_images_2/transparent/Mine_NR.png");
 				}
 				graphics2D.drawImage(temp, point.getX() + 2, point.getY() + 40, 45, 40, this);
 			}
@@ -111,6 +111,16 @@ public class PanelDessin extends JPanel
 			Mine point = this.ctrl.getMineTouche(souris.x, souris.y);
 		 	this.getToolkit().getImage("./codeJeu/images/distrib_images_2/transparent/Mine_" + point.getRegion().getNomCoul() + ".png");
 		}
+
+		if (this.ctrl.getTour() % 2 == 0)
+		{
+			temp = this.getToolkit().getImage("./codeJeu/images/distrib_images_2/pion_joueur_1.png");
+		}
+		else
+		{
+			temp = this.getToolkit().getImage("./codeJeu/images/distrib_images_2/pion_joueur_1.png");
+		}
+		graphics2D.drawImage(temp, 15, 15, this);
 
 	}
 
@@ -133,14 +143,6 @@ public class PanelDessin extends JPanel
 		private Mine v;
 		private Boolean choisie;
 
-		public void mousePressed(MouseEvent e) 
-		{
-			this.v = PanelDessin.this.ctrl.getMineTouche(e.getX(), e.getY());
-			this.x = e.getX();
-			this.y = e.getY();	
-			System.out.println("cliqué : " + this.v);
-		}
-
 		public void mouseClicked(MouseEvent e)
 		{
 			for (Mine mine : ctrl.getMines())
@@ -152,6 +154,7 @@ public class PanelDessin extends JPanel
 					if (response == JOptionPane.YES_OPTION)
 					{
 						PanelDessin.this.aCliqueSurOui = true;
+						
 					}
 				}
 			}

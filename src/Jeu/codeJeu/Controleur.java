@@ -53,6 +53,10 @@ public class Controleur
 		this.tour ++;
 	}
 
+	public int getTour() {
+		return this.tour;
+	}
+
 	public void ouvrirCS(String nom)
 	{
 		this.equipeCS = new Equipe(this, nom);
