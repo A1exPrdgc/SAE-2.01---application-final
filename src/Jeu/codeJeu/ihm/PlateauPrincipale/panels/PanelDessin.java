@@ -51,35 +51,6 @@ public class PanelDessin extends JPanel
 
 		graphics2D.drawImage(this.getToolkit().getImage("./codeJeu/images/distrib_images_2/Plateau_vierge.png"), 0, 0, this.getWidth(), this.getHeight(), this);
 
-		for (int i = 0; i < this.ctrl.getMines().size(); i++)
-		{
-			Mine point = this.ctrl.getMine(i);
-			//graphics2D.fillOval(point.getX() - point.getTailleX() / 2, point.getY() - point.getTailleY() / 2, point.getTailleX(),point.getTailleY());
-
-			if (point.getRegion() != Region.VILLE)
-			{
-				temp = this.getToolkit().getImage("./codeJeu/images/distrib_images_2/transparent/Mine_" + point.getRegion().getNomCoul() + ".png");
-				graphics2D.drawImage(temp, point.getX() ,point.getY(), this);
-				graphics2D.drawString(point.getNumMine() + "", point.getX() + 21, point.getY() + 30);
-			}
-			else
-			{
-				temp = this.getToolkit().getImage("./codeJeu/images/distrib_images_2/NR.png");
-				graphics2D.drawImage(temp, point.getX() ,point.getY(), this);
-			}
-			if (point.getRessource() != null)
-			{
-				if (point.getRessource().getType() instanceof Minerai)
-				{
-					temp = this.getToolkit().getImage("./codeJeu/images/distrib_images_2/ressources/" + this.ctrl.rechercheMinerai(point.getRessource().getType()).name() + ".png");
-				}
-				if (point.getRessource().getType() instanceof Monnaie)
-				{
-					temp = this.getToolkit().getImage("./code/images/distrib_images_2/transparent/Mine_NR.png");
-				}
-				graphics2D.drawImage(temp, point.getX() + 2, point.getY() + 40,45,40, this);
-			}
-		}
 
 		for (int i = 0; i < this.ctrl.getRoutes().size(); i++)
 		{
@@ -98,6 +69,40 @@ public class PanelDessin extends JPanel
 				graphics2D.fillOval(((villeDep.getX() + villeArr.getX()) / trait.getNbTroncon()) + TAILLE_CERCLE / 2, ((villeDep.getY() + villeArr.getY()) / trait.getNbTroncon()) + TAILLE_CERCLE / 2, TAILLE_CERCLE, TAILLE_CERCLE);
 			}
 
+		}
+
+		for (int i = 0; i < this.ctrl.getMines().size(); i++)
+		{
+			Mine point = this.ctrl.getMine(i);
+			// graphics2D.fillOval(point.getX() - point.getTailleX() / 2,
+			// point.getY() - point.getTailleY() / 2,
+			// point.getTailleX(),point.getTailleY());
+
+			if (point.getRegion() != Region.VILLE)
+			{
+				temp = this.getToolkit().getImage("./codeJeu/images/distrib_images_2/transparent/Mine_"
+						+ point.getRegion().getNomCoul() + ".png");
+				graphics2D.drawImage(temp, point.getX(), point.getY(), this);
+				graphics2D.drawString(point.getNumMine() + "", point.getX() + 21, point.getY() + 30);
+			}
+			else
+			{
+				temp = this.getToolkit().getImage("./codeJeu/images/distrib_images_2/NR.png");
+				graphics2D.drawImage(temp, point.getX(), point.getY(), this);
+			}
+			if (point.getRessource() != null)
+			{
+				if (point.getRessource().getType() instanceof Minerai)
+				{
+					temp = this.getToolkit().getImage("./codeJeu/images/distrib_images_2/ressources/"
+							+ this.ctrl.rechercheMinerai(point.getRessource().getType()).name() + ".png");
+				}
+				if (point.getRessource().getType() instanceof Monnaie)
+				{
+					temp = this.getToolkit().getImage("./code/images/distrib_images_2/transparent/Mine_NR.png");
+				}
+				graphics2D.drawImage(temp, point.getX() + 2, point.getY() + 40, 45, 40, this);
+			}
 		}
 		graphics2D.setStroke(new BasicStroke(0));
 
