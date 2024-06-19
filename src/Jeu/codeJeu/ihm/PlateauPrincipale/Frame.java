@@ -26,36 +26,12 @@ public class Frame extends JFrame /*implements ActionListener*/
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLayout(new BorderLayout());
 
-
-		//JMenuBar menuMaBarre = new JMenuBar();
-
-		//JMenu menuFichier    = new JMenu("Fichier");
-		
-		//this.menuFichierOuvrir           = new JMenuItem("Ouvrir" );
-
 		this.afficheDessin = new PanelDessin(this.ctrl);
 
-
-		//menuFichier.add( this.menuFichierOuvrir );
 		this.add(this.afficheDessin, BorderLayout.CENTER);
-		//menuMaBarre.add( menuFichier );
-
-		//this.setJMenuBar( menuMaBarre );
-
-		//this.menuFichierOuvrir .addActionListener 		  ( this );
 
 		this.setVisible( true );
 	}
-
-	/*public void actionPerformed ( ActionEvent e )
-	{
-		if ( e.getSource() == this.menuFichierOuvrir )
-		{
-			System.out.println ( "Ouvrir" );
-			this.ctrl.charger();
-			this.ctrl.majDessin();
-		}
-    }*/
 
 	public void majDessin()
 	{

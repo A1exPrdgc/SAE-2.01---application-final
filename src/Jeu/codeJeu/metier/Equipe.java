@@ -1,5 +1,8 @@
 package codeJeu.metier;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import codeJeu.Controleur;
 import codeJeu.metier.*;
 
@@ -11,7 +14,7 @@ public class Equipe
 
     private int nbJetonPossession;
     private int nbMine;
-    private Mine[] tabMine;
+    private List<Mine> tabMine;
     private String nom;
     private Jeton[][] tabJetons;
     private int nbPiece;
@@ -24,8 +27,9 @@ public class Equipe
 
         this.nbMine  = 0;
         this.nbPiece = 0;
+		this.nbJetonPossession = 25;
 
-        this.tabMine   = new Mine [ 15 ];
+        this.tabMine   = new ArrayList<Mine>();
         this.tabJetons = new Jeton[4][8];
     }    
 
@@ -54,6 +58,11 @@ public class Equipe
 		return false;
 	}
 
+	public void ajouterMine(Mine mine)
+	{
+		this.tabMine.add(mine);
+	}
+
 	private boolean colonneAccepteMinerai(int col, Minerai Minerai) {
 		for (int i = 0; i < this.getTailleLig(); i++) {
 			if (tabJetons[i][col] != null) {
@@ -78,7 +87,7 @@ public class Equipe
         return this.tabJetons;
     }
 
-    public Mine[] getMines()
+    public List<Mine> getMines()
     {
         return this.tabMine;
     }
@@ -205,42 +214,42 @@ public class Equipe
 		int scoreMine = 0;
 		String[] tabTypeMines = new String [] { "j0", "b0", "g0", "v0", "r0", "m0", };
 
-		for (int i = 0; i < this.tabMine.length; i++) {
-			switch (tabMine[i].getRegion().name().charAt(0)) {
+		for (int i = 0; i < this.tabMine.size(); i++) {
+			switch (tabMine.get(i).getRegion().name().charAt(0)) {
 				case 'J':
-					if ( this.tabMine[i].getNumMine() > Integer.parseInt(tabTypeMines[0].substring(1))) 
+					if ( this.tabMine.get(i).getNumMine() > Integer.parseInt(tabTypeMines[0].substring(1))) 
 					{
-						tabTypeMines[0] = "j" + this.tabMine[i].getNumMine();
+						tabTypeMines[0] = "j" + this.tabMine.get(i).getNumMine();
 					}
 					break;
 				case 'B':
-					if (this.tabMine[i].getNumMine() > Integer.parseInt(tabTypeMines[1].substring(1)))
+					if (this.tabMine.get(i).getNumMine() > Integer.parseInt(tabTypeMines[1].substring(1)))
 					{
-						tabTypeMines[1] = "b" + this.tabMine[i].getNumMine();
+						tabTypeMines[1] = "b" + this.tabMine.get(i).getNumMine();
 					}
 					break;
 				case 'G':
-					if (this.tabMine[i].getNumMine() > Integer.parseInt(tabTypeMines[2].substring(1)))
+					if (this.tabMine.get(i).getNumMine() > Integer.parseInt(tabTypeMines[2].substring(1)))
 					{
-						tabTypeMines[2] = "g" + this.tabMine[i].getNumMine();
+						tabTypeMines[2] = "g" + this.tabMine.get(i).getNumMine();
 					}
 					break;
 				case 'V':
-					if (this.tabMine[i].getNumMine() > Integer.parseInt(tabTypeMines[3].substring(1)))
+					if (this.tabMine.get(i).getNumMine() > Integer.parseInt(tabTypeMines[3].substring(1)))
 					{
-						tabTypeMines[3] = "v" + this.tabMine[i].getNumMine();
+						tabTypeMines[3] = "v" + this.tabMine.get(i).getNumMine();
 					}
 					break;
 				case 'R':
-					if (this.tabMine[i].getNumMine() > Integer.parseInt(tabTypeMines[4].substring(1)))
+					if (this.tabMine.get(i).getNumMine() > Integer.parseInt(tabTypeMines[4].substring(1)))
 					{
-						tabTypeMines[4] = "r" + this.tabMine[i].getNumMine();
+						tabTypeMines[4] = "r" + this.tabMine.get(i).getNumMine();
 					}
 					break;
 				default:
-					if (this.tabMine[i].getNumMine() > Integer.parseInt(tabTypeMines[5].substring(1)))
+					if (this.tabMine.get(i).getNumMine() > Integer.parseInt(tabTypeMines[5].substring(1)))
 					{
-						tabTypeMines[5] = "m" + this.tabMine[i].getNumMine();
+						tabTypeMines[5] = "m" + this.tabMine.get(i).getNumMine();
 					}
 					break;
 			}

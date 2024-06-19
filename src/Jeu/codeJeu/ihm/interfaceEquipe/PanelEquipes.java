@@ -70,7 +70,6 @@ public class PanelEquipes extends JPanel implements ActionListener
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		System.out.println("zaertyuiop");
 		if (e.getSource() == this.confirmerButton)
 		{
 			if (!this.corpSolaireField.getText().equals(this.syndicatAstralField.getText()) || !this.corpSolaireField.getText().isEmpty() || !this.syndicatAstralField.getText().isEmpty())

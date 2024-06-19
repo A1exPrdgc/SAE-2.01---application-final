@@ -1,5 +1,7 @@
 package codeJeu.ihm.PlateauIndividuel;
 
+import java.util.List;
+
 import java.awt.*;
 import javax.swing.*;
 
@@ -14,28 +16,22 @@ public class PanelPrincipal extends JPanel
 	private Image[][] tabImagesRessource;
 	private Controleur ctrl;
 	private String type;
+	private Image[] tabImageMine;
+	private List<Mine> tabMine;
+	private int[] tabNum;
 
 	public PanelPrincipal(Equipe equipe, Controleur controleur, String type)
 	{
 		this.equipe = equipe;
 		this.ctrl = controleur;
 		this.type = type;
+		this.tabImageMine = new Image[15];
+		this.tabNum = new int[15];
 
 		this.tabJetons = equipe.getRessources();
 		this.tabImagesRessource = new Image[4][8];
 
 		// Création des Image Ressources
-		for (int i = 0; i < this.tabJetons.length; i++)
-		{
-			for (int j = 0; j < this.tabJetons[0].length; j++)
-			{
-				if (this.tabJetons[i][j] != null)
-				{
-					this.tabImagesRessource[i][j] = new ImageIcon(
-							"./codeJeu/images/distrib_images_2/ressources/" + tabJetons[i][j].getType() + ".png").getImage();
-				}
-			}
-		}
 	}
 
 	public void paintComponent(Graphics g)
@@ -52,6 +48,18 @@ public class PanelPrincipal extends JPanel
 		else
 		{
 			g2.drawImage(this.getToolkit().getImage("./codeJeu/images/distrib_images_2/plateau_joueur_2.png"), 0, 0, this);
+		}
+
+		for (int i = 0; i < this.tabJetons.length; i++)
+		{
+			for (int j = 0; j < this.tabJetons[0].length; j++)
+			{
+				if (this.tabJetons[i][j] != null)
+				{
+					this.tabImagesRessource[i][j] = new ImageIcon(
+							"./codeJeu/images/distrib_images_2/ressources/" + tabJetons[i][j].getType() + ".png").getImage();
+				}
+			}
 		}
 
 		// Affichage images Ressources
@@ -74,6 +82,33 @@ public class PanelPrincipal extends JPanel
 			Image pieceImage = new ImageIcon("./codeJeu/images/distrib_images_2/ressources/NR.png").getImage();
 			g2.drawImage(pieceImage, x+tmp, 328, this);
 			tmp += x;
+		}
+
+		
+		this.tabMine = this.equipe.getMines();
+		for (int i = 0; i < tabMine.size(); i++)
+		{
+			if (this.tabMine.get(i) != null)
+			{
+				this.tabImageMine[i] = new ImageIcon("./codeJeu/images/distrib_images_2/transparent/Mine_" + tabMine.get(i).getRegion().getNomCoul() + ".png").getImage(); 
+				this.tabNum[i] = tabMine.get(i).getNumMine(); 
+			}
+
+		}
+
+		// Affichage images Ressources
+		for (int lig = 0; lig < 3; lig++)
+		{
+			for (int col = 0; col < 5; col++)
+			{
+				if (this.tabImageMine[(lig * 5) + col] != null)
+				{
+					g2.drawImage(this.tabImageMine[(lig * 5) + col], col * 50 + 565, lig * 85 + 20, 48, 83, this);
+					Font fontChiffre = new Font("Arial", Font.BOLD, 18);
+					g2.setFont(fontChiffre);
+					g2.drawString(this.tabNum[(lig * 5) + col] + "", col * 50 + 565 + 20, lig * 85 + 20 + 30);
+				}
+			}
 		}
 	}
 }

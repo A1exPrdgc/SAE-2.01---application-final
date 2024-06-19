@@ -11,6 +11,7 @@ import codeJeu.metier.Region;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -80,37 +81,55 @@ public class PanelDessin extends JPanel
 
 			if (point.getRegion() != Region.VILLE)
 			{
-				temp = this.getToolkit().getImage("./codeJeu/images/distrib_images_2/transparent/Mine_"
-						+ point.getRegion().getNomCoul() + ".png");
-				graphics2D.drawImage(temp, point.getX(), point.getY(), this);
-				graphics2D.drawString(point.getNumMine() + "", point.getX() + 21, point.getY() + 30);
+				if (!point.getVisit())
+				{
+					temp = this.getToolkit().getImage("./codeJeu/images/distrib_images_2/opaque/Mine_" + point.getRegion().getNomCoul() + ".png");
+					graphics2D.drawImage(temp, point.getX(), point.getY(), this);
+					Font fontChiffre = new Font("Arial", Font.BOLD, 18);
+                	graphics2D.setFont(fontChiffre);
+					graphics2D.drawString(point.getNumMine() + "", point.getX() + 18, point.getY() + 31);
+				}
+				else
+				{
+					temp = this.getToolkit().getImage("./codeJeu/images/distrib_images_2/transparent/Mine_" + point.getRegion().getNomCoul() + ".png");
+					graphics2D.drawImage(temp, point.getX(), point.getY(), this);
+					Font fontChiffre = new Font("Arial", Font.BOLD, 18);
+					graphics2D.setFont(fontChiffre);
+					graphics2D.drawString(point.getNumMine() + "", point.getX() + 18, point.getY() + 31);
+				}
 			}
 			else
 			{
 				temp = this.getToolkit().getImage("./codeJeu/images/distrib_images_2/NR.png");
 				graphics2D.drawImage(temp, point.getX(), point.getY(), this);
 			}
+
 			if (point.getRessource() != null)
 			{
-				if (point.getRessource().getType() instanceof Minerai)
+				if (!point.getVisit())
 				{
-					temp = this.getToolkit().getImage("./codeJeu/images/distrib_images_2/ressources/"
-							+ this.ctrl.rechercheMinerai(point.getRessource().getType()).name() + ".png");
+					if (point.getRessource().getType() instanceof Minerai)
+					{
+						temp = this.getToolkit().getImage("./codeJeu/images/distrib_images_2/ressources/"
+								+ this.ctrl.rechercheMinerai(point.getRessource().getType()).name() + ".png");
+					}
+					if (point.getRessource().getType() instanceof Monnaie)
+					{
+						temp = this.getToolkit().getImage("./codeJeu/images/distrib_images_2/ressources/NR.png");
+					}
+					graphics2D.drawImage(temp, point.getX() + 2, point.getY() + 40, 45, 40, this);
 				}
-				if (point.getRessource().getType() instanceof Monnaie)
-				{
-					temp = this.getToolkit().getImage("./codeJeu/images/distrib_images_2/transparent/Mine_NR.png");
-				}
-				graphics2D.drawImage(temp, point.getX() + 2, point.getY() + 40, 45, 40, this);
 			}
 		}
 		graphics2D.setStroke(new BasicStroke(0));
 
+		/* 
 		if(aCliqueSurOui)
 		{
 			Mine point = this.ctrl.getMineTouche(souris.x, souris.y);
+			System.out.println(point);
 		 	this.getToolkit().getImage("./codeJeu/images/distrib_images_2/transparent/Mine_" + point.getRegion().getNomCoul() + ".png");
-		}
+		}*/
 
 		if (this.ctrl.getTour() % 2 == 0)
 		{
@@ -118,7 +137,7 @@ public class PanelDessin extends JPanel
 		}
 		else
 		{
-			temp = this.getToolkit().getImage("./codeJeu/images/distrib_images_2/pion_joueur_1.png");
+			temp = this.getToolkit().getImage("./codeJeu/images/distrib_images_2/pion_joueur_2.png");
 		}
 		graphics2D.drawImage(temp, 15, 15, this);
 
@@ -138,24 +157,48 @@ public class PanelDessin extends JPanel
 
 	private class GererSouris extends MouseAdapter
 	{
-		private int x;
-		private int y;
-		private Mine v;
-		private Boolean choisie;
-
 		public void mouseClicked(MouseEvent e)
 		{
 			for (Mine mine : ctrl.getMines())
 			{
-				if (mine.possede(e.getX(), e.getY()))
+				if (mine.possede(e.getX(), e.getY()) && !mine.getVisit() && mine.getRegion() != Region.VILLE && PanelDessin.this.ctrl.canObtain(mine) && PanelDessin.this.ctrl.getInscrit())
 				{
-					int response = JOptionPane.showConfirmDialog(null, "Êtes-vous sûr de vouloir cette mine ?",
-							"Confirmation", JOptionPane.YES_NO_OPTION);
+					int response = JOptionPane.showConfirmDialog(null, "Êtes-vous sûr de vouloir cette mine ?","Confirmation", JOptionPane.YES_NO_OPTION);
+
 					if (response == JOptionPane.YES_OPTION)
 					{
 						PanelDessin.this.aCliqueSurOui = true;
-						
+						if (PanelDessin.this.ctrl.getTour() % 2 == 0)
+						{
+							PanelDessin.this.ctrl.getEquipeCS().ajouterRessource(mine.getRessource());
+							PanelDessin.this.ctrl.getEquipeCS().ajouterMine(mine);
+							PanelDessin.this.ctrl.getFrameCS().majDessinRessource();
+							mine.visiteMine();
+
+							PanelDessin.this.ctrl.tourSuivant();
+						}
+						else
+						{
+							PanelDessin.this.ctrl.getEquipeSA().ajouterRessource(mine.getRessource());
+							PanelDessin.this.ctrl.getEquipeSA().ajouterMine(mine);
+							PanelDessin.this.ctrl.getFrameSA().majDessinRessource();
+							mine.visiteMine();
+
+							PanelDessin.this.ctrl.tourSuivant();
+							
+						}
 					}
+				}
+			}
+			PanelDessin.this.ctrl.majDessin();
+
+			if (PanelDessin.this.ctrl.hasWin())
+			{
+				int reponse = JOptionPane.showInternalConfirmDialog(null, "La partie est terminé", "fin", JOptionPane.OK_OPTION);
+
+				if (reponse == JOptionPane.OK_OPTION)
+				{
+					System.exit(reponse);
 				}
 			}
 		}

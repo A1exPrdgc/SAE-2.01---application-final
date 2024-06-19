@@ -30,12 +30,13 @@ public class Controleur
 	private List<Jeton> lstRessources;
 	private Jeton[][] tabJetonEquipe;
 
+	private boolean inscrit;
 	private int tour;
 
 	public Controleur(String nomSave)
 	{
 		//this.initList();
-		
+		this.inscrit = false;
 		this.tour = 0;
 		this.sauvegarde = nomSave;
 		this.lecture   = new Lecture(this);
@@ -43,8 +44,8 @@ public class Controleur
 		this.lstRoutes = new ArrayList<Routes>();
 		this.frameEquipe = new FrameEquipe(this);
 		this.charger();
-		this.ihm       = new Frame(this);
 		this.initRessource();
+		this.ihm       = new Frame(this);
 		this.majDessin();
 	}
 
@@ -53,20 +54,48 @@ public class Controleur
 		this.tour ++;
 	}
 
+	public void inscrire()
+	{
+		this.inscrit = true;
+	}
+
+	public boolean getInscrit()
+	{
+		return this.inscrit;
+	}
+
 	public int getTour() {
 		return this.tour;
+	}
+
+	public Equipe getEquipeCS() {
+		return this.equipeCS;
+	}
+
+	public Equipe getEquipeSA() {
+		return this.equipeSA;
+	}
+
+	public FrameIndi getFrameCS() {
+		return this.frameCS;
+	}
+
+	public FrameIndi getFrameSA() {
+		return this.frameSA;
 	}
 
 	public void ouvrirCS(String nom)
 	{
 		this.equipeCS = new Equipe(this, nom);
-		this.frameCS = new FrameIndi(this, this.equipeCS, "CS");
+		this.frameCS = new FrameIndi(this, this.equipeCS, "CS", nom);
+		this.inscrire();
 	}
 
 	public void ouvrirSA(String nom)
 	{
 		this.equipeSA = new Equipe(this, nom);
-		this.frameSA = new FrameIndi(this, this.equipeSA, "SA");
+		this.frameSA = new FrameIndi(this, this.equipeSA, "SA", nom);
+		this.inscrire();
 	}
 
 	public void ajouterMine(int x, int y, int numero, Region region )
@@ -91,6 +120,17 @@ public class Controleur
 			}
 		}
 		return null;
+	}
+
+	public boolean canObtain(Mine m)
+	{
+		for (Routes r : lstRoutes) {
+			if(r.getMineDep() == m && r.getMineArriv().getVisit() || r.getMineArriv() == m && r.getMineDep().getVisit())
+			{
+				return true;
+			}
+		}
+		return false;
 	}
 
 	public Minerai rechercheMinerai(IRessources val) // attention au nom 
@@ -249,6 +289,10 @@ public class Controleur
 				lstRessources.add(new Jeton(Minerai.values()[i]));
 			}
 		}
+		for (int i = 0; i < 8; i++) 
+		{
+			lstRessources.add(new Jeton(new Monnaie()));	
+		}
 
 		for (Mine m : this.lstMines)
 		{
@@ -280,6 +324,19 @@ public class Controleur
 		}
 
 		return str;
+	}
+
+	public boolean hasWin()
+	{
+		for (Mine mine : lstMines) 
+		{
+			if (!mine.getVisit())
+			{
+				return false;
+			}	
+		}
+		System.out.println("WIIIINNNN !!!!");
+		return true;
 	}
 
 

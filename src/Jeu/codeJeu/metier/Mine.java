@@ -21,7 +21,15 @@ public class Mine
 		this.y = y;
 		this.numero = numero;
 		this.region = region;
-		this.isVisited = false;
+
+		if (this.region == Region.VILLE)
+		{
+			this.isVisited = true;
+		}
+		else
+		{
+			this.isVisited = false;
+		}
 		this.idMine = ++nbMine;
 	}
 
