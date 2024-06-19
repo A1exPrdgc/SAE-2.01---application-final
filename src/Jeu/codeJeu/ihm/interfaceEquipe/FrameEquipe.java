@@ -16,6 +16,8 @@ public class FrameEquipe extends JFrame
 	public FrameEquipe(Controleur ctrl)
 	{	
 		this.ctrl = ctrl;
+
+		this.setLocation(1200, 500);
 		this.setTitle("Choix des équipes");
 		this.setLayout(new BorderLayout());
 		this.setSize(500, 200);

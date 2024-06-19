@@ -20,7 +20,6 @@ public class FrameIndi extends JFrame
 		this.equipe = equipe;
 		this.type = type;
 		this.setTitle("Plateau de " + nom);
-		this.setLocation(50, 50);
 		this.setSize(850, 500); // 553, 397
 		this.setLayout(new BorderLayout());
 
@@ -39,5 +38,10 @@ public class FrameIndi extends JFrame
 	public void majDessinRessource()
 	{
 		this.panelPrincipal.repaint();
+	}
+
+	public void majNbJeton()
+	{
+		this.panelCptPiecePos.majNbJeton();
 	}
 }

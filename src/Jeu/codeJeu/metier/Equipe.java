@@ -31,7 +31,11 @@ public class Equipe
 
         this.tabMine   = new ArrayList<Mine>();
         this.tabJetons = new Jeton[4][8];
-    }    
+    }   
+	
+	public String getNom() {
+		return this.nom;
+	}
 
 	public boolean ajouterRessource(Jeton r)
 	{
@@ -190,6 +194,11 @@ public class Equipe
 			scoreCol += calculerScoreColonne(i);
 		}
 		return scoreCol;
+	}
+
+	public void varierNbJetonPos(int val)
+	{
+		this.nbJetonPossession += val;
 	}
 
 	public int getScoreLignes()

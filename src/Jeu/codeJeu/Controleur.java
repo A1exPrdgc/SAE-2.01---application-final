@@ -13,7 +13,6 @@ import java.util.Random;
 public class Controleur 
 {	
 	private Frame ihm;
-	private FrameIndi platIndiv;
 	private FrameEquipe frameEquipe;
 
 	private Equipe equipeCS;
@@ -28,7 +27,6 @@ public class Controleur
 
 	private String sauvegarde;
 	private List<Jeton> lstRessources;
-	private Jeton[][] tabJetonEquipe;
 
 	private boolean inscrit;
 	private int tour;
@@ -45,6 +43,19 @@ public class Controleur
 		this.frameEquipe = new FrameEquipe(this);
 		this.charger();
 		this.initRessource();
+		this.ihm       = new Frame(this);
+		this.majDessin();
+	}
+
+	public Controleur()
+	{
+		//this.initList();
+		this.inscrit = false;
+		this.tour = 0;
+		this.lecture   = new Lecture(this);
+		this.lstMines  = new ArrayList<Mine>();
+		this.lstRoutes = new ArrayList<Routes>();
+		this.frameEquipe = new FrameEquipe(this);
 		this.ihm       = new Frame(this);
 		this.majDessin();
 	}
@@ -88,6 +99,7 @@ public class Controleur
 	{
 		this.equipeCS = new Equipe(this, nom);
 		this.frameCS = new FrameIndi(this, this.equipeCS, "CS", nom);
+		this.frameCS.setLocation(1080, 520);
 		this.inscrire();
 	}
 
@@ -95,6 +107,7 @@ public class Controleur
 	{
 		this.equipeSA = new Equipe(this, nom);
 		this.frameSA = new FrameIndi(this, this.equipeSA, "SA", nom);
+		this.frameSA.setLocation(1080, 0);
 		this.inscrire();
 	}
 
@@ -131,6 +144,17 @@ public class Controleur
 			}
 		}
 		return false;
+	}
+
+	public int getNbTroncons(Mine m)
+	{
+		for (Routes r : lstRoutes) {
+			if(r.getMineDep() == m && r.getMineArriv().getVisit() || r.getMineArriv() == m && r.getMineDep().getVisit())
+			{
+				return r.getNbTroncon(); 
+			}
+		}
+		return 0;
 	}
 
 	public Minerai rechercheMinerai(IRessources val) // attention au nom 
@@ -260,6 +284,22 @@ public class Controleur
 		return null;
 	}
 
+	public String getWinner()
+	{
+		if (this.hasWin())
+		{
+			if (this.equipeCS.getNBPointPos() > this.equipeSA.getNBPointPos())
+			{
+				return this.equipeCS.getNom();
+			}
+			else
+			{
+				return this.equipeSA.getNom();
+			}
+		}
+		return null;
+	}
+
 	public boolean obtenirMine(Mine m)
 	{
 		for (Routes r : this.lstRoutes) 
@@ -342,6 +382,15 @@ public class Controleur
 
 	public static void main(String[] args)
 	{
-		new Controleur(args[0]);
+		if (args.length == 0)
+		{
+			new Controleur();
+		}
+		else
+		{
+			new Controleur(args[0]);
+		}
 	}
 }
+
+

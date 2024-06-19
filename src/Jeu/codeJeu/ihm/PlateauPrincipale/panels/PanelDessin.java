@@ -172,7 +172,9 @@ public class PanelDessin extends JPanel
 						{
 							PanelDessin.this.ctrl.getEquipeCS().ajouterRessource(mine.getRessource());
 							PanelDessin.this.ctrl.getEquipeCS().ajouterMine(mine);
+							PanelDessin.this.ctrl.getEquipeCS().varierNbJetonPos(-PanelDessin.this.ctrl.getNbTroncons(mine));
 							PanelDessin.this.ctrl.getFrameCS().majDessinRessource();
+							PanelDessin.this.ctrl.getFrameCS().majNbJeton();
 							mine.visiteMine();
 
 							PanelDessin.this.ctrl.tourSuivant();
@@ -181,7 +183,9 @@ public class PanelDessin extends JPanel
 						{
 							PanelDessin.this.ctrl.getEquipeSA().ajouterRessource(mine.getRessource());
 							PanelDessin.this.ctrl.getEquipeSA().ajouterMine(mine);
+							PanelDessin.this.ctrl.getEquipeSA().varierNbJetonPos(-PanelDessin.this.ctrl.getNbTroncons(mine));
 							PanelDessin.this.ctrl.getFrameSA().majDessinRessource();
+							PanelDessin.this.ctrl.getFrameSA().majNbJeton();
 							mine.visiteMine();
 
 							PanelDessin.this.ctrl.tourSuivant();
@@ -194,11 +198,14 @@ public class PanelDessin extends JPanel
 
 			if (PanelDessin.this.ctrl.hasWin())
 			{
-				int reponse = JOptionPane.showInternalConfirmDialog(null, "La partie est terminé", "fin", JOptionPane.OK_OPTION);
+				String winner = PanelDessin.this.ctrl.getWinner();
 
-				if (reponse == JOptionPane.OK_OPTION)
+				Object[] options = {"OK"};
+				int n = JOptionPane.showOptionDialog(null,"Le joueur " + winner + " gagne la partie !","Title",JOptionPane.PLAIN_MESSAGE,JOptionPane.QUESTION_MESSAGE,null,options,options[0]);
+
+				if (n == JOptionPane.OK_OPTION)
 				{
-					System.exit(reponse);
+					System.exit(n);
 				}
 			}
 		}

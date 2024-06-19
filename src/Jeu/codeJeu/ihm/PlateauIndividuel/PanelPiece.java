@@ -43,4 +43,9 @@ public class PanelPiece extends JPanel
 		this.add(this.piecePosImage);
 		this.add(this.nbPiecePos);
 	}
+
+	public void majNbJeton()
+	{
+		this.nbPiecePos.setText("X" + equipe.getNBPointPos());
+	}
 }
