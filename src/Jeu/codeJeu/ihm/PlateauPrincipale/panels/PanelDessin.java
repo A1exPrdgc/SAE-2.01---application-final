@@ -71,7 +71,11 @@ public class PanelDessin extends JPanel
 			{
 				if (point.getRessource().getType() instanceof Minerai)
 				{
-					temp = this.getToolkit().getImage("./codeJeu/images/distrib_images_2/transparent/Mine_" + this.ctrl.rechercheMinerai(point.getRessource().getType()).name() + ".png");
+					temp = this.getToolkit().getImage("./codeJeu/images/distrib_images_2/ressources/" + this.ctrl.rechercheMinerai(point.getRessource().getType()).name() + ".png");
+
+					System.out.println("Ressource : " + this.ctrl.rechercheMinerai(point.getRessource().getType()).name());
+					System.out.println("./codeJeu/images/distrib_images_2/ressources/"+ this.ctrl.rechercheMinerai(point.getRessource().getType()).name() + ".png");
+
 				}
 				if (point.getRessource().getType() instanceof Monnaie)
 				{
@@ -87,10 +91,6 @@ public class PanelDessin extends JPanel
 
 			Mine villeDep = trait.getMineDep();
 			Mine villeArr = trait.getMineArriv();
-
-			System.out.println("---------------------------");
-			System.out.println((float)getLongueur(villeDep, villeArr) - 60);
-			System.out.println("---------------------------");
 
 			graphics2D.setStroke(new BasicStroke(3, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 0, new float[]{0, 30, (float)getLongueur(villeDep, villeArr) - 60, 30, 0}, 0));  // Chiffres à réfléchirs
 

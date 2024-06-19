@@ -8,6 +8,7 @@ import codeJeu.ihm.interfaceEquipe.FrameEquipe;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Controleur 
 {	
@@ -26,7 +27,7 @@ public class Controleur
 	private List<Routes> lstRoutes; 
 
 	private String sauvegarde;
-	private List<Jeton> jetonsRessources;
+	private List<Jeton> lstRessources;
 	private Jeton[][] tabJetonEquipe;
 
 	private int tour;
@@ -41,8 +42,9 @@ public class Controleur
 		this.lstMines  = new ArrayList<Mine>();
 		this.lstRoutes = new ArrayList<Routes>();
 		this.frameEquipe = new FrameEquipe(this);
-		this.ihm       = new Frame(this);
 		this.charger();
+		this.ihm       = new Frame(this);
+		this.initRessource();
 		this.majDessin();
 	}
 
@@ -67,13 +69,11 @@ public class Controleur
 	{
 		 this.lstMines.add(0,new Mine(x, y, numero, region));
 		 this.lstMines.get(0);
-		 this.ihm.majDessin();
 	}
 
 	public boolean ajouterRoute(int nbTroncon, Mine depart, Mine arrivee)
 	{
 		boolean worked = this.lstRoutes.add(new Routes(nbTroncon, depart, arrivee));
-		System.out.println(this.lstRoutes.get(0).getNbTroncon());
 		return worked;
 	}
 
@@ -233,6 +233,47 @@ public class Controleur
 		return false;
 	}
 	
+	public void initRessource()
+	{
+		List<Jeton> lstRessources = new ArrayList<Jeton>();
+
+		for(int i = 0; i < 8; i++)
+		{
+			for(int j = 0; j < 4; j++)
+			{
+				lstRessources.add(new Jeton(Minerai.values()[i]));
+			}
+		}
+
+		for (Mine m : this.lstMines)
+		{
+			Random rand = new Random();
+			int nb = rand.nextInt(lstRessources.size());
+
+
+			m.ajouterRessource(lstRessources.get(nb));
+			lstRessources.remove(nb);
+		}
+	}
+
+	public String toString()
+	{
+		String str = "";
+		for (Mine m : this.lstMines)
+		{
+			str += m.toString() + "\n";
+		}
+		for (Routes r : this.lstRoutes)
+		{
+			str += r.toString() + "\n";
+		}
+		for (Jeton j : this.lstRessources)
+		{
+			str += j.toString() + "\n";
+		}
+
+		return str;
+	}
 
 
 	public static void main(String[] args)
