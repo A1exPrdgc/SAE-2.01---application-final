@@ -13,20 +13,22 @@ public class FrameIndi extends JFrame
 	private PanelPiece panelCptPiecePos;
 	private Equipe equipe;
 	private Controleur controleur;
+	private String type;
 
-	public FrameIndi(Controleur controleur)
+	public FrameIndi(Controleur controleur, Equipe equipe, String type)
 	{
 		this.controleur = controleur;
-		this.equipe = controleur.getEquipe();
+		this.equipe = equipe;
+		this.type = type;
 		this.setTitle("Plateau Individuel");
 		this.setLocation(50, 50);
 		this.setSize(800, 500); // 553, 397
 		this.setLayout(new BorderLayout());
 
 		// CrÃ©ation des panels
-		this.panelCptPiecePos = new PanelPiece(this.equipe, this.controleur);
-		this.panelMine = new PanelMine(this.equipe, this.controleur);
-		this.panelPrincipal = new PanelPrincipal(this.equipe, this.controleur);
+		this.panelCptPiecePos = new PanelPiece(this.equipe, this.controleur, this.type);
+		this.panelMine = new PanelMine(this.equipe, this.controleur, this.type);
+		this.panelPrincipal = new PanelPrincipal(this.equipe, this.controleur, this.type);
 
 		// Ajout des panels
 		this.add(this.panelMine, BorderLayout.EAST);

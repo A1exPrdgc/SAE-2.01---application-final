@@ -13,13 +13,15 @@ public class PanelPrincipal extends JPanel
 	private Jeton[][] tabJetons;
 	private Image[][] tabImagesRessource;
 	private Controleur ctrl;
+	private String type;
 
-	public PanelPrincipal(Equipe equipe, Controleur controleur)
+	public PanelPrincipal(Equipe equipe, Controleur controleur, String type)
 	{
 		this.equipe = equipe;
 		this.ctrl = controleur;
+		this.type = type;
 
-		this.tabJetons = this.ctrl.getTabJetonEquipe();
+		this.tabJetons = equipe.getRessources();
 		this.tabImagesRessource = new Image[4][8];
 
 		// Création des Image Ressources
@@ -43,9 +45,14 @@ public class PanelPrincipal extends JPanel
 		g2 = (Graphics2D) g;
 
 		// Affichage image de Fond
-		g2.drawImage(this.getToolkit().getImage("./codeJeu/images/distrib_images_2/plateau_joueur_1.png"), 0, 0, this);
-
-		
+		if (this.type.equals("CS"))
+		{
+			g2.drawImage(this.getToolkit().getImage("./codeJeu/images/distrib_images_2/plateau_joueur_1.png"), 0, 0, this);
+		}	
+		else
+		{
+			g2.drawImage(this.getToolkit().getImage("./codeJeu/images/distrib_images_2/plateau_joueur_2.png"), 0, 0, this);
+		}
 
 		// Affichage images Ressources
 		for (int lig = 0; lig < tabJetons.length; lig++)
@@ -62,7 +69,7 @@ public class PanelPrincipal extends JPanel
 		// Affichage images Pieces
 		int tmp = 14;
 		int x = 53;
-		for (int i = 0; i < 8; i++)
+		for (int i = 0; i < this.equipe.getNBPiece(); i++)
 		{ // nb pieces
 			Image pieceImage = new ImageIcon("./codeJeu/images/distrib_images_2/ressources/NR.png").getImage();
 			g2.drawImage(pieceImage, x+tmp, 328, this);

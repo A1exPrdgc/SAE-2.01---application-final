@@ -13,11 +13,13 @@ public class PanelPiece extends JPanel
 	private Controleur controleur;
 	private Equipe equipe;
 	private Graphics2D g2;
+	private String type;
 
-	public PanelPiece(Equipe equipe, Controleur controleur)
+	public PanelPiece(Equipe equipe, Controleur controleur, String type)
 	{
 		this.controleur = controleur;
-		this.equipe = controleur.getEquipe();
+		this.equipe = equipe;
+		this.type = type;
 
 		this.setLayout(new FlowLayout(FlowLayout.LEFT));
 
@@ -26,21 +28,19 @@ public class PanelPiece extends JPanel
 		this.nbPiecePos.setFont(new Font("7898", Font.PLAIN, 35));
 
 		System.out.println("piecePos");
-		this.piecePosImage.setIcon(new ImageIcon(
+
+		if (this.type.equals("CS"))
+		{
+			this.piecePosImage.setIcon(new ImageIcon(
 				"./codeJeu/images/distrib_images_2/pion_joueur_1.png"));
+		}
+		else
+		{
+			this.piecePosImage.setIcon(new ImageIcon(
+				"./codeJeu/images/distrib_images_2/pion_joueur_2.png"));
+		}
 
 		this.add(this.piecePosImage);
 		this.add(this.nbPiecePos);
 	}
-
-	/*public void paintComponent(Graphics g)
-	{
-		super.paintComponent(g);
-
-		g2 = (Graphics2D) g;
-
-		// Affichage image de Fond
-		g2.drawImage(this.getToolkit().getImage("./codeJeu/images/distrib_images_2/pion_joueur_1.png"), 0, 0, this);
-	
-	}*/
 }

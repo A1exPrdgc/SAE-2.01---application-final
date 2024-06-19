@@ -22,7 +22,7 @@ public class FrameEquipe extends JFrame
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		// Créer le panel de jeu
-		PanelEquipes panelEquipes = new PanelEquipes();
+		PanelEquipes panelEquipes = new PanelEquipes(this.ctrl);
 		panelEquipes.setAlignmentX(CENTER_ALIGNMENT);
 		panelEquipes.setAlignmentY(CENTER_ALIGNMENT);
 

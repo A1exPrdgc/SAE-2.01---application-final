@@ -1,19 +1,28 @@
 package codeJeu.ihm.interfaceEquipe;
 import javax.swing.*;
-import java.awt.*;
+import javax.swing.plaf.OptionPaneUI;
 
-public class PanelEquipes extends JPanel 
+import codeJeu.Controleur;
+
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class PanelEquipes extends JPanel implements ActionListener
 {
 	private JTextField corpSolaireField;
 	private JTextField syndicatAstralField;
 	private JButton confirmerButton;
 	private JPanel panelBouton;
+	private Controleur ctrl;
 
-	public PanelEquipes()
+	public PanelEquipes(Controleur ctrl)
 	{
 		setLayout(new GridLayout(3, 1));
 
 		// Créer les champs de texte pour les équipes
+		this.ctrl = ctrl;
+
 		this.corpSolaireField = new JTextField();
 		this.corpSolaireField.setMaximumSize(new Dimension(200, 40));
 		this.corpSolaireField.setAlignmentX(CENTER_ALIGNMENT);
@@ -41,21 +50,40 @@ public class PanelEquipes extends JPanel
 		this.panelBouton = new JPanel();
 		this.panelBouton.add(confirmerButton);
 
-
 		// Ajouter les panels et le bouton au panel principal
 		this.add(corpSolairePanel);
 		this.add(syndicatAstralPanel);
 		this.add(panelBouton);
 
+		this.confirmerButton.addActionListener(this);
+
 	}
 
-	public String getCorpSolaire()
+	public String getCS()
 	{
-		return corpSolaireField.getText();
+		return this.corpSolaireField.getText();
 	}
 
-	public String getSyndicatAstral()
+	public String getSA()
 	{
-		return syndicatAstralField.getText();
+		return this.syndicatAstralField.getText();
 	}
+
+	public void actionPerformed(ActionEvent e) {
+		System.out.println("zaertyuiop");
+		if (e.getSource() == this.confirmerButton)
+		{
+			if (!this.corpSolaireField.getText().equals(this.syndicatAstralField.getText()) || !this.corpSolaireField.getText().isEmpty() || !this.syndicatAstralField.getText().isEmpty())
+			{
+				this.ctrl.ouvrirCS(this.corpSolaireField.getText());
+				this.ctrl.ouvrirSA(this.syndicatAstralField.getText());
+				SwingUtilities.getWindowAncestor(this).setVisible(false);
+			}
+			else
+			{
+				JOptionPane.showMessageDialog(this, "Nom invalide", "Erreur", JOptionPane.WARNING_MESSAGE);
+			}
+		}
+	}
+
 }

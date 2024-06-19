@@ -15,6 +15,12 @@ public class Controleur
 	private FrameIndi platIndiv;
 	private FrameEquipe frameEquipe;
 
+	private Equipe equipeCS;
+	private Equipe equipeSA;
+
+	private FrameIndi frameCS;
+	private FrameIndi frameSA;
+
 	private Lecture lecture;
 	private List<Mine> lstMines;
 	private List<Routes> lstRoutes; 
@@ -23,66 +29,38 @@ public class Controleur
 	private List<Jeton> jetonsRessources;
 	private Jeton[][] tabJetonEquipe;
 
+	private int tour;
+
 	public Controleur(String nomSave)
 	{
-		this.initList();
+		//this.initList();
 		
+		this.tour = 0;
 		this.sauvegarde = nomSave;
 		this.lecture   = new Lecture(this);
 		this.lstMines  = new ArrayList<Mine>();
 		this.lstRoutes = new ArrayList<Routes>();
-		this.ihm       = new Frame(this);
 		this.frameEquipe = new FrameEquipe(this);
+		this.ihm       = new Frame(this);
 		this.charger();
 		this.majDessin();
 	}
 
-	public void initList()
+	public void tourSuivant()
 	{
-		this.jetonsRessources = new ArrayList<Jeton>();
-
-		this.jetonsRessources.add(new Jeton(Minerai.AL));
-		this.jetonsRessources.add(new Jeton(Minerai.AG));
-		this.jetonsRessources.add(new Jeton(Minerai.AU));
-		this.jetonsRessources.add(new Jeton(Minerai.CO));
-		this.jetonsRessources.add(new Jeton(Minerai.FE));
-		this.jetonsRessources.add(new Jeton(Minerai.NI));
-		this.jetonsRessources.add(new Jeton(Minerai.PT));
-		this.jetonsRessources.add(new Jeton(Minerai.TI));
-		this.jetonsRessources.add(new Jeton(Minerai.AL));
-		this.jetonsRessources.add(new Jeton(Minerai.AG));
-
-		while (true)
-		{
-			Jeton jeton = tirerJeton(this.jetonsRessources);
-			if (jeton == null)
-				break;
-
-			boolean added = equipe.ajouterRessource(jeton);
-		}
-
-		this.tabJetonEquipe = equipe.getRessources();
+		this.tour ++;
 	}
 
-	public Jeton[][] getTabJetonEquipe() 
+	public void ouvrirCS(String nom)
 	{
-		return this.tabJetonEquipe;
+		this.equipeCS = new Equipe(this, nom);
+		this.frameCS = new FrameIndi(this, this.equipeCS, "CS");
 	}
-	
-	public static Jeton tirerJeton(List<Jeton> jetonsRessources)
+
+	public void ouvrirSA(String nom)
 	{
-		// Vérifier si la pioche n'est pas vide
-		if (!jetonsRessources.isEmpty())
-		{
-			// Sauvegarder le premier élément avant de le retirer
-			Jeton premierJeton = jetonsRessources.get(0);
-			jetonsRessources.remove(0);
-			return premierJeton;
-		}
-		else
-		{
-			return null;
-		}
+		this.equipeSA = new Equipe(this, nom);
+		this.frameSA = new FrameIndi(this, this.equipeSA, "SA");
 	}
 
 	public void ajouterMine(int x, int y, int numero, Region region )
@@ -236,10 +214,6 @@ public class Controleur
 		}
 
 		return null;
-	}
-
-	public Equipe getEquipe() {
-		return this.equipe;
 	}
 
 	public boolean obtenirMine(Mine m)

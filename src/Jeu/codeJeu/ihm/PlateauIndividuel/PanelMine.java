@@ -13,11 +13,14 @@ public class PanelMine extends JPanel
 	private Image[] tabImageMine;
 	private Equipe equipe;
 	private Controleur controleur;
+	private String type;
 
-	public PanelMine(Equipe equipe, Controleur controleur)
+	public PanelMine(Equipe equipe, Controleur controleur, String type)
 	{
+		this.type = type;
 		this.controleur = controleur;
-		this.equipe = controleur.getEquipe();
+		this.equipe = equipe;
+
 		this.tabImageMine = new Image[15];
 		this.tabMine = equipe.getMines();
 
