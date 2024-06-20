@@ -51,11 +51,24 @@ public class Lecture
                 if (minesSection) 
                 {
                    
-                    char charRegion = parts[3].charAt(0);
-                    Region region = Lecture.getRegionChar0(charRegion);
-                 
-					boolean visite = Boolean.parseBoolean(parts[4].trim());
-					
+                    char    charRegion = parts[3].charAt(0);
+                   
+                    Region  region     = Lecture.getRegionChar0(charRegion);
+
+                    int     mineVisite = 0;
+
+                    Mine mine = this.getNumMine(Integer.parseInt(parts[0].trim()));
+
+                    if(parts[4].trim() == "true")
+                    {
+                        mineVisite = 1;
+                    }
+
+                    if(mine != null && mineVisite == 1)
+                    {
+                        mine.visiteMine();
+                    }
+
                     this.ctrl.ajouterMine(Integer.parseInt(parts[0].trim()),Integer.parseInt(parts[1].trim()), Integer.parseInt(parts[2].trim()), region );
 
 
