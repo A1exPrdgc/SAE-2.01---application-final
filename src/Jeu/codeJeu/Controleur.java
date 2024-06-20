@@ -22,6 +22,7 @@ public class Controleur
 	private FrameIndi frameSA;
 
 	private Lecture lecture;
+	//private Lecture lectureEquipe;
 	private List<Mine> lstMines;
 	private List<Routes> lstRoutes; 
 
@@ -33,7 +34,6 @@ public class Controleur
 
 	public Controleur(String nomSave)
 	{
-		//this.initList();
 		this.inscrit = false;
 		this.tour = 0;
 		this.sauvegarde = nomSave;
@@ -49,7 +49,6 @@ public class Controleur
 
 	public Controleur()
 	{
-		//this.initList();
 		this.inscrit = false;
 		this.tour = 0;
 		this.lecture   = new Lecture(this);

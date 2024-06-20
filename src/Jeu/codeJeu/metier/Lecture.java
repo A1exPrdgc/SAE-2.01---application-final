@@ -54,9 +54,11 @@ public class Lecture
                    
                     Region region = Lecture.getRegionChar0(charRegion);
                  
+					Mine mine = this.getNumMine(Integer.parseInt(parts[0].trim()));
+					
+						this.ctrl.ajouterMine(Integer.parseInt(parts[0].trim()), Integer.parseInt(parts[1].trim()),
+								Integer.parseInt(parts[2].trim()), region);
 
-                    this.ctrl.ajouterMine(Integer.parseInt(parts[0].trim()),Integer.parseInt(parts[1].trim()), Integer.parseInt(parts[2].trim()), region );
-                   
                 } else if (routesSection) 
                 {
                    

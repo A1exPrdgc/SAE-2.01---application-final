@@ -5,6 +5,7 @@ import javax.swing.*;
 import codeJeu.Controleur;
 import codeJeu.metier.Mine;
 import codeJeu.metier.Routes;
+import codeJeu.metier.Sauvegarde;
 import codeJeu.metier.Minerai;
 import codeJeu.metier.Monnaie;
 import codeJeu.metier.Region;
@@ -175,6 +176,8 @@ public class PanelDessin extends JPanel
 							PanelDessin.this.ctrl.getEquipeCS().varierNbJetonPos(-PanelDessin.this.ctrl.getNbTroncons(mine));
 							PanelDessin.this.ctrl.getFrameCS().majDessinRessource();
 							PanelDessin.this.ctrl.getFrameCS().majNbJeton();
+							Sauvegarde.sauvegarderEquipe(PanelDessin.this.ctrl.getEquipeCS(), ctrl);	
+							Sauvegarde.sauvegarderEquipe(PanelDessin.this.ctrl.getEquipeSA(), ctrl);
 							mine.visiteMine();
 
 							PanelDessin.this.ctrl.tourSuivant();
@@ -186,6 +189,8 @@ public class PanelDessin extends JPanel
 							PanelDessin.this.ctrl.getEquipeSA().varierNbJetonPos(-PanelDessin.this.ctrl.getNbTroncons(mine));
 							PanelDessin.this.ctrl.getFrameSA().majDessinRessource();
 							PanelDessin.this.ctrl.getFrameSA().majNbJeton();
+							Sauvegarde.sauvegarderEquipe(PanelDessin.this.ctrl.getEquipeSA(), ctrl);
+							Sauvegarde.sauvegarderEquipe(PanelDessin.this.ctrl.getEquipeCS(), ctrl);
 							mine.visiteMine();
 
 							PanelDessin.this.ctrl.tourSuivant();

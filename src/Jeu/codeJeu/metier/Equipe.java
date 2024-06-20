@@ -91,6 +91,16 @@ public class Equipe
         return this.tabJetons;
     }
 
+	public Jeton getNomRessource(int i, int j)
+	{
+		return this.tabJetons[i][j];
+	}
+
+	public int getNBPoint()
+	{
+		return this.nbPiece;
+	}
+
     public List<Mine> getMines()
     {
         return this.tabMine;
