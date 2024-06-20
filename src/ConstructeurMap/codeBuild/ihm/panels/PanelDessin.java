@@ -45,7 +45,9 @@ public class PanelDessin extends JPanel
 		{
 			Mine point = this.ctrl.getMine(i);
 			graphics2D.setColor(point.getRegion().getCoul());
-			graphics2D.fillOval(point.getX() - point.getTailleX() / 2, point.getY() - point.getTailleY() / 2, point.getTailleX(),point.getTailleY());
+			graphics2D.fillOval(point.getX(), point.getY(), point.getTailleX(),point.getTailleY());
+			graphics2D.setColor(Color.BLACK);
+			graphics2D.drawString(point.getNumMine() + "", point.getX(), point.getY());
 		}
 
 		for (int i = 0; i < this.ctrl.getRoutes().size(); i++)
@@ -54,7 +56,14 @@ public class PanelDessin extends JPanel
 
 			Mine villeDep = trait.getMineDep();
 			Mine villeArr = trait.getMineArriv();
-			graphics2D.setStroke(new BasicStroke(3, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 0, new float[]{0, 30, (float)getLongueur(villeDep, villeArr) - 60, 30, 0}, 0));  // Chiffres à réfléchirs
+			if ((float)getLongueur(villeDep, villeArr) - 60 < 0)
+			{
+				graphics2D.setStroke(new BasicStroke(3, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 0, new float[]{0, 30, 0, 30, 0}, 0));  // Chiffres à réfléchirs
+			}
+			else
+			{
+				graphics2D.setStroke(new BasicStroke(3, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 0, new float[]{0, 30, (float)getLongueur(villeDep, villeArr) - 60, 30, 0}, 0));  // Chiffres à réfléchirs
+			}
 
 			graphics2D.setColor(Color.DARK_GRAY);
 			graphics2D. drawLine(villeDep.getX() + villeDep.getTailleX() / 2, villeDep.getY() + villeDep.getTailleY() / 2, villeArr.getX() + villeArr.getTailleX() / 2, villeArr.getY() + villeArr.getTailleY() / 2);
